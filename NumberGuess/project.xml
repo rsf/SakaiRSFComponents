@@ -2,7 +2,7 @@
 <project>
   <pomVersion>3</pomVersion>
   <artifactId>SakaiRSFNumberGuess</artifactId>
-  <name>Sakai RSF Number Guessing Tool</name>
+  <name>Sakai RSF Number Guessing</name>
   <groupId>sakaiproject</groupId>
   <description>The RSF Number guessing app, as a Sakai tool</description>
   <repository />

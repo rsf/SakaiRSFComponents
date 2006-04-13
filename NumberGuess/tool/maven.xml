@@ -4,20 +4,11 @@
 <project xmlns:j="jelly:core" xmlns:maven="jelly:maven"
   xmlns:u="jelly:util">
 
-  <!-- the common "full" goal invokes the default goal.  Used in maven -Dgoal=full multiproject:goal from .. -->
-  <goal name="full">
-    <!--attainGoal name="dependencies" /-->
-    <attainGoal name="deploy" />
-
-    <!--		<attainGoal name="reg"/> -->
-  </goal>
-
   <preGoal name="java:compile">
     <attainGoal name="dependencies" />
   </preGoal>
 
-
-  <preGoal name="war:webapp">
+  <preGoal name="sakai:build">
     <echo>Expanding webapp dependencies</echo>
 
     <mkdir dir="${maven.war.webapp.dir}" />
@@ -31,25 +22,6 @@
     </j:forEach>
   </preGoal>
 
-  <goal name="deploy" prereqs="war:webapp">
-    <j:set var="destination" value="${maven.tomcat.home}/webapps/" />
-
-    <mkdir dir="${destination}/${pom.artifactId}" />
-
-    <copy todir="${destination}/${pom.artifactId}">
-      <fileset dir="${maven.war.webapp.dir}" />
-    </copy>
-  </goal>
-  <!-- move all the registration files to /usr/local/sakai/reg -->
-  <!-- Disused as of Sakai 2.0
-    <goal name="reg">
-    <copy todir="/usr/local/sakai/reg/" filtering="false" preservelastmodified="true" overwrite="true">
-    <fileset dir="src/reg">
-    <include name="*.xml" />
-    </fileset>
-    </copy>
-    </goal>
-  -->
   <goal name="dependencies">
     <echo>ECHO HERE!!</echo>
 

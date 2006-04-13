@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
   <pomVersion>3</pomVersion>
-  <artifactId>SakaiRSFNumberGuess</artifactId>
+  <artifactId>SakaiRSFNumberGuessTool</artifactId>
   <name>Sakai RSF Number Guessing Tool</name>
   <groupId>sakaiproject</groupId>
   <description>The RSF Number guessing app, as a Sakai tool</description>

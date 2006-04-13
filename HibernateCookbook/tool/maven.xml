@@ -3,37 +3,16 @@
 <!-- default goal for the project builds and installs the war in the local repository -->
 <project xmlns:j="jelly:core" xmlns:maven="jelly:maven"
   xmlns:u="jelly:util" xmlns:ant="jelly:ant">
-
-  <!-- the common "full" goal invokes the default goal.  Used in maven -Dgoal=full multiproject:goal from .. -->
-  <goal name="full">
-    <!--attainGoal name="dependencies" /-->
-    <attainGoal name="deploy" />
-  </goal>
-
   <preGoal name="java:compile">
     <attainGoal name="dependencies" />
   </preGoal>
 
-  <goal name="deploy" prereqs="war:webapp">
-    <maven:property defaultValue="${pom.artifactId}" var="webappName"
-      name="rsfhello.deploy.webappname" />
-    <j:set var="destination"
-      value="${maven.tomcat.home}/webapps/${webappName}" />
-
-    <mkdir dir="${destination}" />
-
-    <copy todir="${destination}">
-      <fileset dir="${maven.war.webapp.dir}" />
-    </copy>
-  </goal>
-
   <goal name="dependencies">
     <echo>ECHO HERE!!</echo>
     <maven:reactor basedir="${basedir}/.."
-      includes="PonderUtilCore/project.xml,J-ServletUtil/project.xml,J-RSFUtil/project.xml,J-RSFHibernate/project.xml,SakaiRSF/project.xml"
+      includes="../PonderUtilCore/project.xml,../J-ServletUtil/project.xml,../J-RSFUtil/project.xml,J-RSFHibernate/project.xml,../SakaiRSF/project.xml"
       goals="full" postProcessing="true" collectOnly="false"
       collectionVar="multiprojects" banner="do deps" />
   </goal>
-
 
 </project>

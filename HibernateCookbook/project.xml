@@ -6,7 +6,7 @@
   <currentVersion>${sakai.version}</currentVersion>
   <shortDescription>RSF Hibernate Cookbook for Sakai</shortDescription>
   <description>
-    This is the base project for the Sakai RWiki project. The project
+    This is the base project for the Sakai Hibernate Cookbook project. The project
     currently uses three child projects in a multiproject fashion.
   </description>
   <url>http://www2.caret.cam.ac.uk/flowtalk</url>

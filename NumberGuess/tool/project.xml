@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <pomVersion>3</pomVersion>
+  <artifactId>SakaiRSFNumberGuess</artifactId>
+  <name>Sakai RSF Number Guessing Tool</name>
+  <groupId>sakaiproject</groupId>
+  <description>The RSF Number guessing app, as a Sakai tool</description>
+  <repository />
+  <developers>
+    <developer>
+      <name>Antranig Basman</name>
+      <id>0</id>
+      <email>antranig@caret.cam.ac.uk</email>
+    </developer>
+  </developers>
+  <currentVersion>${rsfutil.version}-${sakai.version}</currentVersion>
+  <organization>
+    <name>University of Cambridge</name>
+    <url>http://sakaiproject.org/</url>
+  </organization>
+  <inceptionYear>2005</inceptionYear>
+  <dependencies>
+    <dependency>
+      <groupId>rsftest</groupId>
+      <artifactId>rsf-numberguess</artifactId>
+      <version>${rsfutil.version}</version>
+      <type>war</type>
+      <properties>
+        <explode>true</explode>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>sakairsf</groupId>
+      <artifactId>sakairsf</artifactId>
+      <version>${rsfutil.version}-${sakai.version}</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+  </dependencies>
+  <build>
+    <!-- java source -->
+    <sourceDirectory>src/java</sourceDirectory>
+    <!-- other resources for the jar - the message bundles -->
+    <resources>
+      <resource>
+        <directory>${basedir}/src/bundle</directory>
+        <includes>
+          <include>**/*.properties</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+      <resource>
+        <directory>${basedir}/src/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
+  </build>
+</project>
+

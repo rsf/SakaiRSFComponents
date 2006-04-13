@@ -19,46 +19,14 @@
     <url>http://sakaiproject.org/</url>
   </organization>
   <inceptionYear>2005</inceptionYear>
-  <dependencies>
+    <dependencies>
+    <!-- our plugin -->
     <dependency>
-      <groupId>rsftest</groupId>
-      <artifactId>rsf-numberguess-base</artifactId>
-      <version>${rsfutil.version}</version>
-      <type>war</type>
-      <properties>
-        <explode>true</explode>
-      </properties>
-    </dependency>
-    <dependency>
-      <groupId>sakairsf</groupId>
-      <artifactId>sakairsf</artifactId>
-      <version>${rsfutil.version}-${sakai.version}</version>
-      <type>jar</type>
-      <properties>
-        <war.bundle>true</war.bundle>
-      </properties>
+      <groupId>sakaiproject</groupId>
+      <artifactId>sakai</artifactId>
+      <version>${sakai.plugin.version}</version>
+      <type>plugin</type>
     </dependency>
   </dependencies>
-  <build>
-    <!-- java source -->
-    <sourceDirectory>src/java</sourceDirectory>
-    <!-- other resources for the jar - the message bundles -->
-    <resources>
-      <resource>
-        <directory>${basedir}/src/bundle</directory>
-        <includes>
-          <include>**/*.properties</include>
-        </includes>
-        <filtering>false</filtering>
-      </resource>
-      <resource>
-        <directory>${basedir}/src/java</directory>
-        <includes>
-          <include>**/*.xml</include>
-        </includes>
-        <filtering>false</filtering>
-      </resource>
-    </resources>
-  </build>
 </project>
 

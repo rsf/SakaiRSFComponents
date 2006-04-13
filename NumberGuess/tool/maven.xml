@@ -1,71 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- default goal for the project builds and installs the war in the local repository -->
-<project 
-xmlns:j="jelly:core"
-  xmlns:maven="jelly:maven"
+<project xmlns:j="jelly:core" xmlns:maven="jelly:maven"
   xmlns:u="jelly:util">
 
-	<!-- the common "full" goal invokes the default goal.  Used in maven -Dgoal=full multiproject:goal from .. -->
-	<goal name="full">
-		<!--attainGoal name="dependencies" /-->
-		<attainGoal name="deploy"/>
-	
-<!--		<attainGoal name="reg"/> -->
-	</goal>
+  <!-- the common "full" goal invokes the default goal.  Used in maven -Dgoal=full multiproject:goal from .. -->
+  <goal name="full">
+    <!--attainGoal name="dependencies" /-->
+    <attainGoal name="deploy" />
 
-	<preGoal name="java:compile">
-		<attainGoal name="dependencies"/>
-	</preGoal>
+    <!--		<attainGoal name="reg"/> -->
+  </goal>
+
+  <preGoal name="java:compile">
+    <attainGoal name="dependencies" />
+  </preGoal>
 
 
-	<preGoal name="war:webapp">
-		<echo>Expanding webapp dependencies</echo>
-		
-		<mkdir dir="${maven.war.webapp.dir}"/>
-		<j:forEach var="lib" items="${pom.artifacts}">
-		
-			<j:set var="dep" value="${lib.dependency}"/>
-			<j:if test="${dep.getProperty('explode') == 'true'}">
-				<j:if test="${dep.type =='war'}">
-					<unjar src="${lib.path}" dest="${maven.war.webapp.dir}"/>
-				</j:if>
-			</j:if>
-		</j:forEach>
-		<delete file="${maven.war.webapp.dir}/WEB-INF/lib/spring-1.2.6.jar"/>
-        <delete file="${maven.war.webapp.dir}/WEB-INF/lib/aopalliance-1.0.jar"/>
-        <delete file="${maven.war.webapp.dir}/WEB-INF/lib/cglib-nodep-2.1_3.jar"/>      
-	</preGoal>
+  <preGoal name="war:webapp">
+    <echo>Expanding webapp dependencies</echo>
 
-	<goal name="deploy" prereqs="war:webapp">
-		<j:set var="destination" value="${maven.tomcat.home}/webapps/"/>
-		
-		<mkdir dir="${destination}/${pom.artifactId}"/>
-		
-		<copy todir="${destination}/${pom.artifactId}">
-			<fileset dir="${maven.war.webapp.dir}"/>	
-		</copy>		
-	</goal>
-	<!-- move all the registration files to /usr/local/sakai/reg -->
-	<!-- Disused as of Sakai 2.0
-	<goal name="reg">
-		<copy todir="/usr/local/sakai/reg/" filtering="false" preservelastmodified="true" overwrite="true">
-			<fileset dir="src/reg">
-				<include name="*.xml" />
-			</fileset>
-		</copy>
-	</goal>
-	-->
-	<goal name="dependencies">
-		<echo>ECHO HERE!!</echo>
-		
-		<maven:reactor basedir="${basedir}/.." 
-			includes="PonderUtilCore/project.xml,J-ServletUtil/project.xml,I-RSFNumberGuess/project.xml,SakaiRSF/project.xml"
-			goals="full"
-			postProcessing="true"
-			collectOnly="false"
-			collectionVar="multiprojects"
-			banner="do deps"/>
-			
-	</goal>
+    <mkdir dir="${maven.war.webapp.dir}" />
+    <j:forEach var="lib" items="${pom.artifacts}">
+      <j:set var="dep" value="${lib.dependency}" />
+      <j:if test="${dep.getProperty('explode') == 'true'}">
+        <j:if test="${dep.type =='war'}">
+          <unjar src="${lib.path}" dest="${maven.war.webapp.dir}" />
+        </j:if>
+      </j:if>
+    </j:forEach>
+  </preGoal>
+
+  <goal name="deploy" prereqs="war:webapp">
+    <j:set var="destination" value="${maven.tomcat.home}/webapps/" />
+
+    <mkdir dir="${destination}/${pom.artifactId}" />
+
+    <copy todir="${destination}/${pom.artifactId}">
+      <fileset dir="${maven.war.webapp.dir}" />
+    </copy>
+  </goal>
+  <!-- move all the registration files to /usr/local/sakai/reg -->
+  <!-- Disused as of Sakai 2.0
+    <goal name="reg">
+    <copy todir="/usr/local/sakai/reg/" filtering="false" preservelastmodified="true" overwrite="true">
+    <fileset dir="src/reg">
+    <include name="*.xml" />
+    </fileset>
+    </copy>
+    </goal>
+  -->
+  <goal name="dependencies">
+    <echo>ECHO HERE!!</echo>
+
+    <maven:reactor basedir="${basedir}/.."
+      includes="../PonderUtilCore/project.xml,../J-ServletUtil/project.xml,../SakaiRSF/project.xml"
+      goals="full" postProcessing="true" collectOnly="false"
+      collectionVar="multiprojects" banner="do deps" />
+
+  </goal>
 </project>

@@ -22,7 +22,7 @@
   <dependencies>
     <dependency>
       <groupId>rsftest</groupId>
-      <artifactId>rsf-numberguess</artifactId>
+      <artifactId>rsf-numberguess-base</artifactId>
       <version>${rsfutil.version}</version>
       <type>war</type>
       <properties>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <pomVersion>3</pomVersion>
+  <artifactId>SakaiHibernateCookbook</artifactId>
+  <name>Sakai RSF Hibernate Cookbook Tool</name>
+  <groupId>rsftest</groupId>
+  <currentVersion>${rsfutil.version}-${sakai.version}</currentVersion>
+  <organization>
+    <name>CARET</name>
+    <url>http://www.caret.cam.ac.uk</url>
+  </organization>
+  <inceptionYear>2005</inceptionYear>
+  <logo>/images/logo.gif</logo>
+  <description>RSF Hibernate Cookbook for Sakai</description>
+  <properties>
+    <!-- deploy as a war -->
+    <deploy.type>war</deploy.type>
+    <!-- deploy to "shared", "common" or "server" -->
+    <deploy.target>server</deploy.target>
+  </properties>
+  <repository />
+  <mailingLists>
+    <mailingList>
+      <name>${pom.name} Dev List</name>
+    </mailingList>
+    <mailingList>
+      <name>${pom.name} User List</name>
+    </mailingList>
+  </mailingLists>
+  <reports></reports>
+  <dependencies>
+    <dependency>
+      <groupId>rsftest</groupId>
+      <artifactId>rsf-hibernate-cookbook-category-datamodel</artifactId>
+      <version>1.0</version>
+      <type>jar</type>
+      <!--  This jar goes upstairs -->
+    </dependency>
+     <dependency>
+      <groupId>rsftest</groupId>
+      <artifactId>rsf-hibernate-cookbook-javacategory-code</artifactId>
+      <version>${rsfutil.version}</version>
+      <type>jar</type>
+        <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <!-- begin standard RSF dependencies here -->
+    <dependency>
+      <groupId>ponderutilcore</groupId>
+      <artifactId>ponderutilcore</artifactId>
+      <version>${ponderutilcore.version}</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>j-servletutil</groupId>
+      <artifactId>j-servletutil</artifactId>
+      <version>${jservletutil.version}</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>rsfutil</groupId>
+      <artifactId>rsfutil</artifactId>
+      <version>${rsfutil.version}</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>sakairsf</groupId>
+      <artifactId>sakairsf</artifactId>
+      <version>${rsfutil.version}-${sakai.version}</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>servletapi</groupId>
+      <artifactId>servletapi</artifactId>
+      <version>2.3</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.9</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>springframework</groupId>
+      <artifactId>spring</artifactId>
+      <version>1.2.6</version>
+      <type>jar</type>
+      <!--  NEVER deploy Spring into a Sakai tool -->
+    </dependency>
+    <!--  Begin Hibernate-specific dependencies here -->
+    <dependency>
+      <groupId>rsfutil</groupId>
+      <artifactId>rsfhibernate</artifactId>
+      <version>${rsfutil.version}</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>hibernate</groupId>
+      <artifactId>hibernate</artifactId>
+      <version>2.1.8</version>
+      <type>jar</type>
+      <!--  We exclude Sun's JTA since it is not redistributable (and hence
+        not on ibiblio - see geronimo replacements below. -->
+      <exclusions>
+        <exclusion>
+          <artifactId>jta</artifactId>
+          <groupId>javax.transaction</groupId>
+        </exclusion>
+        <exclusion>
+          <groupId>javax.security</groupId>
+          <artifactId>jacc</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!--  EHCache is required by Hibernate SettingsFactory -->
+    <dependency>
+      <groupId>ehcache</groupId>
+      <artifactId>ehcache</artifactId>
+      <version>1.1</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <!-- geronimo has supplied open source replacements for JTA, which is
+      required by the Spring LocalSessionFactoryBean. Open source replacements for jta, jacc -->
+    <dependency>
+      <artifactId>geronimo-spec-jta</artifactId>
+      <groupId>geronimo-spec</groupId>
+      <version>1.0.1B-rc4</version>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>geronimo-spec</groupId>
+      <artifactId>geronimo-spec-j2ee-jacc</artifactId>
+      <version>1.0-rc3</version>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <!--  Spring LocalSessionFactoryBean requires dom4j to read its configuration. -->
+    <dependency>
+      <groupId>dom4j</groupId>
+      <artifactId>dom4j</artifactId>
+      <version>1.6.1</version>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <!--  commons-dbcp is required for connection pooling, operated by
+      Hibernate DataSource -->
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.2</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <!-- commons-pool is required by commons-dbcp -->
+    <dependency>
+      <groupId>commons-pool</groupId>
+      <artifactId>commons-pool</artifactId>
+      <version>1.2</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <!-- Commons-collections is required by commons pooling, as well as
+      hbm2java task at build-time -->
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>3.1</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <!-- You will require a JDBC connector appropriate for your database. Here
+      we use MySQL -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>3.1.11</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <!-- Commons-lang is required to operate the toString method generated by
+      hbm2java entity code -->
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.0</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <!--  Dependencies needed to run the hbm2java task - not used by 
+      runtime webapp -->
+    <dependency>
+      <groupId>hibernate</groupId>
+      <artifactId>hibernate-tools</artifactId>
+      <version>2.1.3</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>jdom</groupId>
+      <artifactId>jdom</artifactId>
+      <version>1.0</version>
+      <type>jar</type>
+    </dependency>
+    <!--  The framework requires CGLIB (Java bytecode manipulation library) 
+      in order to implement lazy-loaded beans  -->
+    <dependency>
+      <groupId>aopalliance</groupId>
+      <artifactId>aopalliance</artifactId>
+      <version>1.0</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib</artifactId>
+      <version>nodep-2.1_3</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <!-- Doug Lea's Oswego concurrency package. The forerunner of JSR 166
+        java.util.concurrent -->
+      <groupId>concurrent</groupId>
+      <artifactId>concurrent</artifactId>
+      <version>1.3.4</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <!-- Aleksander Slominski's (U Indiana) lightning-fast XML pull parser -->
+    <dependency>
+      <groupId>xpp3</groupId>
+      <artifactId>xpp3</artifactId>
+      <version>1.1.3.4-RC8_min</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+  </dependencies>
+  <build>
+    <sourceDirectory>src/java</sourceDirectory>
+    <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
+    <unitTest>
+      <includes>
+        <include>**/*Test.java</include>
+      </includes>
+    </unitTest>
+    <resources>
+      <resource>
+        <directory>src/</directory>
+        <targetPath>/</targetPath>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
+  </build>
+</project>
+

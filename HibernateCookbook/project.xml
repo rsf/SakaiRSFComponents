@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <pomVersion>3</pomVersion>
+  <name>Sakai RSF Hibernate Cookbook Base</name>
+
+  <currentVersion>${sakai.version}</currentVersion>
+  <shortDescription>RSF Hibernate Cookbook for Sakai</shortDescription>
+  <description>
+    This is the base project for the Sakai RWiki project. The project
+    currently uses three child projects in a multiproject fashion.
+  </description>
+  <url>http://www2.caret.cam.ac.uk/flowtalk</url>
+  <issueTrackingUrl>
+   http://www.caret.cam.ac.uk/jira/browse
+  </issueTrackingUrl>
+  <inceptionYear>2005</inceptionYear>
+  <mailingLists>
+    <mailingList>
+      <name>Sakai Developers List</name>
+      <subscribe>http://collab.sakaiproject.org/portal/</subscribe>
+      <unsubscribe>
+        http://collab.sakaiproject.org/portal/site/1097928811887-22636/page/1097928812081-22647
+      </unsubscribe>
+      <archive>
+        http://collab.sakaiproject.org/portal/site/1097928811887-22636/page/1097928812081-22647
+      </archive>
+    </mailingList>
+  </mailingLists>
+  <developers>
+    <developer>
+      <id>antranig</id>
+      <name>Antranig Basman</name>
+      <email>antranig@caret.cam.ac.uk</email>
+      <url>http://www.caret.cam.ac.uk/contact/people/index.html</url>
+      <organization>CARET</organization>
+      <organizationUrl>http://www.caret.cam.ac.uk/</organizationUrl>
+      <roles>
+        <role>Developer</role>
+        <role>Project Manager</role>
+      </roles>
+      <timezone>0</timezone>
+      <properties />
+    </developer>
+  </developers>
+  <licenses>
+    <license>
+      <name>Educational Community License Version 1.0</name>
+      <url>http://cvs.sakaiproject.org/licenses/license_1_0.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <organization>
+    <name>CARET, University of Cambridge</name>
+    <url>http://www.caret.cam.ac.uk/</url>
+  </organization>
+  <build>
+    <nagEmailAddress>antranig@caret.cam.ac.uk</nagEmailAddress>
+    <defaultGoal>sakai</defaultGoal>
+  </build>
+  <dependencies>
+    <!-- our plugin -->
+    <dependency>
+      <groupId>sakaiproject</groupId>
+      <artifactId>sakai</artifactId>
+      <version>${sakai.plugin.version}</version>
+      <type>plugin</type>
+    </dependency>
+  </dependencies>
+</project>
+

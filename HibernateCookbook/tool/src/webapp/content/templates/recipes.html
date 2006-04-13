@@ -1,0 +1,60 @@
+<!DOCTYPE html      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:rsf="http://www.ponder.org/rsf">
+<head>
+<title>Hibernate Cookbook - Recipe Listing</title>
+<link rel="stylesheet" rsf:id="scr=rewrite-url" href="../style.css"
+	type="text/css" />
+<link href="/library/skin/tool_base.css" type="text/css"
+	rel="stylesheet" media="all" />
+<link href="/library/skin/default/tool.css" type="text/css"
+	rel="stylesheet" media="all" />
+<script type="text/javascript" language="JavaScript"
+	src="/library/js/headscripts.js"></script>
+<title>All Recipes</title>
+<style type="text/css">
+ .hidden {
+display: none;
+}
+.smallbtn {
+   font-size:80%;
+}
+</style>
+<script type="text/javascript" src="../javascript/getvalue.js"
+	rsf:id="scr=rewrite-url">
+</script>
+</head>
+<body rsf:id="scr=sakai-body">
+<div class="portletBody">
+		<div class="navIntraTool">
+<a href="recipe-edit.html" rsf:id="recipe-create">Create new recipe</a>&nbsp;
+<a href="index.html" rsf:id="index">Index</a>
+</div>
+
+<h1>Online Cookbook - All Recipes</h1>
+<form rsf:id="basic-form" method="post" class="inlineForm">
+  
+<table class="listHier lines" cellspacing="0" summary ="List of Recipes">
+ <tr>
+  <th width="40%"><p ><b>Recipe</b></p></th>
+  <th width="20%"><p ><b>Category</b></p></th>
+  <th width="20%"><p ><b>Date</b></p></th>
+  </tr>
+  <tr rsf:id="recipe-row:">
+   <td>
+   <a href="recipe-show.html" rsf:id="recipe-show">Hot Chips</a>
+   <span class="hidden" rsf:id="confirm-title" id="recipe-row::1:confirm-title">Hot Chips</span>
+     <span class="act">
+  
+  
+   <input type="submit" class="smallbtn" rsf:id="recipe-destroy" id="recipe-row::1:recipe-destroy" value="delete" 
+     onclick='return confirm("Really delete " + 
+     getRelativeValue(this.id, "confirm-title") + "?")'/></span></td>
+   <td rsf:id="recipe-category">Snacks</td>
+   <td rsf:id="recipe-date">2004-11-11</td>
+  </tr>
+</table>
+</form>
+</div>
+</body>
+</html>

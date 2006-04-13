@@ -1,0 +1,44 @@
+<!DOCTYPE html      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:rsf="http://www.ponder.org/rsf">
+<head>
+<title>Edit category</title>
+<link rel="stylesheet" rsf:id="scr=rewrite-url" href="../style.css"
+	type="text/css" />
+<link href="/library/skin/tool_base.css" type="text/css"
+	rel="stylesheet" media="all" />
+<link href="/library/skin/default/tool.css" type="text/css"
+	rel="stylesheet" media="all" />
+<script type="text/javascript" language="JavaScript"
+	src="/library/js/headscripts.js"></script>
+</head>
+<body rsf:id="scr=sakai-body">
+<div class="portletBody">
+		<div class="navIntraTool">
+		<a href="index.html" rsf:id="index">Index</a>
+		</div>
+<h1>Listing categories</h1>
+<form rsf:id="basic-form" method="post">
+<table class="listHier lines">
+ <tr>
+  <td><p><b>Name</b></p></td>
+  <td><p></p></td>
+ </tr>
+
+  <tr rsf:id="category-row:">
+   <td rsf:id="category-name">Snacks</td>
+   <td><a href="category-show.html" rsf:id="category-show">Show</a>&nbsp; 
+   <a href="category-edit.html"rsf:id="category-edit">Edit</a>&nbsp; 
+   <span class="act">
+   <input type="submit" rsf:id="category-destroy" value="Destroy"/> 
+   </span>
+   </td>
+  </tr>
+</table>
+<p><a href="category-edit.html" rsf:id="category-create">New category</a>
+&nbsp;
+</p>
+</form>
+</div>
+</body>
+</html>

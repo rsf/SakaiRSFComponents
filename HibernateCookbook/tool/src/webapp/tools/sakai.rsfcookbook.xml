@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<registration>
+<!--  url="/RSFNumberGuess/faces" This URL appears to be ignored now -->
+	<tool id="sakai.rsf.cookbook" 
+			title="RSF Hibernate Cookbook"
+			description="RSF Hibernate Cookbook Demonstration Tool for Sakai">
+	</tool>
+</registration>
+

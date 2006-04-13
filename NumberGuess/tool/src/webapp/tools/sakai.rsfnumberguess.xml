@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <registration>
 	<tool id="sakai.rsf.numberguess" 
-		<!--	url="/RSFNumberGuess/faces" This URL appears to be ignored now -->
 			title="RSF Number Guess"
 			description="RSF Demonstration Tool for Sakai">
 	</tool>

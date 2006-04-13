@@ -5,23 +5,16 @@
 	  http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
   version="2.4">
 
-  <!-- CONFIG This is the base URL used to construct the full "portal URL" issued to
-    end users (e.g. in mail notifications) that allows them to navigate the global
-    Sakai instance so that a particular tool is visible. This URL will typically end
-    in "portal" with no trailing slash. This facility should be provided
-    by Sakai "Direct URLs" but currently I do not know how. This functionally
-    actually unused by the demonstration tool in any case. -->
-  <context-param>
-    <param-name>portalurlbase</param-name>
-    <param-value>http://girasol.caret.local:38080/portal</param-value>
-  </context-param>
   <!-- CONFIG This is the name of the "punch-through" URL which will access the
     servlet directly bypassing the Sakai request filter. Paths beginning with
     / will be considered RELATIVE TO THE FIRST SLASH APPEARING IN THE REQUEST
-    URL. Other paths will be considered as absolute URLS. -->
+    URL. Other paths will be considered as absolute URLS. 
+    THIS MUST AGREE WITH THE DEPLOYED WEBAPP NAME, i.e. the artifactId of this
+    tool, where the Sakai plugin build was used.
+    -->
   <context-param>
     <param-name>resourceurlbase</param-name>
-    <param-value>/SakaiRSFNumberGuess/</param-value>
+    <param-value>/SakaiRSFNumberGuessTool/</param-value>
   </context-param>
   <listener>
     <listener-class>org.sakaiproject.util.ToolListener</listener-class>
@@ -78,9 +71,8 @@
   </filter-mapping>
 
   <servlet>
-    <!-- This servlet was named ToolSinkTunnel. However was renamed
-      so that sakai.flowtalk appears in UI for Sakai 2.0, with
-      new Sakai dispatching architecture -->
+    <!-- This must agree with the name advertised in the tool registration,
+      in this case sakai.rsfnumberguess.xml -->
     <servlet-name>sakai.rsf.numberguess</servlet-name>
     <servlet-class>
       uk.ac.cam.caret.sakai.rsf.servlet.ReasonableSakaiServlet

@@ -5,7 +5,7 @@
     class="org.sakaiproject.springframework.orm.hibernate.impl.AdditionalHibernateMappingsImpl">
     <property name="mappingResources">
       <list>
-        <value>classpath:uk/org/ponder/rsf/cookbook.hbm.xml</value>
+        <value>uk/org/ponder/rsf/cookbook.hbm.xml</value>
       </list>
     </property>
   </bean>

@@ -4,6 +4,12 @@
 <project xmlns:j="jelly:core" xmlns:maven="jelly:maven"
   xmlns:u="jelly:util">
 
+  <goal name="full">
+    <!--attainGoal name="dependencies" /-->
+    <attainGoal name="war:install"/>
+  
+  </goal>
+
   <preGoal name="java:compile">
     <attainGoal name="dependencies" />
   </preGoal>

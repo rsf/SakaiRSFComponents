@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<!-- documented by aaronz@vt.edu -->
+<!-- RSF version by antranig@caret.cam.ac.uk - 
+	some contents moved from "spring-beans.xml" -->
+<beans>
+
+	<!--  Spring messageSource replaces JSF message-bundle from faces-config.xml -->
+	<bean id="messageSource" parent="messageSource-base">
+		<property name="basename"
+			value="classpath:org/sakaiproject/tool/tasklist/bundle/Messages" />
+	</bean>
+
+	<!-- Use the Sakai session factory, pre-configured, instead of one local to TaskList,
+		Give this your HBM files so the Sakai session factory can use them,
+		this creates a tool specific bean to access our data through the Sakai session factory,
+		ONLY needed for the hibernate implementation of the manager -->
+	<bean id="org.sakaiproject.tasklist.SessionFactory"
+		parent="org.sakaiproject.springframework.orm.hibernate.SessionFactoryBase">
+		<property name="mappingResources">
+			<list>
+				<value>
+					org/sakaiproject/tool/tasklist/hibernate/Task.hbm.xml
+				</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- create a hibernateTemplate bean from the sakai tool sessionFactory,
+		ONLY needed for the hibernate implementation of the manager -->
+	<bean id="org.sakaiproject.tool.tasklist.HibernateTemplate"
+		class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref bean="org.sakaiproject.tasklist.SessionFactory" />
+		</property>
+	</bean>
+
+	<!-- the next 2 blocks are basically 2 different ways of implementing the 
+		data access layer, the first uses in-memory storage, the second uses
+		hibernate and ORM stuff -->
+
+	<!-- create a tasklistManagerMemory bean, use the memory implementation -->
+	<bean id="org.sakaiproject.tool.tasklist.api.TaskListManagerMemory"
+		class="org.sakaiproject.tool.tasklist.impl.TaskListManagerMemoryImpl"
+		lazy-init="true">
+	</bean>
+
+	<!-- create a tasklistManagerDao bean, and give it the hibernateTemplate bean from above,
+		ONLY needed for the hibernate implementation of the manager -->
+	<bean id="org.sakaiproject.tool.tasklist.api.TaskListManagerDao"
+		class="org.sakaiproject.tool.tasklist.impl.TaskListManagerDaoImpl"
+		lazy-init="true">
+		<property name="hibernateTemplate">
+			<ref
+				bean="org.sakaiproject.tool.tasklist.HibernateTemplate" />
+		</property>
+	</bean>
+
+	<!-- create a tasklistManagerJdbc bean which defines a jdbcTemplate 
+		using the Sakai datasource and connection pool,
+		This is ONLY used for the JDBC implementation of the manager -->
+	<bean id="org.sakaiproject.tool.tasklist.api.TaskListManagerJdbc"
+		class="org.sakaiproject.tool.tasklist.impl.TaskListManagerJdbcImpl"
+		lazy-init="true" init-method="init">
+		<property name="jdbcTemplate">
+			<bean class="org.springframework.jdbc.core.JdbcTemplate">
+				<constructor-arg type="javax.sql.DataSource">
+					<ref bean="javax.sql.DataSource" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- create a transactionManager bean from the sakai tool sessionFactory,
+		ONLY needed for the hibernate implementation of the manager -->
+	<bean
+		id="org.sakaiproject.tool.tasklist.HibernateTransactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="org.sakaiproject.tasklist.SessionFactory" />
+		</property>
+	</bean>
+
+	<!-- create a transaction interceptor which sits between the dao and the
+		transaction manager that we created in the previous block, this
+		helps us with transaction control,
+		ONLY needed for the hibernate implementation of the manager -->
+	<!--  NB THIS TPFB apparently not used in example! -->
+	<bean
+		id="org.sakaiproject.tool.tasklist.TransactionProxyFactoryBean"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		lazy-init="true">
+		<property name="transactionManager">
+			<ref
+				bean="org.sakaiproject.tool.tasklist.HibernateTransactionManager" />
+		</property>
+		<property name="target">
+			<ref
+				bean="org.sakaiproject.tool.tasklist.api.TaskListManagerDao" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- TaskListService destroyed from JSF version, replaced with 
+		TaskListProducer -->
+
+	<bean id="TaskListProducer"
+		class="org.sakaiproject.tool.tasklist.rsf.TaskListProducer">
+		<property name="taskListManager" ref="taskListManager" />
+		<property name="toolManager"
+			ref="org.sakaiproject.tool.api.ToolManager" />
+		<property name="userDirectoryService"
+			ref="org.sakaiproject.user.api.UserDirectoryService" />
+		<property name="localeGetter" ref="sakai-LocaleProxy" />
+		<property name="messageLocator" ref="sakai-messageLocator"/>
+	</bean>
+
+	<bean id="taskListManager"
+		parent="org.sakaiproject.tool.tasklist.api.TaskListManagerDao" />
+	<!--			<ref bean="org.sakaiproject.tool.tasklist.api.TaskListManagerMemory" />-->
+	<!--			<ref bean="org.sakaiproject.tool.tasklist.api.TaskListManagerJdbc" />-->
+
+	<bean name="requestAddressibleBeans"
+		class="uk.org.ponder.springutil.StringListFactory">
+		<property name="strings" value="taskListBean" />
+	</bean>
+
+</beans>

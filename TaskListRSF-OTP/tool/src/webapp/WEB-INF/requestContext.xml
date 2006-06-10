@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
-<!--  Request-scope beans for TaskList - actually just the handler -->
+<!--  Request-scope beans for TaskList  -->
 <beans>
 
-<bean id="taskListBean" class="org.sakaiproject.tool.tasklist.rsf.TaskListBean">
-  <property name="taskListManager" ref="taskListManager"/>
-</bean>
+	<!-- TaskListService destroyed from JSF version, replaced with 
+		TaskListProducer, now moved into request scope for query result
+		injection -->
+
+	<bean id="TaskListProducer"
+		class="org.sakaiproject.tool.tasklist.rsf.TaskListProducer">
+		<property name="taskList" ref="taskSiteQuery"/>
+		<property name="toolManager"
+			ref="org.sakaiproject.tool.api.ToolManager" />
+		<property name="userDirectoryService"
+			ref="org.sakaiproject.user.api.UserDirectoryService" />
+		<property name="localeGetter" ref="sakai-LocaleProxy" />
+		<property name="messageLocator" ref="sakai-messageLocator"/>
+	</bean>
+
+	<bean id="taskListBean"
+		class="org.sakaiproject.tool.tasklist.rsf.TaskListBean">
+		<property name="taskListManager" ref="taskListManager" />
+	</bean>
+
+	<bean id="siteId" factory-bean="sakai-Placement" factory-method="getContext"/>
+
+	<bean id="taskSiteQuery" parent="HQLParameterQuery">
+	  <property name="siteId" ref="siteId"/> 
+		<property name="HQLString" 
+			value="from Task task where task.siteId = :siteId order by task.creationDate">
+		</property>
+	</bean>
+	
+	<bean id="taskTransit" parent="beanExploder">
+	  <property name="beanClass" value="org.sakaiproject.tool.tasklist.rsf"/>
+	</bean>
 
 </beans>

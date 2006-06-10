@@ -21,6 +21,8 @@
 				<config>tool/src/webapp/WEB-INF/requestContext.xml</config>
 				<config>/SakaiRSF/src/java/conf/sakai-applicationContext.xml</config>
 				<config>/SakaiRSF/src/java/conf/sakai-requestContext.xml</config>
+				<config>/J-RSFHibernate3/src/conf/hibernate-applicationContext.xml</config>
+				<config>/J-RSFHibernate3/src/conf/hibernate-requestContext.xml</config>
 			</configs>
 		</configSet>
 	</configSets>

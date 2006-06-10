@@ -15,5 +15,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/J-RSFUtil"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PonderUtilCore"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SakaiRSF"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/J-RSFHibernate3"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

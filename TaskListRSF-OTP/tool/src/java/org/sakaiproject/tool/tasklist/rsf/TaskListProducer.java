@@ -11,7 +11,6 @@ import java.util.Map;
 
 import org.sakaiproject.tool.api.ToolManager;
 import org.sakaiproject.tool.tasklist.api.Task;
-import org.sakaiproject.tool.tasklist.api.TaskListManager;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
 
@@ -39,10 +38,10 @@ public class TaskListProducer implements ViewComponentProducer,
     NavigationCaseReporter, DefaultView {
   public static final String VIEW_ID = "TaskList";
   private UserDirectoryService userDirectoryService;
-  private TaskListManager taskListManager;
   private ToolManager toolManager;
   private MessageLocator messageLocator;
   private LocaleGetter localegetter;
+  private List taskList;
 
   public String getViewID() {
     return VIEW_ID;
@@ -56,8 +55,8 @@ public class TaskListProducer implements ViewComponentProducer,
     this.userDirectoryService = userDirectoryService;
   }
 
-  public void setTaskListManager(TaskListManager taskListManager) {
-    this.taskListManager = taskListManager;
+  public void setTaskList(List taskList) {
+    this.taskList = taskList;
   }
 
   public void setToolManager(ToolManager toolManager) {
@@ -83,15 +82,15 @@ public class TaskListProducer implements ViewComponentProducer,
     String currentuserid = currentuser.getEid();
 
     UIForm newtask = UIForm.make(tofill, "new-task-form");
-    UIInput.make(newtask, "new-task-name", "#{taskListBean.newtask.task}");
-    UICommand.make(newtask, "submit-new-task",
-        "#{taskListBean.processActionAdd}");
+    UIInput.make(newtask, "new-task-name", "#{task.new 1.task}");
+    // no binding for this task
+    UICommand.make(newtask, "submit-new-task", null);
     // pre-bind the task's owner to avoid annoying the handler having to fetch
     // it
-    newtask.parameters.add(new UIELBinding("#{taskListBean.newtask.owner}",
+    newtask.parameters.add(new UIELBinding("#{task.new 1.owner}",
         currentuserid));
     String siteId = toolManager.getCurrentPlacement().getContext();
-    newtask.parameters.add(new UIELBinding("#{taskListBean.siteID}", siteId));
+    newtask.parameters.add(new UIELBinding("#{task.new 1.siteId}", siteId));
 
     UIForm deleteform = UIForm.make(tofill, "delete-task-form");
 
@@ -99,7 +98,6 @@ public class TaskListProducer implements ViewComponentProducer,
     // We will fill in the options at the loop end once we have collected them.
     UISelect deleteselect = UISelect.makeMultiple(deleteform, "delete-select",
         null, "#{taskListBean.deleteids}", new String[] {});
-    Map tasks = taskListManager.findAllTasks(siteId);
 
     StringList deletable = new StringList();
     // JSF DateTimeConverter is a fun piece of kit - now here's a good way to shed
@@ -107,8 +105,8 @@ public class TaskListProducer implements ViewComponentProducer,
     // http://fisheye5.cenqua.com/viewrep/javaserverfaces-sources/jsf-api/src/javax/faces/convert/DateTimeConverter.java
     DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM,
         DateFormat.SHORT, localegetter.get());
-    for (Iterator iter = tasks.values().iterator(); iter.hasNext();) {
-      Task task = (Task) iter.next();
+    for (int i = 0; i < taskList.size(); ++ i) {
+      Task task = (Task) taskList.get(i);
       boolean candelete = task.getOwner().equals(currentuserid);
       UIBranchContainer taskrow = UIBranchContainer.make(deleteform,
           candelete ? "task-row:deletable"

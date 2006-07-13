@@ -8,7 +8,6 @@ import java.util.Date;
 import org.sakaiproject.tool.tasklist.api.Task;
 
 public class TaskTransit {
-
   private Task task;
 
   public void setTask(Task task) {

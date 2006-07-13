@@ -5,19 +5,18 @@ package org.sakaiproject.tool.tasklist.rsf;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import org.sakaiproject.tool.api.ToolManager;
 import org.sakaiproject.tool.tasklist.api.Task;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
 
 import uk.org.ponder.errorutil.MessageLocator;
+import uk.org.ponder.rsf.components.ELReference;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
+import uk.org.ponder.rsf.components.UIDeletionBinding;
 import uk.org.ponder.rsf.components.UIELBinding;
 import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UIInput;
@@ -26,6 +25,7 @@ import uk.org.ponder.rsf.components.UISelect;
 import uk.org.ponder.rsf.components.UISelectChoice;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCaseReporter;
+import uk.org.ponder.rsf.util.RSFUtil;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.DefaultView;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
@@ -38,10 +38,10 @@ public class TaskListProducer implements ViewComponentProducer,
     NavigationCaseReporter, DefaultView {
   public static final String VIEW_ID = "TaskList";
   private UserDirectoryService userDirectoryService;
-  private ToolManager toolManager;
   private MessageLocator messageLocator;
   private LocaleGetter localegetter;
   private List taskList;
+  private String siteId;
 
   public String getViewID() {
     return VIEW_ID;
@@ -59,12 +59,12 @@ public class TaskListProducer implements ViewComponentProducer,
     this.taskList = taskList;
   }
 
-  public void setToolManager(ToolManager toolManager) {
-    this.toolManager = toolManager;
-  }
-
   public void setLocaleGetter(LocaleGetter localegetter) {
     this.localegetter = localegetter;
+  }
+
+  public void setSiteId(String siteId) {
+    this.siteId = siteId;
   }
 
   public void fillComponents(UIContainer tofill, ViewParameters viewparams,
@@ -82,30 +82,32 @@ public class TaskListProducer implements ViewComponentProducer,
     String currentuserid = currentuser.getEid();
 
     UIForm newtask = UIForm.make(tofill, "new-task-form");
-    UIInput.make(newtask, "new-task-name", "#{task.new 1.task}");
-    // no binding for this task
+    UIInput.make(newtask, "new-task-name", "#{newtask.task}");
+    // no binding for this command since "commit" is a null-action using OTP
     UICommand.make(newtask, "submit-new-task", null);
     // pre-bind the task's owner to avoid annoying the handler having to fetch
     // it
-    newtask.parameters.add(new UIELBinding("#{task.new 1.owner}",
-        currentuserid));
-    String siteId = toolManager.getCurrentPlacement().getContext();
-    newtask.parameters.add(new UIELBinding("#{task.new 1.siteId}", siteId));
+    newtask.parameters.add(new UIELBinding("#{newtask.owner}", currentuserid));
+    newtask.parameters.add(new UIELBinding("#{newtask.siteId}", siteId));
+    // two new bindings for OTP - deliver the new task in two steps,
+    // firstly through the transit, and finally to the entity mapping
+    RSFUtil.addTransitBinding(newtask.parameters, "#{newtask}",
+        "#{taskTransit.1.task}", "#{Task.new 1}");
 
     UIForm deleteform = UIForm.make(tofill, "delete-task-form");
 
     // Create a multiple selection control for the tasks to be deleted.
     // We will fill in the options at the loop end once we have collected them.
     UISelect deleteselect = UISelect.makeMultiple(deleteform, "delete-select",
-        null, "#{taskListBean.deleteids}", new String[] {});
+        null, "#{deleteIds}", new String[] {});
 
     StringList deletable = new StringList();
-    // JSF DateTimeConverter is a fun piece of kit - now here's a good way to shed
-    // 600 lines:
+    // JSF DateTimeConverter is a fun piece of kit - now here's a good way to
+    // shed 600 lines:
     // http://fisheye5.cenqua.com/viewrep/javaserverfaces-sources/jsf-api/src/javax/faces/convert/DateTimeConverter.java
     DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM,
         DateFormat.SHORT, localegetter.get());
-    for (int i = 0; i < taskList.size(); ++ i) {
+    for (int i = 0; i < taskList.size(); ++i) {
       Task task = (Task) taskList.get(i);
       boolean candelete = task.getOwner().equals(currentuserid);
       UIBranchContainer taskrow = UIBranchContainer.make(deleteform,
@@ -121,10 +123,10 @@ public class TaskListProducer implements ViewComponentProducer,
       UIOutput.make(taskrow, "task-date", df.format(task.getCreationDate()));
     }
     deleteselect.optionlist.setValue(deletable.toStringArray());
-    deleteform.parameters.add(new UIELBinding("#{taskListBean.siteID}", siteId));
-
-    UICommand.make(deleteform, "delete-tasks",
-        "#{taskListBean.processActionDelete}");
+    deleteform.parameters.add(new UIDeletionBinding("#{Task}", 
+        new ELReference("#{deleteIds}")));
+    // similarly no action binding here since deletion binding does all
+    UICommand.make(deleteform, "delete-tasks", null);
 
   }
 

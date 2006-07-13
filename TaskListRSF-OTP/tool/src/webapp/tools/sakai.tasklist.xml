@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 
 <registration>
-	<tool id="sakai.rsf.tasklist"
-		title="Programmers' Cafe - Task List - RSF Version"
-		description="Programmers' Cafe - Task List - RSF Version">
+	<tool id="sakai.rsf.otp.tasklist"
+		title="Programmers' Cafe - Task List - RSF OTP Version"
+		description="Programmers' Cafe - Task List - RSF OTP Version">
 		<category name="course" />
 		<category name="project" />
 	</tool>	

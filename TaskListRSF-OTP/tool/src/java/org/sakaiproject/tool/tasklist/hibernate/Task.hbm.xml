@@ -7,7 +7,7 @@
 	<!-- put your value object in the class name, the table name is optional
 		but it is a good idea to specify it -->
 	<class name="org.sakaiproject.tool.tasklist.impl.TaskImpl"
-		table="TASKLIST_TASKS">
+		table="TASKLIST_TASKS" entity-name="Task">
 
 		<!-- create the primary key id, using native is typically the best way
 			to do this -->

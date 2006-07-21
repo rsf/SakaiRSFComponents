@@ -12,10 +12,10 @@
     class="org.sakaiproject.tool.tasklist.rsf.TaskListProducer">
     <property name="siteId" ref="siteId" />
     <property name="taskList" ref="taskSiteQuery" />
-    <property name="userDirectoryService"
-      ref="org.sakaiproject.user.api.UserDirectoryService" />
     <property name="localeGetter" ref="sakai-LocaleProxy" />
     <property name="messageLocator" ref="sakai-messageLocator" />
+    <property name="userId" ref="sakai-UserEID"/>
+    <property name="userName" ref="sakai-UserDisplayName"/>
   </bean>
 
   <bean id="taskSiteQuery" parent="HQLParameterQuery">

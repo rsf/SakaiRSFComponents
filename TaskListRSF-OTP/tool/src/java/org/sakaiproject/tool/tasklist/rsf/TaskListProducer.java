@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.sakaiproject.tool.tasklist.api.Task;
-import org.sakaiproject.user.api.User;
-import org.sakaiproject.user.api.UserDirectoryService;
 
 import uk.org.ponder.errorutil.MessageLocator;
 import uk.org.ponder.rsf.components.ELReference;
@@ -37,11 +35,13 @@ import uk.org.ponder.stringutil.StringList;
 public class TaskListProducer implements ViewComponentProducer,
     NavigationCaseReporter, DefaultView {
   public static final String VIEW_ID = "TaskList";
-  private UserDirectoryService userDirectoryService;
+  //private UserDirectoryService userDirectoryService;
   private MessageLocator messageLocator;
   private LocaleGetter localegetter;
   private List taskList;
   private String siteId;
+  private String userId;
+  private String username;
 
   public String getViewID() {
     return VIEW_ID;
@@ -49,10 +49,6 @@ public class TaskListProducer implements ViewComponentProducer,
 
   public void setMessageLocator(MessageLocator messageLocator) {
     this.messageLocator = messageLocator;
-  }
-
-  public void setUserDirectoryService(UserDirectoryService userDirectoryService) {
-    this.userDirectoryService = userDirectoryService;
   }
 
   public void setTaskList(List taskList) {
@@ -66,10 +62,17 @@ public class TaskListProducer implements ViewComponentProducer,
   public void setSiteId(String siteId) {
     this.siteId = siteId;
   }
+  
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
+  
+  public void setUserName(String username) {
+    this.username = username;
+  }
 
   public void fillComponents(UIContainer tofill, ViewParameters viewparams,
       ComponentChecker checker) {
-    String username = userDirectoryService.getCurrentUser().getDisplayName();
     UIOutput.make(tofill, "current-username", username);
     // Illustrates fetching messages from locator - remaining messages are
     // written out
@@ -78,8 +81,6 @@ public class TaskListProducer implements ViewComponentProducer,
     UIOutput.make(tofill, "task-list-title", messageLocator
         .getMessage("task_list_title"));
 
-    User currentuser = userDirectoryService.getCurrentUser();
-    String currentuserid = currentuser.getEid();
 
     UIForm newtask = UIForm.make(tofill, "new-task-form");
     UIInput.make(newtask, "new-task-name", "#{newtask.task}");
@@ -87,7 +88,7 @@ public class TaskListProducer implements ViewComponentProducer,
     UICommand.make(newtask, "submit-new-task", null);
     // pre-bind the task's owner to avoid annoying the handler having to fetch
     // it
-    newtask.parameters.add(new UIELBinding("#{newtask.owner}", currentuserid));
+    newtask.parameters.add(new UIELBinding("#{newtask.owner}", userId));
     newtask.parameters.add(new UIELBinding("#{newtask.siteId}", siteId));
     // two new bindings for OTP - deliver the new task in two steps,
     // firstly through the transit, and finally to the entity mapping
@@ -109,7 +110,7 @@ public class TaskListProducer implements ViewComponentProducer,
         DateFormat.SHORT, localegetter.get());
     for (int i = 0; i < taskList.size(); ++i) {
       Task task = (Task) taskList.get(i);
-      boolean candelete = task.getOwner().equals(currentuserid);
+      boolean candelete = task.getOwner().equals(userId);
       UIBranchContainer taskrow = UIBranchContainer.make(deleteform,
           candelete ? "task-row:deletable"
               : "task-row:nondeletable");

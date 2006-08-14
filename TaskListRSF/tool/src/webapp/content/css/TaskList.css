@@ -17,3 +17,9 @@
 .headerAlignment {
 	text-align: center ! important;
 }
+.error {
+	color: red;
+	font-weight: bold;
+	font-family: Arial, sans-serif;
+	font-size: 90%;
+}

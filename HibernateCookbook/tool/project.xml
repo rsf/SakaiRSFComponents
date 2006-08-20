@@ -76,7 +76,17 @@
     <dependency>
       <groupId>sakairsf</groupId>
       <artifactId>sakairsf</artifactId>
-      <version>${rsfutil.version}-${sakai.version}</version>
+      <version>${rsfutil.version}-sakai_${sakai.version}</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <!-- This must be deployed so an RSF tool may locate ResourceLoader -->
+    <dependency>
+      <groupId>sakaiproject</groupId>
+      <artifactId>sakai-util</artifactId>
+      <version>${sakai.version}</version>
       <type>jar</type>
       <properties>
         <war.bundle>true</war.bundle>
@@ -98,7 +108,7 @@
       </properties>
     </dependency>
     <dependency>
-      <groupId>springframework</groupId>
+      <groupId>org.springframework</groupId>
       <artifactId>spring</artifactId>
       <version>1.2.8</version>
       <type>jar</type>
@@ -107,7 +117,7 @@
     <!--  Begin Hibernate-specific dependencies here -->
     <dependency>
       <groupId>rsfutil</groupId>
-      <artifactId>rsfhibernate</artifactId>
+      <artifactId>rsfhibernate3</artifactId>
       <version>${rsfutil.version}</version>
       <type>jar</type>
       <properties>
@@ -115,9 +125,9 @@
       </properties>
     </dependency>
     <dependency>
-      <groupId>hibernate</groupId>
+      <groupId>org.hibernate</groupId>
       <artifactId>hibernate</artifactId>
-      <version>2.1.8</version>
+      <version>3.1.3</version>
       <type>jar</type>
       <!--  We exclude Sun's JTA since it is not redistributable (and hence
         not on ibiblio - see geronimo replacements below. -->
@@ -132,33 +142,17 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <!--  EHCache is required by Hibernate SettingsFactory -->
-    <dependency>
-      <groupId>ehcache</groupId>
-      <artifactId>ehcache</artifactId>
-      <version>1.1</version>
-      <type>jar</type>
-      <properties>
-        <war.bundle>true</war.bundle>
-      </properties>
-    </dependency>
     <!-- geronimo has supplied open source replacements for JTA, which is
       required by the Spring LocalSessionFactoryBean. Open source replacements for jta, jacc -->
     <dependency>
       <artifactId>geronimo-spec-jta</artifactId>
       <groupId>geronimo-spec</groupId>
       <version>1.0.1B-rc4</version>
-      <properties>
-        <war.bundle>true</war.bundle>
-      </properties>
     </dependency>
     <dependency>
       <groupId>geronimo-spec</groupId>
       <artifactId>geronimo-spec-j2ee-jacc</artifactId>
       <version>1.0-rc3</version>
-      <properties>
-        <war.bundle>true</war.bundle>
-      </properties>
     </dependency>
     <!--  Spring LocalSessionFactoryBean requires dom4j to read its configuration. -->
     <dependency>

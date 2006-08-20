@@ -13,7 +13,7 @@
       <email>antranig@caret.cam.ac.uk</email>
     </developer>
   </developers>
-  <currentVersion>${rsfutil.version}-${sakai.version}</currentVersion>
+  <currentVersion>${rsfutil.version}-sakai_${sakai.version}</currentVersion>
   <organization>
     <name>University of Cambridge</name>
     <url>http://sakaiproject.org/</url>
@@ -35,10 +35,20 @@
         <explode>true</explode>
       </properties>
     </dependency>
+    <!-- Sakai Util is required to resolve user's Locale -->
+    <dependency>
+      <groupId>sakaiproject</groupId>
+      <artifactId>sakai-util</artifactId>
+      <version>${sakai.version}</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
     <dependency>
       <groupId>sakairsf</groupId>
       <artifactId>sakairsf</artifactId>
-      <version>${rsfutil.version}-${sakai.version}</version>
+      <version>${rsfutil.version}-sakai_${sakai.version}</version>
       <type>jar</type>
       <properties>
         <war.bundle>true</war.bundle>

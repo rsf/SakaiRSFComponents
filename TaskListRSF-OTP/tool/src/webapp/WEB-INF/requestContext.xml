@@ -25,14 +25,8 @@
     </property>
   </bean>
 
-  <bean id="taskTransit" parent="beanExploder">
-    <property name="beanClass"
-      value="org.sakaiproject.tool.tasklist.rsf.TaskTransit" />
-  </bean>
+  <bean id="taskTransit" class="org.sakaiproject.tool.tasklist.rsf.TaskTransit" />
 
-  <!-- Holds any new task to be added -->
-  <bean id="newtask"
-    class="org.sakaiproject.tool.tasklist.impl.TaskImpl" />
   <!-- Holds the list of bean IDs to be deleted -->
   <bean id="deleteIds" class="uk.org.ponder.stringutil.StringList" />
 

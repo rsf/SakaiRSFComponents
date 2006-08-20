@@ -58,9 +58,17 @@
     </property>
   </bean>
 
-  <bean name="requestAddressibleBeans"
-    class="uk.org.ponder.springutil.StringListFactory">
-    <property name="strings" value="newtask, deleteIds, taskTransit" />
+<!-- Use RSF's "BeanGuard" validation scheme to trap all write accesses to a
+     Task entity -->
+
+  <bean parent="writeGuardParent">
+    <property name="guardedPath" value="Task.*"/>
+    <property name="guardEL" value="taskTransit"/>
+    <property name="guardProperty" value="task"/>
+  </bean>
+
+  <bean parent="requestAddressibleParent">
+    <property name="value" value="newtask, deleteIds, taskTransit" />
   </bean>
 
 </beans>

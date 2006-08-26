@@ -6,9 +6,10 @@
 <beans>
 
   <!--  Spring messageSource replaces JSF message-bundle from faces-config.xml -->
-  <bean id="messageSource" parent="messageSource-base">
-    <property name="basename"
-      value="classpath:org/sakaiproject/tool/tasklist/bundle/Messages" />
+ <bean id="messageSource"
+    class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <property name="basename" value="classpath:org/sakaiproject/tool/tasklist/bundle/Messages"/>
+    <property name="cacheSeconds" value="10" />
   </bean>
 
   <!-- Use the Sakai session factory, pre-configured, instead of one local to TaskList,
@@ -63,8 +64,7 @@
 
   <bean parent="writeGuardParent">
     <property name="guardedPath" value="Task.*"/>
-    <property name="guardEL" value="taskTransit"/>
-    <property name="guardProperty" value="task"/>
+    <property name="guardProperty" value="taskTransit.task"/>
   </bean>
 
   <bean parent="requestAddressibleParent">

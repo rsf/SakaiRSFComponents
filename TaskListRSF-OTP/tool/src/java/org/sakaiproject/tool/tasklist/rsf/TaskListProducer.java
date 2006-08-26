@@ -34,8 +34,6 @@ import uk.org.ponder.stringutil.StringList;
 public class TaskListProducer implements ViewComponentProducer,
     NavigationCaseReporter, DefaultView {
   public static final String VIEW_ID = "TaskList";
-  
-  private MessageLocator messageLocator;
   private LocaleGetter localegetter;
   private List taskList;
   private String siteId;
@@ -44,10 +42,6 @@ public class TaskListProducer implements ViewComponentProducer,
 
   public String getViewID() {
     return VIEW_ID;
-  }
-
-  public void setMessageLocator(MessageLocator messageLocator) {
-    this.messageLocator = messageLocator;
   }
 
   public void setTaskList(List taskList) {
@@ -74,12 +68,10 @@ public class TaskListProducer implements ViewComponentProducer,
       ComponentChecker checker) {
     UIOutput.make(tofill, "current-username", username);
     // Illustrates fetching messages from locator - remaining messages are
-    // written out
-    // in template - localising HTML template directly is probably easier than
-    // localising properties files.
-    UIOutput.make(tofill, "task-list-title", messageLocator
-        .getMessage("task_list_title"));
-
+    // written out in template - localising HTML template directly is 
+    // probably easier than localising properties files.
+    UIOutput.make(tofill, "task-list-title", null, 
+        "#{messageLocator.task_list_title}");
 
     UIForm newtask = UIForm.make(tofill, "new-task-form");
     UIInput.make(newtask, "new-task-name", "#{Task.new 1.task}");

@@ -13,7 +13,6 @@
     <property name="siteId" ref="siteId" />
     <property name="taskList" ref="taskSiteQuery" />
     <property name="localeGetter" ref="sakai-LocaleProxy" />
-    <property name="messageLocator" ref="sakai-messageLocator" />
     <property name="userId" ref="sakai-UserEID"/>
     <property name="userName" ref="sakai-UserDisplayName"/>
   </bean>

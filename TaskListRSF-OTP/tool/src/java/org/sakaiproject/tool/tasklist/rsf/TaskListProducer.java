@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.sakaiproject.tool.tasklist.api.Task;
 
-import uk.org.ponder.errorutil.MessageLocator;
 import uk.org.ponder.rsf.components.ELReference;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UICommand;

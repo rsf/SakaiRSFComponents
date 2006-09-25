@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+  <!-- For security purposes, only beans listed in this collection may be the
+    target of EL operations coming in over the request -->
+  <bean parent="requestAddressibleParent">
+    <property name="value" value="dataBean, dateTransit, componentChoice, transitSeed" />
+  </bean>
+  
+  <!-- The beans which will be preserved across a flow via simple instance
+    copying -->
+  <bean name="copyPreservingBeans"
+    class="uk.org.ponder.springutil.StringListFactory">
+    <property name="strings">
+      <value>dataBean</value>
+    </property>
+  </bean>
+
+  <bean parent="beanScopeParent">
+    <property name="copyPreservingBeans" value="componentChoice" />
+  </bean>
+
+  <bean id="transitSeed"
+    class="uk.org.ponder.dateutil.BrokenDateTransit" singleton="false">
+    <property name="mode" value="Full" />
+  </bean>
+
+  <bean parent="templateContributorParent">
+    <property name="templateNames" value="sakai-old-date"/>
+  </bean>
+
+  <bean id="dateEvolvers" class="java.util.ArrayList">
+    <constructor-arg>
+      <list>
+        <bean
+          class="uk.ac.cam.caret.sakai.rsf.evolverimpl.BrokenDateEvolver">
+          <property name="requestBeanGetter" ref="ELEvaluatorProxy"/>
+          <property name="monthBeanName" value="monthBean.names"/>
+        </bean>
+      </list>
+    </constructor-arg>
+  </bean>
+
+
+  <bean id="textEvolvers" class="java.util.ArrayList">
+    <constructor-arg>
+      <list>
+        <bean
+          class="uk.ac.cam.caret.sakai.rsf.evolverimpl.SakaiFCKTextEvolver">
+        </bean>
+      </list>
+    </constructor-arg>
+  </bean>
+
+
+  <bean class="uk.ac.cam.caret.sakai.rsf.producers.ResultsProducer"/>
+
+</beans>

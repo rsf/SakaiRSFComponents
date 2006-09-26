@@ -30,6 +30,11 @@
     <property name="templateNames" value="sakai-old-date"/>
   </bean>
 
+
+  <bean parent="templateContributorParent">
+    <property name="templateNames" value="sakai-FCKEditor"/>
+  </bean>
+
   <bean id="dateEvolvers" class="java.util.ArrayList">
     <constructor-arg>
       <list>

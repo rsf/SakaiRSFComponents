@@ -9,12 +9,16 @@ import uk.org.ponder.beanutil.BeanGetter;
 import uk.org.ponder.dateutil.BrokenDateTransit;
 import uk.org.ponder.dateutil.DateUtil;
 import uk.org.ponder.dateutil.MonthBean;
+import uk.org.ponder.rsf.components.ELReference;
+import uk.org.ponder.rsf.components.UIELBinding;
+import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UIJointContainer;
 import uk.org.ponder.rsf.components.UIOutputMany;
 import uk.org.ponder.rsf.components.UISelect;
 import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.evolvers.DateInputEvolver;
+import uk.org.ponder.rsf.util.RSFUtil;
 import uk.org.ponder.stringutil.StringList;
 
 /**
@@ -67,16 +71,16 @@ public class BrokenDateEvolver implements DateInputEvolver {
     UIJointContainer togo = new UIJointContainer(toevolve.parent, toevolve.ID, 
         COMPONENT_ID);
 
-    toevolve.parent.move(toevolve, null);
+    toevolve.parent.remove(toevolve);
 
-    String ttb = transitbase + "." + togo.getFullID();
+    String ttbo = transitbase + "." + togo.getFullID();
     BrokenDateTransit transit = null;
     if (date != null) {
-      transit = (BrokenDateTransit) rbg.getBean(ttb);
+      transit = (BrokenDateTransit) rbg.getBean(ttbo);
       transit.setDate(date);
     }
 
-    ttb += ".";
+    String ttb = ttbo + ".";
 
     UISelect yearselect = UISelect.make(togo, "year", yearlist, ttb + "year",
         transit == null ? null: transit.year);
@@ -108,6 +112,11 @@ public class BrokenDateEvolver implements DateInputEvolver {
         "chef_dateselectionwidgetpopup('" + yearselect.getFullID() + 
         "-selection', '" + monthselect.getFullID() + "-selection', '"
          + dayselect.getFullID() + "-selection');");
+    
+    UIForm form = RSFUtil.findBasicForm(togo);
+    
+    form.parameters.add(new UIELBinding(toevolve.valuebinding.value, 
+        new ELReference(ttb + "date")));
     
     return togo;
   }

@@ -14,7 +14,7 @@
     -->
   <context-param>
     <param-name>resourceurlbase</param-name>
-    <param-value>/SakaiComponents/</param-value>
+    <param-value>/SakaiRSFComponents/</param-value>
   </context-param>
   <listener>
     <listener-class>org.sakaiproject.util.ToolListener</listener-class>

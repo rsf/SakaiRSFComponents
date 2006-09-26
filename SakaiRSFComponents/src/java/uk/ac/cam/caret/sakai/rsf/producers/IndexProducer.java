@@ -63,12 +63,12 @@ public class IndexProducer implements ViewComponentProducer, DefaultView,
 
     UIForm cform = UIForm.make(tofill, "components-form");
 
-    UIInput date1 = UIInput.make(cform, "date-1:", "#{databean.date1}");
+    UIInput date1 = UIInput.make(cform, "date-1:", "#{dataBean.date1}");
     dateevolver.evolveDateInput(date1, databean.date1);
-    UIInput date2 = UIInput.make(cform, "date-2:", "#{databean.date2}");
+    UIInput date2 = UIInput.make(cform, "date-2:", "#{dataBean.date2}");
     dateevolver.evolveDateInput(date2, databean.date2);
 
-    UIInput text = UIInput.make(cform, "text", "#{dataBean.text}");
+    UIInput text = UIInput.make(cform, "rich-text:", "#{dataBean.text}");
     textevolver.evolveTextInput(text);
 
     UICommand.make(cform, "submit", "#{dataBean.update}");
@@ -95,7 +95,7 @@ public class IndexProducer implements ViewComponentProducer, DefaultView,
     for (int i = 0; i < ctexts; ++i) {
       choices[i] = Integer.toString(i);
       String classname = texts.get(i).getClass().getName();
-      int dotpos = classname.indexOf('.');
+      int dotpos = classname.lastIndexOf('.');
       classname = classname.substring(dotpos + 1, classname.length()
           - "Evolver".length());
       choicenames[i] = classname;

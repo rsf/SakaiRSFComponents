@@ -13,9 +13,10 @@ public class SakaiFCKTextEvolver implements TextInputEvolver {
 
   public UIJointContainer evolveTextInput(UIInput toevolve) {
     UIJointContainer joint = new UIJointContainer(toevolve.parent,
-        COMPONENT_ID, toevolve.ID);
-    toevolve.parent.move(toevolve, joint);
-    toevolve.ID = "textarea";
+        toevolve.ID, COMPONENT_ID);
+    toevolve.parent.remove(toevolve);
+    toevolve.ID = "input"; // must change ID while unattached
+    joint.addComponent(toevolve);
     UIVerbatim.make(joint, "textarea-js", "setupRSFFormattedTextarea('"
         + toevolve.getFullID() + "');");
     return joint;

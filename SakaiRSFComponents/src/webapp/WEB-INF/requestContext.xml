@@ -13,7 +13,7 @@
     <property name="beanName" value="transitSeed"/>
   </bean>
   
-  <bean name="monthBean" class="uk.org.ponder.dateutil.MonthBean">
+  <bean name="monthBean" class="uk.org.ponder.dateutil.MonthBean" init-method="init">
     <property name="locale" ref="sakai-Locale"/>
   </bean>
   

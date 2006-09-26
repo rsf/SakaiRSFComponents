@@ -68,10 +68,10 @@ public class IndexProducer implements ViewComponentProducer, DefaultView,
     UIInput date2 = UIInput.make(cform, "date-2:", "#{databean.date2}");
     dateevolver.evolveDateInput(date2, databean.date2);
 
-    UIInput text = UIInput.make(cform, "text", "#{databean.text}");
+    UIInput text = UIInput.make(cform, "text", "#{dataBean.text}");
     textevolver.evolveTextInput(text);
 
-    UICommand.make(cform, "submit", "#{databean.update}");
+    UICommand.make(cform, "submit", "#{dataBean.update}");
 
     UIForm tform = UIForm.make(tofill, "text-select-form");
     List texts = choicebean.getTextEvolvers();

@@ -13,6 +13,7 @@ import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UIJointContainer;
 import uk.org.ponder.rsf.components.UIOutputMany;
 import uk.org.ponder.rsf.components.UISelect;
+import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.evolvers.DateInputEvolver;
 import uk.org.ponder.stringutil.StringList;
 
@@ -63,8 +64,8 @@ public class BrokenDateEvolver implements DateInputEvolver {
   }
 
   public UIJointContainer evolveDateInput(UIInput toevolve, Date date) {
-    UIJointContainer togo = new UIJointContainer(toevolve.parent, COMPONENT_ID,
-        toevolve.ID);
+    UIJointContainer togo = new UIJointContainer(toevolve.parent, toevolve.ID, 
+        COMPONENT_ID);
 
     toevolve.parent.move(toevolve, null);
 
@@ -77,17 +78,17 @@ public class BrokenDateEvolver implements DateInputEvolver {
 
     ttb += ".";
 
-    UISelect.make(togo, "year", yearlist, ttb + "year",
+    UISelect yearselect = UISelect.make(togo, "year", yearlist, ttb + "year",
         transit == null ? null: transit.year);
 
     UISelect monthselect = UISelect.make(togo, "month", MonthBean.indexarray,
         null, ttb + "month", transit == null ? null
             : transit.month);
     monthselect.optionnames = UIOutputMany.make(monthbeanname + ".indexes",
-        monthbeanname);
+        monthbeanname +".names");
     
     
-    UISelect.make(togo, "day", daylist, ttb + "day", 
+    UISelect dayselect = UISelect.make(togo, "day", daylist, ttb + "day", 
         transit == null ? null
             : transit.day);
     
@@ -103,6 +104,10 @@ public class BrokenDateEvolver implements DateInputEvolver {
         new String[]{"AM", "PM"}, ttb + "ampm", transit == null ? null
             : transit.ampm);  
     
+    UIVerbatim.make(togo, "sakai-old-date-init", 
+        "chef_dateselectionwidgetpopup('" + yearselect.getFullID() + 
+        "-selection', '" + monthselect.getFullID() + "-selection', '"
+         + dayselect.getFullID() + "-selection');");
     
     return togo;
   }

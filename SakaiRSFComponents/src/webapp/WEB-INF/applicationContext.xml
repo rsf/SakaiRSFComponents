@@ -34,6 +34,10 @@
   <bean parent="templateContributorParent">
     <property name="templateNames" value="sakai-FCKEditor"/>
   </bean>
+  
+    <bean parent="templateContributorParent">
+    <property name="templateNames" value="sakai-plainTextEditor"/>
+  </bean>
 
   <bean id="dateEvolvers" class="java.util.ArrayList">
     <constructor-arg>
@@ -52,14 +56,12 @@
   <bean id="textEvolvers" class="java.util.ArrayList">
     <constructor-arg>
       <list>
+        <bean class="uk.org.ponder.rsf.evolvers.PlainTextInputEvolver"/>
         <bean
-          class="uk.ac.cam.caret.sakai.rsf.evolverimpl.SakaiFCKTextEvolver">
-        </bean>
+          class="uk.ac.cam.caret.sakai.rsf.evolverimpl.SakaiFCKTextEvolver"/>
+    
       </list>
     </constructor-arg>
   </bean>
-
-
-  <bean class="uk.ac.cam.caret.sakai.rsf.producers.ResultsProducer"/>
 
 </beans>

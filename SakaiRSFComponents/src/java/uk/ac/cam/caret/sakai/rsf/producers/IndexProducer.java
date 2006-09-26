@@ -75,13 +75,13 @@ public class IndexProducer implements ViewComponentProducer, DefaultView,
 
     UIForm tform = UIForm.make(tofill, "text-select-form");
     List texts = choicebean.getTextEvolvers();
-    makeEvolveSelect(tform, texts, "select-text",
+    makeEvolveSelect(tform, texts, "text-select",
         "#{componentChoice.textEvolverIndex}");
 
     UIForm dform = UIForm.make(tofill, "date-select-form");
 
     List dates = choicebean.getDateEvolvers();
-    makeEvolveSelect(dform, dates, "select-date",
+    makeEvolveSelect(dform, dates, "date-select",
         "#{componentChoice.dateEvolverIndex}");
 
   }

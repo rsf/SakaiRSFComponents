@@ -35,4 +35,11 @@
     <property name="textEvolver" ref="textEvolver"/>
   </bean>
   
+  
+
+  <bean class="uk.ac.cam.caret.sakai.rsf.producers.ResultsProducer">
+    <property name="localeGetter" ref="sakai-LocaleProxy"/>
+    <property name="dataBean" ref="dataBean"/>
+  </bean>
+  
 </beans>

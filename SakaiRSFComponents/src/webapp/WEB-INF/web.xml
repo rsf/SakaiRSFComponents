@@ -5,17 +5,6 @@
 	  http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
   version="2.4">
 
-  <!-- CONFIG This is the name of the "punch-through" URL which will access the
-    servlet directly bypassing the Sakai request filter. Paths beginning with
-    / will be considered RELATIVE TO THE FIRST SLASH APPEARING IN THE REQUEST
-    URL. Other paths will be considered as absolute URLS. 
-    THIS MUST AGREE WITH THE DEPLOYED WEBAPP NAME, i.e. the artifactId of this
-    tool, where the Sakai plugin build was used.
-    -->
-  <context-param>
-    <param-name>resourceurlbase</param-name>
-    <param-value>/SakaiRSFComponents/</param-value>
-  </context-param>
   <listener>
     <listener-class>org.sakaiproject.util.ToolListener</listener-class>
   </listener>
@@ -72,10 +61,5 @@
     </servlet-class>
     <!--<load-on-startup>1</load-on-startup>-->
   </servlet>
-  <!-- This is the mapping we would LIKE to apply, if it were supported by Sakai.
-    Instead it is mocked up by SakaiRequestParser -->
-  <servlet-mapping>
-    <servlet-name>sakai.rsf.components</servlet-name>
-    <url-pattern>/faces/*</url-pattern>
-  </servlet-mapping>
+  
 </web-app>

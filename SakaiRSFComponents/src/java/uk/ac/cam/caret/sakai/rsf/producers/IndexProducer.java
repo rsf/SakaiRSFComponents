@@ -2,6 +2,7 @@ package uk.ac.cam.caret.sakai.rsf.producers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import uk.ac.cam.caret.sakai.rsf.beans.ComponentChoiceBean;
 import uk.ac.cam.caret.sakai.rsf.beans.DataBean;
@@ -36,6 +37,7 @@ public class IndexProducer implements ViewComponentProducer, DefaultView,
   private TextInputEvolver textevolver;
   private DataBean databean;
   private ComponentChoiceBean choicebean;
+  private Locale locale;
 
   public String getViewID() {
     return VIEW_ID;
@@ -58,6 +60,10 @@ public class IndexProducer implements ViewComponentProducer, DefaultView,
     this.choicebean = choicebean;
   }
 
+  public void setLocale(Locale locale) {
+    this.locale = locale;
+  }
+  
   public void fillComponents(UIContainer tofill, ViewParameters viewparamso,
       ComponentChecker checker) {
 
@@ -84,6 +90,15 @@ public class IndexProducer implements ViewComponentProducer, DefaultView,
     makeEvolveSelect(dform, dates, "date-select",
         "#{componentChoice.dateEvolverIndex}");
 
+    UIForm lform = UIForm.make(tofill, "locale-select-form");
+    
+    Locale[] s = Locale.getAvailableLocales();
+    String[] locnames = new String[s.length];
+    for (int i = 0; i < s.length; ++ i) {
+      locnames[i] = s[i].toString();
+    }
+    UISelect.make(lform, "locale-select", locnames, "#{componentChoice.locale}", locale.toString());
+    UICommand.make(lform, "submit-locale");
   }
 
   private void makeEvolveSelect(UIForm tform, List texts, String selectID,

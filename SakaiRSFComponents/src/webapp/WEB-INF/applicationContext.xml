@@ -35,13 +35,25 @@
     <property name="templateNames" value="sakai-FCKEditor"/>
   </bean>
   
-    <bean parent="templateContributorParent">
+  <bean parent="templateContributorParent">
     <property name="templateNames" value="sakai-plainTextEditor"/>
+  </bean>
+  
+   <bean parent="templateContributorParent">
+    <property name="templateNames" value="yahoo-date"/>
+  </bean>
+  
+
+  <bean name="dateSymbolJSEmitter" class="uk.org.ponder.htmlutil.DateSymbolJSEmitter">
+    <property name="localeGetter" ref="sakai-LocaleProxy"/>
   </bean>
 
   <bean id="dateEvolvers" class="java.util.ArrayList">
     <constructor-arg>
       <list>
+        <bean class="uk.ac.cam.caret.sakai.rsf.evolverimpl.YahooDateEvolver">
+          <property name="JSemitter" ref="dateSymbolJSEmitter"/>
+        </bean>
         <bean
           class="uk.ac.cam.caret.sakai.rsf.evolverimpl.BrokenDateEvolver">
           <property name="requestBeanGetter" ref="ELEvaluatorProxy"/>

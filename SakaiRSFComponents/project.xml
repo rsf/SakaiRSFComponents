@@ -5,6 +5,7 @@
   <name>Sakai RSF Components</name>
   <groupId>sakaiproject</groupId>
   <description>RSF Components demonstration for Sakai</description>
+  <extend>../master/project.xml</extend>
   <repository />
   <developers>
     <developer>
@@ -14,7 +15,7 @@
     </developer>
   </developers>
   <currentVersion>
-    ${rsfutil.version}-sakai_${sakairsf.version}
+    ${rsfutil.version}-sakai_${sakai.version}
   </currentVersion>
   <organization>
     <name>University of Cambridge</name>
@@ -36,7 +37,7 @@
     <dependency>
       <groupId>sakairsf</groupId>
       <artifactId>sakairsf</artifactId>
-      <version>${rsfutil.version}-sakai_${sakairsf.version}</version>
+      <version>${rsfutil.version}-sakai_${sakai.version}</version>
       <type>jar</type>
       <properties>
         <war.bundle>true</war.bundle>

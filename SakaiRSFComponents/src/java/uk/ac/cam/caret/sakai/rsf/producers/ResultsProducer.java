@@ -6,6 +6,7 @@ package uk.ac.cam.caret.sakai.rsf.producers;
 import java.text.DateFormat;
 
 import uk.ac.cam.caret.sakai.rsf.beans.DataBean;
+import uk.org.ponder.localeutil.LocaleGetter;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UIOutput;
@@ -13,7 +14,6 @@ import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
-import uk.org.ponder.stringutil.LocaleGetter;
 
 public class ResultsProducer implements ViewComponentProducer {
 

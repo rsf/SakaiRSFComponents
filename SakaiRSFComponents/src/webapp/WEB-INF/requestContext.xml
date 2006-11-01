@@ -20,6 +20,7 @@
   <bean id="componentChoice" class="uk.ac.cam.caret.sakai.rsf.beans.ComponentChoiceBean">
     <property name="dateEvolvers" ref="dateEvolvers"/>
     <property name="textEvolvers" ref="textEvolvers"/>
+    <property name="sessionManager" ref="org.sakaiproject.tool.api.SessionManager" />
   </bean>
   
   <bean id="textEvolver" factory-bean="componentChoice" factory-method="getTextInputEvolver"/>
@@ -33,8 +34,8 @@
     <property name="choiceBean" ref="componentChoice"/>
     <property name="dateEvolver" ref="dateEvolver"/>
     <property name="textEvolver" ref="textEvolver"/>
+    <property name="locale" ref="sakai-Locale"/> 
   </bean>
-  
   
 
   <bean class="uk.ac.cam.caret.sakai.rsf.producers.ResultsProducer">

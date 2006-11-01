@@ -4,7 +4,11 @@
 package uk.ac.cam.caret.sakai.rsf.beans;
 
 import java.util.List;
+import java.util.Locale;
 
+import org.sakaiproject.tool.api.SessionManager;
+
+import uk.org.ponder.localeutil.LocaleUtil;
 import uk.org.ponder.rsf.evolvers.DateInputEvolver;
 import uk.org.ponder.rsf.evolvers.TextInputEvolver;
 
@@ -12,7 +16,12 @@ import uk.org.ponder.rsf.evolvers.TextInputEvolver;
 public class ComponentChoiceBean {
   private List dateEvolvers;
   private List textEvolvers;
+  private SessionManager sessionManager;
   
+  public void setSessionManager(SessionManager sessionManager) {
+    this.sessionManager = sessionManager;
+  }
+
   public void setDateEvolvers(List dateEvolvers) {
     this.dateEvolvers = dateEvolvers;
   }
@@ -41,5 +50,10 @@ public class ComponentChoiceBean {
   
   public DateInputEvolver getDateInputEvolver() {
     return (DateInputEvolver) dateEvolvers.get(dateEvolverIndex);
+  }
+  
+  public void setLocale(String localestring) {
+    Locale locale = LocaleUtil.parseLocale(localestring);
+    sessionManager.getCurrentSession().setAttribute("locale", locale);
   }
 }

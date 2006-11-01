@@ -5,5 +5,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/J-RSFUtil"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PonderUtilCore"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SakaiRSF"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sakai22-tool-api"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

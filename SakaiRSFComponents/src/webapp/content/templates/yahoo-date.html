@@ -22,7 +22,7 @@
 <div rsf:id="yahoo-date-field:">
 
 <script rsf:id="datesymbols">
-<!--
+//<![CDATA[
   // These are the date symbols for en_ZA
   PUC_MONTHS_LONG = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   PUC_MONTHS_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -34,14 +34,14 @@
   PUC_DATE_FORMAT = "yy/MM/dd";
   PUC_DATETIME_FORMAT = "yy/MM/dd hh:mm";
   PUC_TIME_FORMAT = "hh:mm";
--->
+//]]>
 </script>
 
 <script type="text/javascript" src="../js/yahoo-2up-setup.js" ></script>
 <form rsf:id="basic-form">
 
 <div >
-  <select name="selDay1" id="selDay1" onchange="changeDate1()" style="vertical-align:middle">
+  <select rsf:id="select-day" name="selDay1" id="selDay1" style="vertical-align:middle">
   <option value="1">  1  </option>  
   <option value="2">  2  </option>
   <option value="3">  3  </option>
@@ -74,7 +74,7 @@
   <option value="30">  30  </option>
   <option value="31">  31  </option>
   </select>
-  <select id="selMonth1" name="selMonth1" onchange="changeDate1()" style="vertical-align:middle">
+  <select rsf:id="select-month" id="selMonth1" name="selMonth1" style="vertical-align:middle">
   <option value="Jan">  Januar  </option>
   <option value="Feb">  Februar  </option>
   <option value="Mar">  März  </option>
@@ -88,17 +88,17 @@
   <option value="Nov">  November  </option>
   <option value="Dec">  Dezember  </option>
   </select>
-<a href="javascript:void(null)" onclick="showCalendar1()">
+<a rsf:id="date-link" href="javascript:void(null)">
 <img id="dateLink1" src="../images/pdate.gif" border="0" style="vertical-align:middle;margin:5px"/>
 </a>
 </div>
 
-
-
-    <div id="container1" style="position:absolute;display:none"></div>
-    <div id="container2" style="position:absolute;display:none"></div>
+    <div rsf:id="date-container" id="container1" style="position:absolute;display:none"></div>
   
   </form>
+  <script rsf:id="init-date">
+    initYahooCalendar("container1", "dateLink1", "selMonth1", "selDay1", "Select Date");
+  </script>
   </div>
   </div>
 </body>

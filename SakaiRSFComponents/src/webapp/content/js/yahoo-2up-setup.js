@@ -1,5 +1,5 @@
 
-    /* Begin German Calendar - _Cal is **IMPL** for Calendar */
+    /* _Cal is **IMPL** for Calendar */
 
     YAHOO.widget.Calendar2up_DE_Cal = function(id, containerId, monthyear, selected) {
       if (arguments.length > 0)
@@ -33,8 +33,8 @@
     YAHOO.widget.Calendar2up_DE.prototype = new YAHOO.widget.Calendar2up();
 
     YAHOO.widget.Calendar2up_DE.prototype.constructChild = 
-      function(id,containerId,monthyear,selected) {
-        var cal = new YAHOO.widget.Calendar2up_DE_Cal(id,containerId,monthyear,selected);
+      function(id, containerId, monthyear, selected) {
+        var cal = new YAHOO.widget.Calendar2up_DE_Cal(id, containerId, monthyear, selected);
         return cal;
       };
 
@@ -42,58 +42,74 @@
 
     YAHOO.namespace("example.calendar");
 
-    var today,link1,selMonth1,selDay1;
-
-    function initDE() {
-      today = new Date();
+    function initYahooCalendar(containerID, dateLinkID, selMonthID, selDayID, title) {
+      var today = new Date();
 
       var thisMonth = today.getMonth();
       var thisDay = today.getDate();
       var thisYear = today.getFullYear();
+      
+      alert("initYahooCalendar: " + containerID + " " + dateLinkID + " " + selMonthID 
+        + " " + selDayID);
 
-      link1 = document.getElementById('dateLink1');
+	  var dateLink = document.getElementById(dateLinkID);
+	  var selMonth = document.getElementById(selMonthID);
+	  var selDay = document.getElementById(selDayID);
 
-      selMonth1 = document.getElementById('selMonth1');
-      selDay1 = document.getElementById('selDay1');
+      alert("initYahooCalendar: " + containerID + " " + dateLink + " " + selMonth 
+        + " " + selDay);
 
-      selMonth1.selectedIndex = thisMonth;
-      selDay1.selectedIndex = thisDay-1;
+      newcal = 
+        new YAHOO.widget.Calendar2up_DE("YAHOO.calendar."+containerID,
+         containerID, (thisMonth+1)+"/"+thisYear, (thisMonth+1)+"/"+thisDay+"/"+thisYear);
+      newcal.setChildFunction("onSelect", 
+        function() {
+          yahoo_setDate(newcal, selMonth, selDay);
+          });
+          
+      selMonth.selectedIndex = thisMonth;
+      selDay.selectedIndex = thisDay-1;
 
-      YAHOO.example.calendar.cal1 = 
-        new YAHOO.widget.Calendar2up_DE("YAHOO.example.calendar.cal1",
-         "container1",(thisMonth+1)+"/"+thisYear,(thisMonth+1)+"/"+thisDay+"/"+thisYear);
-      YAHOO.example.calendar.cal1.setChildFunction("onSelect",setDate1);
-      YAHOO.example.calendar.cal1.title = "Waehle Dein Abflugsdatum";
+	  selMonth.onChange = function() {
+	    yahoo_changeDate(newcal, selMonth, selDay);
+	    };
+	  selDay.onChange = function() {
+	    yahoo_changeDate(newcal, selMonth, selDay);
+	    };
+
+	  dateLink.onclick = function() {
+	    yahoo_showCalendar(newcal, dateLink);
+	    };
+      newcal.title = title;
 
 //      YAHOO.example.calendar.cal1.addRenderer("1/1,1/6,5/1,8/15,10/3,10/31,12/25,12/26", YAHOO.example.calendar.cal1.pages[0].renderCellStyleHighlight1);
-
-      YAHOO.example.calendar.cal1.render();
+     
+     newcal.render();
 
     }
 
-    function showCalendar1() {
+    function yahoo_showCalendar(cal, dateLink) {
 //      YAHOO.example.calendar.cal2.hide();
       
-      var pos = YAHOO.util.Dom.getXY(link1);
-      YAHOO.example.calendar.cal1.outerContainer.style.display='block';
-      YAHOO.util.Dom.setXY(YAHOO.example.calendar.cal1.outerContainer, [pos[0],pos[1]+link1.offsetHeight+1]);
+      var pos = YAHOO.util.Dom.getXY(dateLink);
+      cal.outerContainer.style.display='block';
+      YAHOO.util.Dom.setXY(cal.outerContainer, [pos[0],pos[1]+dateLink.offsetHeight+1]);
     }
 
-    function setDate1() {
-      var date1 = YAHOO.example.calendar.cal1.getSelectedDates()[0];
-      selMonth1.selectedIndex=date1.getMonth();
-      selDay1.selectedIndex=date1.getDate()-1;
-      YAHOO.example.calendar.cal1.hide();
+    function yahoo_setDate(cal, selMonth, selDay) {
+      var date1 = cal.getSelectedDates()[0];
+      selMonth1.selectedIndex = date1.getMonth();
+      selDay1.selectedIndex = date1.getDate()-1;
+      cal.hide();
     }
 
-    function changeDate1() {
-      var month = selMonth1.selectedIndex;
-      var day = selDay1.selectedIndex + 1;
+    function yahoo_changeDate(cal, selMonth, selDay) {
+      var month = selMonth.selectedIndex;
+      var day = selDay.selectedIndex + 1;
       var year = today.getFullYear();
 
-      YAHOO.example.calendar.cal1.select((month+1) + "/" + day + "/" + year);
-      YAHOO.example.calendar.cal1.setMonth(month);
-      YAHOO.example.calendar.cal1.render();
+      cal.select((month+1) + "/" + day + "/" + year);
+      cal.setMonth(month);
+      cal.render();
     }
 
-    YAHOO.util.Event.addListener(window, "load", initDE); 

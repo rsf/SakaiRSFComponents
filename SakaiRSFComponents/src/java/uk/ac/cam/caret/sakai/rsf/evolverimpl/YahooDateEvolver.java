@@ -5,12 +5,12 @@ package uk.ac.cam.caret.sakai.rsf.evolverimpl;
 
 import java.util.Date;
 
+import uk.org.ponder.dateutil.LocalSDF;
 import uk.org.ponder.htmlutil.DateSymbolJSEmitter;
 import uk.org.ponder.htmlutil.HTMLUtil;
 import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UIJointContainer;
-import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.evolvers.DateInputEvolver;
 import uk.org.ponder.stringutil.StringGetter;
@@ -42,14 +42,14 @@ public class YahooDateEvolver implements DateInputEvolver {
    
     UIForm form = UIForm.make(togo, "basic-form");
     
-    UIOutput selectday = UIOutput.make(form, "select-day");
-    UIOutput selectmonth = UIOutput.make(form, "select-month");
-    UIOutput datelink = UIOutput.make(form, "date-link");
-    UIOutput datecontainer = UIOutput.make(form, "date-container");
+    String truedateval = value == null? null : LocalSDF.w3cformat.format(value);
     
-    String initdate = HTMLUtil.emitJavascriptCall("initYahooCalendar", 
-        new String[] {datecontainer.getFullID(), datelink.getFullID(), 
-        selectmonth.getFullID(), selectday.getFullID(), title.get()});
+    UIInput.make(form, "true-date", toevolve.valuebinding.value, 
+        truedateval);
+     
+    
+    String initdate = HTMLUtil.emitJavascriptCall("initYahooCalendar_Dropdowns", 
+        new String[] {togo.getFullID(), title.get()});
     
     UIVerbatim.make(togo, "init-date", initdate);
     

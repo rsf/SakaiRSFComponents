@@ -1,0 +1,17 @@
+annotation-target {
+  position:relative; /*this is the key*/
+  z-index:24;
+}
+
+annotation-inactive {
+  display: none;
+  }
+
+annotation-active {
+  display:block;
+  position:absolute;
+  top:2em; left:2em; width:15em;
+  border:1px solid #0cf;
+  background-color:#cff; color:#000;
+  text-align: center
+}

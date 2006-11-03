@@ -41,49 +41,35 @@
     /* End German Calendar */
 
     YAHOO.namespace("example.calendar");
-    
-    /* Start Calendar Context definition */
-    
-    function yahoo_calendar_context (cal, selMonth, selDay, dateLink) {
-      this.cal = cal;
-      this.selMonth = selMonth;
-      this.selDay = selDay;
-      this.dateLink = dateLink;
-    }
 
-    yahoo_calendar_context.prototype.show = function () {
+    function yahoo_showCalendar(cal, dateLink) {
 //      YAHOO.example.calendar.cal2.hide();
-      var pos = YAHOO.util.Dom.getXY(this.dateLink);
-      this.cal.outerContainer.style.display='block';
-      YAHOO.util.Dom.setXY(this.cal.outerContainer, [pos[0],pos[1]+this.dateLink.offsetHeight+1]);
+      
+      var pos = YAHOO.util.Dom.getXY(dateLink);
+      cal.outerContainer.style.display='block';
+      YAHOO.util.Dom.setXY(cal.outerContainer, [pos[0],pos[1]+dateLink.offsetHeight+1]);
     }
 
-    yahoo_calendar_context.prototype.setDate = function () {
-      var date1 = this.cal.getSelectedDates()[0];
-      this.selMonth.selectedIndex = date1.getMonth();
-      this.selDay.selectedIndex = date1.getDate()-1;
-      this.cal.hide();
+    function yahoo_setDate_Dropdowns(cal, selMonth, selDay) {
+      var date1 = cal.getSelectedDates()[0];
+      selMonth.selectedIndex = date1.getMonth();
+      selDay.selectedIndex = date1.getDate() - 1;
+      cal.hide();
     }
 
-    yahoo_calendar_context.prototype.changeDate = function() {
-      var month = this.selMonth.selectedIndex;
-      var day = this.selDay.selectedIndex + 1;
+    function yahoo_changeDate_Dropdowns(cal, selMonth, selDay) {
+      var month = selMonth.selectedIndex;
+      var day = selDay.selectedIndex + 1;
       // NB this line specific for 2up - uses undocumented list "pages" of Calendar
-      var year = this.cal.pages[0].pageDate.getFullYear();
+      var year = cal.pages[0].pageDate.getFullYear();
 
-      alert("Year " + year);
-      this.cal.select((month+1) + "/" + day + "/" + year);
-      this.cal.setMonth(month);
-      this.cal.setYear(year);
-      this.cal.render();
+      cal.select((month+1) + "/" + day + "/" + year);
+      cal.setMonth(month);
+      cal.render();
     }
 
-	yahoo_calendar_context.prototype.hide = function() {
-	  this.cal.hide();
-	  }
 
-
-    function initYahooCalendar(containerID, dateLinkID, selMonthID, selDayID, title) {
+    function initYahooCalendar_Dropdowns(containerID, dateLinkID, selMonthID, selDayID, title) {
 
       var today = new Date();
 
@@ -102,49 +88,63 @@
 //      alert("initYahooCalendar: " + containerID + " " + dateLink + " " + selMonth 
 //        + " " + selDay);
 
-      newcal = 
+      var newcal = 
         new YAHOO.widget.Calendar2up_DE("YAHOO.calendar."+containerID,
          containerID, (thisMonth+1)+"/"+thisYear, (thisMonth+1)+"/"+thisDay+"/"+thisYear);
-         
-      newcont = new yahoo_calendar_context(newcal, selMonth, selDay, dateLink);
-      
+
       newcal.setChildFunction("onSelect", 
-         (function(newcont) {return function() {newcont.setDate();};})(newcont)
-          );
+      function() {
+        yahoo_setDate(newcal, selMonth, selDay);
+        });
           
       selMonth.selectedIndex = thisMonth;
       selDay.selectedIndex = thisDay-1;
 
-	  selMonth.onchange =  
-	    (function(newcont) {return function() {newcont.changeDate();};})(newcont);
+	  selMonth.onchange = function() {
+	    yahoo_changeDate_Dropdowns(newcal, this, selDay);
+	    };
 	    
-	  selDay.onchange =
-	    (function(newcont) {return function() {newcont.changeDate();};})(newcont);
+	  selDay.onchange = function() {
+	    yahoo_changeDate_Dropdowns(newcal, selMonth, this);
+	    };
 
-	  dateLink.onclick = 
-	    (function(newcont) {return function() {newcont.show();};})(newcont);
+      dateLink.onclick = function() { 
+        yahoo_showCalendar(newcal, this);
+        };
 	    
       newcal.title = title;
 
+	  var mycontrols = [containerID, dateLinkID, selMonthID, selDayID];
+	  var conthash = new Object();
+	  for (var x in mycontrols) {
+	    conthash[mycontrols[x]] = 1;
+	    }
+
+      YAHOO.util.Event.addListener(document, "click", 
+        function(e) {
+          yahoo_documentClick(e, newcal, conthash);
+          });
+      
 //      YAHOO.example.calendar.cal1.addRenderer("1/1,1/6,5/1,8/15,10/3,10/31,12/25,12/26", YAHOO.example.calendar.cal1.pages[0].renderCellStyleHighlight1);
      
      newcal.render();
-   
     }
 
-	var oElement = document; 
-	function fnCallback(e) { 
-	  alert(e);
-	  var target = e.getTarget();
+
+	function yahoo_documentClick(e, cal, IDs) { 
+	  var target = YAHOO.util.Event.getTarget(e);
 	  
+	  var found = false;
 	  while(target) {
-	    alert(target.id);
-	    if (target.id) {
-	      alert(target.id);
+	    if (IDs[target.id]) {
+	      found = true;
 	      }
 	    target = target.parentNode;
 	  }
+	if (!found) {
+	  cal.hide();
+	  }
 //	alert("click " + e); 
 	} 
-	YAHOO.util.Event.addListener(oElement, "click", fnCallback); 
+	
 

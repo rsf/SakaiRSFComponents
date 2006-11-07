@@ -6,9 +6,11 @@ package org.sakaiproject.tool.tasklist.rsf;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.sakaiproject.tool.tasklist.api.Task;
 
+import uk.org.ponder.localeutil.LocaleGetter;
 import uk.org.ponder.rsf.components.ELReference;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UICommand;
@@ -27,13 +29,12 @@ import uk.org.ponder.rsf.view.DefaultView;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
-import uk.org.ponder.stringutil.LocaleGetter;
 import uk.org.ponder.stringutil.StringList;
 
 public class TaskListProducer implements ViewComponentProducer,
     NavigationCaseReporter, DefaultView {
   public static final String VIEW_ID = "TaskList";
-  private LocaleGetter localegetter;
+  private Locale locale;
   private List taskList;
   private String siteId;
   private String userId;
@@ -47,8 +48,8 @@ public class TaskListProducer implements ViewComponentProducer,
     this.taskList = taskList;
   }
 
-  public void setLocaleGetter(LocaleGetter localegetter) {
-    this.localegetter = localegetter;
+  public void setLocale(Locale locale) {
+    this.locale = locale;
   }
 
   public void setSiteId(String siteId) {
@@ -93,7 +94,7 @@ public class TaskListProducer implements ViewComponentProducer,
     // shed 600 lines:
     // http://fisheye5.cenqua.com/viewrep/javaserverfaces-sources/jsf-api/src/javax/faces/convert/DateTimeConverter.java
     DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM,
-        DateFormat.SHORT, localegetter.get());
+        DateFormat.SHORT, locale);
     for (int i = 0; i < taskList.size(); ++i) {
       Task task = (Task) taskList.get(i);
       boolean candelete = task.getOwner().equals(userId);

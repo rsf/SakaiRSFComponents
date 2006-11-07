@@ -2,17 +2,15 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <!--  Request-scope beans for TaskList  -->
 <beans>
-  <bean id="siteId" factory-bean="sakai-Placement"
-    factory-method="getContext" />
   <!-- TaskListService destroyed from JSF version, replaced with 
     TaskListProducer, now moved into request scope for query result
     and siteId injection -->
 
   <bean id="TaskListProducer"
     class="org.sakaiproject.tool.tasklist.rsf.TaskListProducer">
-    <property name="siteId" ref="siteId" />
+    <property name="siteId" ref="sakai-Context" />
     <property name="taskList" ref="taskSiteQuery" />
-    <property name="localeGetter" ref="sakai-LocaleProxy" />
+    <property name="locale" ref="sakai-Locale" />
     <property name="userId" ref="sakai-UserEID"/>
     <property name="userName" ref="sakai-UserDisplayName"/>
   </bean>

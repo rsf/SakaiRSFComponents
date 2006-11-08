@@ -1,16 +1,18 @@
 
     /* _Cal is **IMPL** for Calendar */
 
-    YAHOO.widget.Calendar2up_DE_Cal = function(id, containerId, monthyear, selected) {
+    YAHOO.widget.Calendar2up_PUC_Cal = function(id, containerId, monthyear, selected) {
       if (arguments.length > 0)
       {
         this.init(id, containerId, monthyear, selected);
       }
     }
 
-    YAHOO.widget.Calendar2up_DE_Cal.prototype = new YAHOO.widget.Calendar2up_Cal();
+    YAHOO.widget.Calendar2up_PUC_Cal.prototype = new YAHOO.widget.Calendar2up_Cal();
 
-    YAHOO.widget.Calendar2up_DE_Cal.prototype.customConfig = function() {
+    /** "Forward" reference here to localisation block rendered into the 
+    HTML document **/
+    YAHOO.widget.Calendar2up_PUC_Cal.prototype.customConfig = function() {
       this.Config.Locale.MONTHS_SHORT = PUC_MONTHS_SHORT;
       this.Config.Locale.MONTHS_LONG =  PUC_MONTHS_LONG;
       this.Config.Locale.WEEKDAYS_1CHAR = PUC_WEEKDAYS_1CHAR;
@@ -22,7 +24,7 @@
 
     /** Plain object is **UI** for Calendar, of type YAHOO.widget **/
 
-    YAHOO.widget.Calendar2up_DE = function(id, containerId, monthyear, selected) {
+    YAHOO.widget.Calendar2up_PUC = function(id, containerId, monthyear, selected) {
       if (arguments.length > 0)
       {
         this.buildWrapper(containerId);
@@ -30,15 +32,15 @@
       }
     }
 
-    YAHOO.widget.Calendar2up_DE.prototype = new YAHOO.widget.Calendar2up();
+    YAHOO.widget.Calendar2up_PUC.prototype = new YAHOO.widget.Calendar2up();
 
-    YAHOO.widget.Calendar2up_DE.prototype.constructChild = 
+    YAHOO.widget.Calendar2up_PUC.prototype.constructChild = 
       function(id, containerId, monthyear, selected) {
-        var cal = new YAHOO.widget.Calendar2up_DE_Cal(id, containerId, monthyear, selected);
+        var cal = new YAHOO.widget.Calendar2up_PUC_Cal(id, containerId, monthyear, selected);
         return cal;
       };
 
-    /* End German Calendar */
+    /* End YAHOO setup defs */
 
     YAHOO.namespace("example.calendar");
 
@@ -75,16 +77,60 @@
     trueDate.value = converted;
     }
 
-function dateFieldUpdateHandler(trueDate, dateField, annotation) {
-  this.trueDate = trueDate;
-  this.dateField = dateField;
-  this.annotation = annotation;
+/** An object coordinating updates of the textual field value. trueDate and
+dateField are both <input>, annotation is a <div> **/
+  var dateFieldUpdateHandler = function (trueDate, dateField, dateLink, annotation, transitbase) {
+    this.trueDate = trueDate;
+    this.dateField = dateField;
+    this.annotation = annotation;
+    var format = annotation.innerHTML;
+    this.transitbase = transitbase;
+    dateField.onfocus = function() {
+      YAHOO.util.Dom.replaceClass(annotation, "annotation-inactive", "annotation-active");
+      }
+    dateField.onblur = function() {
+      YAHOO.util.Dom.replaceClass(annotation, "annotation-active", "annotation-inactive");
+    }
+    
+    var value;
+
+	var setValueValid = function(isvalid) {
+//	  alert("isvalid " + isvalid + " " + annotation + " " + annotation.innerHTML);
+	  if (isvalid) {
+//	    var newspan = document.createElement("span");
+//	    newspan.innerHTML = "08 November 2006";
+//	    newspan.setAttribute("class", "annotation-active annotation-complete");
+//	    dateLink.appendChild(newspan);
+	    annotation.innerHTML = "08 November 2006";
+	    YAHOO.util.Dom.replaceClass(annotation, "annotation-incomplete", "annotation-complete");
+	  }
+	  else {
+	    annotation.innerHTML = format;
+	    YAHOO.util.Dom.replaceClass(annotation, "annotation-complete", "annotation-incomplete");
+	    }
+      };
+    
+    var valueChanged = function() {
+      setValueValid(value == "08/11/06");
+    };
+    
+    var fieldChange = function() {
+      var newvalue = dateField.value;
+      if (newvalue != value) {
+//        alert("fieldChange: " + value + " " + newvalue);
+        value = newvalue;
+        valueChanged();      
+        }
+      };
+    
+    dateField.onkeyup = fieldChange;
+    dateField.onChange = fieldChange;
   }
 
-
-function $it(elementID) {
-  return document.getElementById(elementID);
-  }
+	
+  function $it(elementID) {
+    return document.getElementById(elementID);
+    }
 
 /** Base initialisation for the calendar controls.
  * Parses a JS Date object into a form suitable to initialise the control,
@@ -93,57 +139,66 @@ function $it(elementID) {
  * Returns the constructed JS widget object.
  */
 
-function initYahooCalendar_base(value, nameBase, controlIDs, title) {
-  var containerID = nameBase + "date-container";
+  function initYahooCalendar_base(value, nameBase, controlIDs, title) {
+    var containerID = nameBase + "date-container";
 
-  var thisMonth = value.getMonth();
-  var thisDay = value.getDate();
-  var thisYear = value.getFullYear();
+    var thisMonth = value.getMonth();
+    var thisDay = value.getDate();
+    var thisYear = value.getFullYear();
   
-  var newcal = 
-    new YAHOO.widget.Calendar2up_DE("YAHOO.calendar."+containerID,
+    var newcal = 
+      new YAHOO.widget.Calendar2up_PUC("YAHOO.calendar."+containerID,
       containerID, (thisMonth+1)+"/"+thisYear, (thisMonth+1)+"/"+thisDay+"/"+thisYear);
   
-  var dateLinkID = nameBase + "date-link";
-  var dateLink = $it(dateLinkID);
+    var dateLinkID = nameBase + "date-link";
+    var dateLink = $it(dateLinkID);
   
-  dateLink.onclick = function() { 
-    yahoo_showCalendar(newcal, this);
+    dateLink.onclick = function() { 
+      yahoo_showCalendar(newcal, this);
     };
     
-  controlIDs.push(dateLinkID);
-  controlIDs.push(containerID);
+    controlIDs.push(dateLinkID);
+    controlIDs.push(containerID);
 	    
-  newcal.title = title;
+    newcal.title = title;
 	 
-  var conthash = new Object();
-  for (var x in controlIDs) {
-    conthash[controlIDs[x]] = 1;
+    var conthash = new Object();
+    for (var x in controlIDs) {
+      conthash[controlIDs[x]] = 1;
+      }
+
+    YAHOO.util.Event.addListener(document, "click", 
+      function(e) {
+        yahoo_documentClick(e, newcal, conthash);
+      });
+  
+    return newcal;
     }
 
-  YAHOO.util.Event.addListener(document, "click", 
-    function(e) {
-      yahoo_documentClick(e, newcal, conthash);
-    });
-  
-  
-  return newcal;
-  }
-
-  function initYahooCalendar_Datefield(nameBase, title) {
+  function initYahooCalendar_Datefield(nameBase, title, transitbase) {
     var dateFieldID = nameBase + "date-field";
     var dateField = $it(dateFieldID);
   
     var trueDate = $it(nameBase + "true-date");
     var valuestring = trueDate.value;
     var value = new Date();
-    if (valuestring.length() == 0) {
+    if (valuestring.length != 0) {
       value.setISO8601(valuestring);
     }
   
     controlIDs = [dateFieldID];
   
     var newcal = initYahooCalendar_base(value, nameBase, controlIDs, title);
+    
+    var annotation = $it(nameBase + "annotation");
+    var dateLink = $it(nameBase + "date-link");
+    
+    var updateHandler = new dateFieldUpdateHandler(trueDate, dateField, dateLink, 
+      annotation, transitbase);
+  
+    var fieldchange = function() {
+      
+    };
   
     newcal.render();
   }
@@ -185,6 +240,8 @@ function initYahooCalendar_base(value, nameBase, controlIDs, title) {
      newcal.render();
    }
 
+/** The global "dismiss" listener which ensures that any click away
+from the controls of an active calendar dismisses its popup **/
 
   function yahoo_documentClick(e, cal, IDs) { 
     var target = YAHOO.util.Event.getTarget(e);

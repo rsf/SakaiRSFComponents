@@ -33,7 +33,7 @@ import uk.org.ponder.stringutil.StringList;
 public class BrokenDateEvolver implements DateInputEvolver {
   public static final String COMPONENT_ID = "broken-date:";
 
-  private String transitbase = "dateTransit";
+  private String transitbase = "brokenDateTransit";
 
   private String[] yearlist;
 

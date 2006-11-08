@@ -9,9 +9,27 @@
   <bean id="dataBean"
     class="uk.ac.cam.caret.sakai.rsf.beans.DataBean" />
 
-  <bean id="dateTransit" parent="beanExploder">
-    <property name="beanName" value="transitSeed"/>
+
+
+  <bean id="brokenTransitSeed"
+    class="uk.org.ponder.dateutil.BrokenDateTransit" singleton="false">
+    <property name="mode" value="Full" />
   </bean>
+
+  <bean id="brokenDateTransit" parent="beanExploder">
+    <property name="beanName" value="brokenTransitSeed"/>
+  </bean>
+  
+  
+  <bean id="fieldTransitSeed"
+    class="uk.org.ponder.dateutil.FieldDateTransit" singleton="false">
+    <property name="locale" ref="sakai-Locale"/>
+  </bean>
+  
+  <bean id="fieldDateTransit" parent="beanExploder">
+    <property name="beanName" value="fieldTransitSeed"/>
+  </bean>
+
   
   <bean name="monthBean" class="uk.org.ponder.dateutil.MonthBean" init-method="init">
     <property name="locale" ref="sakai-Locale"/>

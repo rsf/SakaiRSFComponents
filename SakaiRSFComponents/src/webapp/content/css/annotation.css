@@ -1,17 +1,28 @@
-annotation-target {
+.annotation-target {
   position:relative; /*this is the key*/
   z-index:24;
 }
 
-annotation-inactive {
+.annotation-incomplete {
+  border:1px solid #f00;
+  background-color:#fcc; 
+  }
+
+.annotation-complete {
+  border:1px solid #0f0;
+  background-color:#cfc; 
+  }
+
+.annotation-inactive {
   display: none;
   }
 
-annotation-active {
+.annotation-active {
   display:block;
   position:absolute;
-  top:2em; left:2em; width:15em;
-  border:1px solid #0cf;
-  background-color:#cff; color:#000;
-  text-align: center
+  top: -1.5em;
+  left: -5em;
+  color:#000;
+  text-align: center;
+  white-space: nowrap;
 }

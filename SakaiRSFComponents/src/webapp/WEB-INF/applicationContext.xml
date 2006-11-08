@@ -21,11 +21,6 @@
     <property name="copyPreservingBeans" value="componentChoice" />
   </bean>
 
-  <bean id="transitSeed"
-    class="uk.org.ponder.dateutil.BrokenDateTransit" singleton="false">
-    <property name="mode" value="Full" />
-  </bean>
-
   <bean parent="templateContributorParent">
     <property name="templateNames" value="sakai-old-date"/>
   </bean>
@@ -52,7 +47,7 @@
     <constructor-arg>
       <list>
         <bean class="uk.ac.cam.caret.sakai.rsf.evolverimpl.YahooDateEvolver">
-          <property name="JSemitter" ref="dateSymbolJSEmitter"/>
+          <property name="JSEmitter" ref="dateSymbolJSEmitter"/>
         </bean>
         <bean
           class="uk.ac.cam.caret.sakai.rsf.evolverimpl.BrokenDateEvolver">

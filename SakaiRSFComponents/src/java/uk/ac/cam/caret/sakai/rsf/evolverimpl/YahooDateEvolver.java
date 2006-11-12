@@ -9,6 +9,7 @@ import uk.org.ponder.beanutil.BeanGetter;
 import uk.org.ponder.dateutil.FieldDateTransit;
 import uk.org.ponder.htmlutil.DateSymbolJSEmitter;
 import uk.org.ponder.htmlutil.HTMLUtil;
+import uk.org.ponder.rsf.builtin.UVBProducer;
 import uk.org.ponder.rsf.components.ELReference;
 import uk.org.ponder.rsf.components.UIELBinding;
 import uk.org.ponder.rsf.components.UIForm;
@@ -17,6 +18,9 @@ import uk.org.ponder.rsf.components.UIJointContainer;
 import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.evolvers.DateInputEvolver;
 import uk.org.ponder.rsf.util.RSFUtil;
+import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
+import uk.org.ponder.rsf.viewstate.ViewParameters;
+import uk.org.ponder.rsf.viewstate.ViewStateHandler;
 import uk.org.ponder.stringutil.StringGetter;
 import uk.org.ponder.stringutil.StringHolder;
 
@@ -31,6 +35,12 @@ public class YahooDateEvolver implements DateInputEvolver {
 
   private BeanGetter rbg;
   
+  private ViewStateHandler vsh;
+  
+  public void setViewStateHandler(ViewStateHandler vsh) {
+    this.vsh = vsh;
+  }
+
   public void setJSEmitter(DateSymbolJSEmitter jsemitter) {
     this.jsemitter = jsemitter;
   }
@@ -72,11 +82,16 @@ public class YahooDateEvolver implements DateInputEvolver {
     
     UIInput.make(togo, "date-field", ttb + "short", transit.getShort());
     
+    ViewParameters uvbparams = new SimpleViewParameters(UVBProducer.VIEW_ID);
+    
+    String readbinding = ttb + "long";
+    
     String initdate = HTMLUtil.emitJavascriptCall("initYahooCalendar_Datefield", 
-        new String[] {togo.getFullID(), title.get(), ttb});
+        new String[] {togo.getFullID(), title.get(), readbinding, 
+        vsh.getFullURL(uvbparams)});
     
     UIVerbatim.make(togo, "init-date", initdate);
-   
+
     UIForm form = RSFUtil.findBasicForm(togo);
     
     form.parameters.add(new UIELBinding(toevolve.valuebinding.value, 

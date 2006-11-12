@@ -26,3 +26,7 @@
   text-align: center;
   white-space: nowrap;
 }
+
+.annotation-front {
+  z-index:50;
+}

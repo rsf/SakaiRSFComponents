@@ -5,7 +5,8 @@
   <!-- For security purposes, only beans listed in this collection may be the
     target of EL operations coming in over the request -->
   <bean parent="requestAddressibleParent">
-    <property name="value" value="dataBean, dateTransit, componentChoice, transitSeed" />
+    <property name="value" value="dataBean, brokenDateTransit, fieldDateTransit, 
+       componentChoice, transitSeed" />
   </bean>
   
   <!-- The beans which will be preserved across a flow via simple instance
@@ -48,6 +49,7 @@
       <list>
         <bean class="uk.ac.cam.caret.sakai.rsf.evolverimpl.YahooDateEvolver">
           <property name="JSEmitter" ref="dateSymbolJSEmitter"/>
+          <property name="requestBeanGetter" ref="ELEvaluatorProxy"/>
         </bean>
         <bean
           class="uk.ac.cam.caret.sakai.rsf.evolverimpl.BrokenDateEvolver">

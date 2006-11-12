@@ -11,7 +11,7 @@ var RSF = function() {
     // key = [deletion|el]-binding, value = [e|o]#{el.lvalue}rvalue 
 
     parseFossil: function (fossil) {
-      var fossilex = /(.)(.*)#{(.*)}(.*)/;
+      fossilex = /(.)(.*)#{(.*)}(.*)/;
       var matches = fossil.match(fossilex);
       var togo = new Object();
       togo.input = matches[1] == 'i';
@@ -22,7 +22,7 @@ var RSF = function() {
       },
 
     parseBinding: function (binding, deletion) {
-      var bindingex = /(.)#{(.*)}(.*)/;
+      bindingex = /(.)#{(.*)}(.*)/;
       var matches = binding.match(bindingex);
       var togo = new Object();
       togo.EL = matches[1] == 'e';
@@ -32,6 +32,54 @@ var RSF = function() {
       return togo;
       },
 
+    encodeElement: function(key, value) {
+      return encodeURIComponent(key) + "=" + encodeURIComponent(value);
+      },
+
+    renderBinding: function(lvalue, rvalue) {
+      return encodeElement("el-binding", "o" + lvalue + "}" + rvalue);
+      },
+      
+    renderUVBQuery: function(readEL) {
+      return renderBinding("UVBBean.paths", readEL);
+      },
+    
+    getUVBResponseID: function(readEL) {
+      return ":"+readEL+":";
+      },
+    
+    getUVBElement: function(readEL, responseDOM) {
+      var rid = getUVBResponseID(readEL);
+      var node = responseDOM.getElementById(rid)
+      var nodes = node.childNodes;
+      var text = "";
+      for (var i in nodes) {
+        var child = nodes[i];
+        if (child.nodeType == 3) {
+          text = text + child.nodeValue;
+          }
+        }
+      return text; 
+      },
+      
+    parseUVBResponse: function(responseDOM) {
+      var togo = new Object();
+      
+      },
+    /** Return the body of a "partial submission" POST corresponding to the
+     * section of a form contained within argument "container" rooted at
+     * the supplied "element", "as if" that form section were to be submitted
+     * with element's value set to "value" */ 
+    getPartialSubmissionBody: function(container, element, value) {
+      var upstream = getUpstreamElements(container, element);
+      var body = new Array();
+      body.push(element.name, value);
+      for (var i in upstream) {
+        var upel = upstream[i];
+        body.push(upel.name, upel.value);
+        }
+      return body.join("&");
+      },
     /** Returns a set of DOM elements (currently of type <input>) 
      * corresponding to the set involved in the EL cascade formed by
      * submission of the supplied element.

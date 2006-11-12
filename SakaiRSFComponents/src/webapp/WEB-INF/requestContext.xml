@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
-<!-- The "request scope application context" file. The two "action" beans definitions
-  are identical to those from the original SWF file, whereas the "data" beans are
-  now backed by beans which used to be defined in private static inner classes. -->
+<!-- The "request scope application context" file  -->
 
 <beans>
   <bean id="dataBean"
     class="uk.ac.cam.caret.sakai.rsf.beans.DataBean" />
-
 
 
   <bean id="brokenTransitSeed"
@@ -19,7 +16,7 @@
   <bean id="brokenDateTransit" parent="beanExploder">
     <property name="beanName" value="brokenTransitSeed"/>
   </bean>
-  
+
   
   <bean id="fieldTransitSeed"
     class="uk.org.ponder.dateutil.FieldDateTransit" singleton="false">

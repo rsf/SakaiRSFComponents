@@ -7,6 +7,7 @@ import java.util.Date;
 
 import uk.org.ponder.beanutil.BeanGetter;
 import uk.org.ponder.dateutil.FieldDateTransit;
+import uk.org.ponder.dateutil.LocalSDF;
 import uk.org.ponder.htmlutil.DateSymbolJSEmitter;
 import uk.org.ponder.htmlutil.HTMLUtil;
 import uk.org.ponder.rsf.builtin.UVBProducer;
@@ -15,6 +16,7 @@ import uk.org.ponder.rsf.components.UIELBinding;
 import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UIJointContainer;
+import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.evolvers.DateInputEvolver;
 import uk.org.ponder.rsf.util.RSFUtil;
@@ -81,13 +83,17 @@ public class YahooDateEvolver implements DateInputEvolver {
 //        truedateval);
     
     UIInput.make(togo, "date-field", ttb + "short", transit.getShort());
+    UIOutput.make(togo, "true-date", LocalSDF.w3cformat.format(value));
+    UIOutput.make(togo, "date-container");
+    UIOutput.make(togo, "date-link");
+    UIOutput.make(togo, "date-annotation", null, ttb + "shortFormat");
     
     ViewParameters uvbparams = new SimpleViewParameters(UVBProducer.VIEW_ID);
     
-    String readbinding = ttb + "long";
+//    String readbinding = ttb + "long";
     
     String initdate = HTMLUtil.emitJavascriptCall("initYahooCalendar_Datefield", 
-        new String[] {togo.getFullID(), title.get(), readbinding, 
+        new String[] {togo.getFullID(), title.get(), ttb, 
         vsh.getFullURL(uvbparams)});
     
     UIVerbatim.make(togo, "init-date", initdate);

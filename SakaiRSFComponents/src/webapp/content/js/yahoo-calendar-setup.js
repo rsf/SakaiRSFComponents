@@ -78,9 +78,12 @@
     trueDate.value = converted;
     }
 
-  var getAJAXUpdater = function (nameBase, readbinding, AJAXURL, value, setValueValid) {
+  var getAJAXUpdater = function (nameBase, transitbase, AJAXURL, fieldvalue, setValueValid) {
     var connection;
     var lastbody;
+    var shortbinding = transitbase + "short";
+    var longbinding = transitbase + "long";
+    var truebinding = transitbase + "date";
     // Assumes a FieldDateTransit for which we require to read the "long" format
     
     var fireConnection = function(body) {
@@ -89,9 +92,10 @@
     
     var callback = {
       success: function(response) {
-        var result = RSF.getUVBElement(readbinding, response.responseXML);
-        alert("Got responseXML " + response.responseXML + " result " + result);
-        setValueValid(!!result, result);
+        var longresult = RSF.getUVBElement(longbinding, response.responseXML);
+        var trueresult = RSF.getUVBElement(truebinding, response.responseXML);
+        alert("Got responseXML " + response.responseXML + " result " + longresult);
+        setValueValid(!!longresult, trueresult, longresult);
         if (lastbody) {
           fireConnection(lastbody);
           lastbody = null; // Locking??! We don' need no steekeeng LOCKING!
@@ -107,8 +111,9 @@
       var dateFieldID = nameBase + "date-field";
       var dateField = $it(dateFieldID);
      
-      var body = RSF.getPartialSubmissionBody(nameBase, dateField, value);
-      body = body + "&" + RSF.renderUVBQuery(readbinding);
+      var body = RSF.getPartialSubmissionBody(nameBase, dateField, fieldvalue);
+      body = body + "&" + RSF.renderUVBQuery(truebinding) + "&" + 
+        RSF.renderUVBQuery(longbinding); 
       if (!connection) {
   	    fireConnection(body);      
         }
@@ -120,8 +125,9 @@
 
 /** An object coordinating updates of the textual field value. trueDate and
 dateField are both <input>, annotation is a <div> **/
-  var dateFieldUpdateHandler = function (nameBase, readbinding, AJAXURL) {
-    var annotation = $it(nameBase + "annotation");
+  var dateFieldUpdateHandler = function (nameBase, transitbase, AJAXURL) {
+    var annotation = $it(nameBase + "date-annotation");
+    var truevalue = $it(nameBase + "true-value");
     var format = annotation.innerHTML;
     var dateFieldID = nameBase + "date-field";
     var dateField = $it(dateFieldID);
@@ -133,16 +139,17 @@ dateField are both <input>, annotation is a <div> **/
       YAHOO.util.Dom.replaceClass(annotation, "annotation-active", "annotation-inactive");
     }
     
-    var value;
+    var fieldvalue;
 
-	var setValueValid = function(isvalid, message) {
+	var setValueValid = function(isvalid, truevalue, longvalue) {
 //	  alert("isvalid " + isvalid + " " + annotation + " " + annotation.innerHTML);
 	  if (isvalid) {
 //	    var newspan = document.createElement("span");
 //	    newspan.innerHTML = "08 November 2006";
 //	    newspan.setAttribute("class", "annotation-active annotation-complete");
 //	    dateLink.appendChild(newspan);
-	    annotation.innerHTML = message;
+	    annotation.innerHTML = longvalue;
+	    truevalue.value = truevalue;
 	    YAHOO.util.Dom.replaceClass(annotation, "annotation-incomplete", "annotation-complete");
 	  }
 	  else {
@@ -151,20 +158,21 @@ dateField are both <input>, annotation is a <div> **/
 	    }
       };
     if (AJAXURL) {
-      var valueChanged = getAJAXUpdater(nameBase, readbinsing, AJAXURL, value,
+      var valueChanged = getAJAXUpdater(nameBase, transitbase, AJAXURL, fieldvalue,
       setValueValid);
       }
     else {
       var valueChanged = function() {
-        setValueValid(value == "08/11/06", "08 November 2006");
+        var trueDate = new Date(2006, 11, 8);
+        setValueValid(fieldvalue == "08/11/06", trueDate.toISO8601String(), "08 November 2006");
         };
       }
     
     var fieldChange = function() {
       var newvalue = dateField.value;
-      if (newvalue != value) {
+      if (newvalue != fieldvalue) {
 //        alert("fieldChange: " + value + " " + newvalue);
-        value = newvalue;
+        fieldvalue = newvalue;
         valueChanged();      
         }
       };
@@ -221,7 +229,7 @@ dateField are both <input>, annotation is a <div> **/
     return newcal;
     }
 
-  function initYahooCalendar_Datefield(nameBase, title, readbinding, AJAXURL) {
+  function initYahooCalendar_Datefield(nameBase, title, transitbase, AJAXURL) {
     var dateFieldID = nameBase + "date-field";
     var dateField = $it(dateFieldID);
 
@@ -236,15 +244,11 @@ dateField are both <input>, annotation is a <div> **/
   
     var newcal = initYahooCalendar_base(value, nameBase, controlIDs, title);
     
-    var annotation = $it(nameBase + "annotation");
+//    var annotation = $it(nameBase + "date-annotation");
     var dateLink = $it(nameBase + "date-link");
     dateLink.style.display="inline";
     
-    var updateHandler = new dateFieldUpdateHandler(nameBase, readbinding, AJAXURL);
-  
-    var fieldchange = function() {
-      
-    };
+    var updateHandler = new dateFieldUpdateHandler(nameBase, transitbase, AJAXURL);
   
     newcal.render();
   }

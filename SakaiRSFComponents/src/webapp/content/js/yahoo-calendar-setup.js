@@ -1,4 +1,3 @@
-
     /* _Cal is **IMPL** for Calendar */
 
     YAHOO.widget.Calendar2up_PUC_Cal = function(id, containerId, monthyear, selected) {
@@ -78,54 +77,41 @@
     trueDate.value = converted;
     }
 
-  var getAJAXUpdater = function (nameBase, transitbase, AJAXURL, fieldvalue, setValueValid) {
-    var connection;
-    var lastbody;
+  var getAJAXUpdater = function (nameBase, transitbase, AJAXURL, setValueValid) {
     var shortbinding = transitbase + "short";
     var longbinding = transitbase + "long";
     var truebinding = transitbase + "date";
     // Assumes a FieldDateTransit for which we require to read the "long" format
-    
-    var fireConnection = function(body) {
-      connection = YAHOO.util.Connect.asyncRequest('POST', AJAXURL, callback, body);
-      }
-    
     var callback = {
       success: function(response) {
-        var longresult = RSF.getUVBElement(longbinding, response.responseXML);
-        var trueresult = RSF.getUVBElement(truebinding, response.responseXML);
-        alert("Got responseXML " + response.responseXML + " result " + longresult);
-        setValueValid(!!longresult, trueresult, longresult);
-        if (lastbody) {
-          fireConnection(lastbody);
-          lastbody = null; // Locking??! We don' need no steekeeng LOCKING!
-        }
-        else {
-          connection = null;
-          }
+        YAHOO.log("Response success: " + response + " " + response.responseText);
+        var UVB = RSF.accumulateUVBResponse(response.responseXML);
+       
+        var longresult = UVB.EL[longbinding];
+        var trueresult = UVB.EL[truebinding];
+        YAHOO.log("Got responseXML " + response.responseXML + " binding " + 
+          longbinding + " result " + longresult);
+        setValueValid(!UVB.isError, trueresult, longresult);
         }
       };
+
+//    var fireConnection = function(body) {
+//      connection = YAHOO.util.Connect.asyncRequest('POST', AJAXURL, callback, body);
+//      }
     
     return function() {
-      var container = $it(nameBase);
       var dateFieldID = nameBase + "date-field";
       var dateField = $it(dateFieldID);
      
-      var body = RSF.getPartialSubmissionBody(nameBase, dateField, fieldvalue);
-      body = body + "&" + RSF.renderUVBQuery(truebinding) + "&" + 
-        RSF.renderUVBQuery(longbinding); 
-      if (!connection) {
-  	    fireConnection(body);      
-        }
-      else {
-        lastbody = body;
-      }
+      var body = RSF.getUVBSubmissionBody(dateField, [truebinding, longbinding]);
+         YAHOO.log("Firing AJAX request " + body);
+      RSF.queueAJAXRequest(longbinding, "POST", AJAXURL, body, callback);
     }
   };
 
 /** An object coordinating updates of the textual field value. trueDate and
 dateField are both <input>, annotation is a <div> **/
-  var dateFieldUpdateHandler = function (nameBase, transitbase, AJAXURL) {
+  var registerDateFieldUpdateHandler = function (nameBase, transitbase, AJAXURL) {
     var annotation = $it(nameBase + "date-annotation");
     var truevalue = $it(nameBase + "true-value");
     var format = annotation.innerHTML;
@@ -158,8 +144,7 @@ dateField are both <input>, annotation is a <div> **/
 	    }
       };
     if (AJAXURL) {
-      var valueChanged = getAJAXUpdater(nameBase, transitbase, AJAXURL, fieldvalue,
-      setValueValid);
+      var valueChanged = getAJAXUpdater(nameBase, transitbase, AJAXURL, setValueValid);
       }
     else {
       var valueChanged = function() {
@@ -171,7 +156,7 @@ dateField are both <input>, annotation is a <div> **/
     var fieldChange = function() {
       var newvalue = dateField.value;
       if (newvalue != fieldvalue) {
-//        alert("fieldChange: " + value + " " + newvalue);
+        YAHOO.log("fieldChange: " + fieldvalue + " " + newvalue);
         fieldvalue = newvalue;
         valueChanged();      
         }
@@ -248,7 +233,8 @@ dateField are both <input>, annotation is a <div> **/
     var dateLink = $it(nameBase + "date-link");
     dateLink.style.display="inline";
     
-    var updateHandler = new dateFieldUpdateHandler(nameBase, transitbase, AJAXURL);
+    registerDateFieldUpdateHandler(nameBase, transitbase, AJAXURL);
+    dateField.onChange();
   
     newcal.render();
   }

@@ -12,6 +12,17 @@
   src="/library/js/headscripts.js"></script>
 </head>
 <body>
+<script>
+//<![CDATA[
+var myLogReader1 = new YAHOO.widget.LogReader(null,{width: "60em", verboseOutput: false}); 
+myLogReader1.formatMsg = function(oLogMsg) { 
+  var category = oLogMsg.category; 
+  return "<p><span class='"+category+"'>"+category+"</span> "+ 
+	        this.html2Text(oLogMsg.msg)+"</p>"; 
+	 
+}; 
+//]]>
+</script>
 <div class="portletBody">
 <h1> Sakai RSF Component Test Tool</h1>
 <form rsf:id="components-form">

@@ -37,7 +37,7 @@ var RSF = function() {
     var togo = new Object();
     for (var i in callbacks) {
       togo[i] = wrapper(callbacks[i]);
-      YAHOO.log("For " + i + " wrapped to " + togo[i]);
+//      YAHOO.log("For " + i + " wrapped to " + togo[i]);
       }
     return togo;
     }
@@ -58,7 +58,7 @@ var RSF = function() {
         
       function wrapCallback(callback) {
         return function(args) {
-          YAHOO.log("wrapCallback begin callback " + callback + " args " + args);
+//          YAHOO.log("wrapCallback begin callback " + callback + " args " + args);
           requestactive = false;
           callback(args);
           YAHOO.log("Callback concluded");
@@ -127,7 +127,7 @@ var RSF = function() {
     // key = [deletion|el]-binding, value = [e|o]#{el.lvalue}rvalue 
 
     parseFossil: function (fossil) {
-      fossilex = /(.)(.*)#{(.*)}(.*)/;
+      fossilex = /(.)(.*)#\{(.*)\}(.*)/;
       var matches = fossil.match(fossilex);
       var togo = new Object();
       togo.input = matches[1] != 'o';
@@ -138,7 +138,7 @@ var RSF = function() {
       },
 
     parseBinding: function (binding, deletion) {
-      bindingex = /(.)#{(.*)}(.*)/;
+      bindingex = /(.)#\{(.*)\}(.*)/;
       var matches = binding.match(bindingex);
       var togo = new Object();
       togo.EL = matches[1] == 'e';

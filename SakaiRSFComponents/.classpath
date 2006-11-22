@@ -6,5 +6,8 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/PonderUtilCore"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SakaiRSF"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sakai22-tool-api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sakai22-content-api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/J-ServletUtil"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Spring 1.2.8"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

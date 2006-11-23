@@ -4,21 +4,17 @@
 		<configExtension>xml</configExtension>
 	</configExtensions>
 	<configs>
-		<config>src/webapp/WEB-INF/requestContext.xml</config>
-		<config>src/webapp/WEB-INF/applicationContext.xml</config>
 	</configs>
 	<configSets>
 		<configSet>
 			<name>SakaiRSFComponents</name>
 			<allowBeanDefinitionOverriding>true</allowBeanDefinitionOverriding>
-			<incomplete>true</incomplete>
+			<incomplete>false</incomplete>
 			<configs>
 				<config>/J-RSFUtil/src/conf/blank-applicationContext.xml</config>
 				<config>/J-RSFUtil/src/conf/blank-requestContext.xml</config>
 				<config>/J-RSFUtil/src/conf/rsf-config.xml</config>
 				<config>/J-RSFUtil/src/conf/rsf-requestscope-config.xml</config>
-				<config>src/webapp/WEB-INF/applicationContext.xml</config>
-				<config>src/webapp/WEB-INF/requestContext.xml</config>
 				<config>/SakaiRSF/src/java/conf/sakai-applicationContext.xml</config>
 				<config>/SakaiRSF/src/java/conf/sakai-requestContext.xml</config>
 			</configs>

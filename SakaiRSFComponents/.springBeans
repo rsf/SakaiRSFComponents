@@ -4,6 +4,10 @@
 		<configExtension>xml</configExtension>
 	</configExtensions>
 	<configs>
+		<config>evolvers/src/java/conf/sakaiComponents-requestContext.xml</config>
+		<config>evolvers/src/java/conf/sakaiComponents-applicationContext.xml</config>
+		<config>test/src/webapp/WEB-INF/requestContext.xml</config>
+		<config>test/src/webapp/WEB-INF/applicationContext.xml</config>
 	</configs>
 	<configSets>
 		<configSet>

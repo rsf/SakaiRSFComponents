@@ -5,10 +5,6 @@
 
 <beans>
 
-  <bean id="localeSetter" class="org.springframework.beans.factory.config.BeanReferenceFactoryBean">
-    <property name="targetBeanName" value="sakai-LocaleSetter"/>
-  </bean>
-  
   <bean id="sakaiFCKTextEvolver"
     class="uk.ac.cam.caret.sakai.rsf.evolverimpl.SakaiFCKTextEvolver">
     <property name="contentHostingService"

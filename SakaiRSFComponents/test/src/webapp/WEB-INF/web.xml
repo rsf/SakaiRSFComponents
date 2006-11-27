@@ -24,7 +24,10 @@
       classpath:conf/rsf-config.xml,
       classpath:conf/blank-applicationContext.xml,
       classpath:conf/sakai-applicationContext.xml,
-      /WEB-INF/applicationContext.xml
+      classpath:conf/components-applicationContext.xml,
+      classpath:conf/sakaiComponents-applicationContext.xml,
+     /WEB-INF/testcomponents-applicationContext.xml,
+     /WEB-INF/applicationContext.xml
     </param-value>
   </context-param>
   <!-- Configure "request scope" Spring application contexts (RSAC).
@@ -36,6 +39,9 @@
       classpath:conf/rsf-requestscope-config.xml,
       classpath:conf/blank-requestContext.xml,
       classpath:conf/sakai-requestContext.xml,
+      classpath:conf/components-requestContext.xml,
+      classpath:conf/sakaiComponents-requestContext.xml,
+      /WEB-INF/testcomponents-requestContext.xml
       /WEB-INF/requestContext.xml
     </param-value>
   </context-param>

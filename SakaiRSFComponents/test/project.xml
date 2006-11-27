@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <pomVersion>3</pomVersion>
+  <extend>../../master/project.xml</extend>
+  <artifactId>SakaiRSFComponents-test</artifactId>
+  <name>Sakai RSF Components Test Webapp</name>
+  <groupId>rsfutil</groupId>
+  <currentVersion>${rsfutil.version}</currentVersion>
+  <organization>
+    <name>CARET</name>
+    <url>http://www.caret.cam.ac.uk</url>
+  </organization>
+  <inceptionYear>2005</inceptionYear>
+  <logo>/images/logo.gif</logo>
+  <properties>
+    <!-- deploy as a war -->
+    <deploy.type>war</deploy.type>
+    <!-- deploy to "shared", "common" or "server" -->
+  <deploy.target>server</deploy.target>
+  </properties>
+  <description>
+    Sakai RSF Components package, packaged for a standard Servlet environment.
+  </description>
+  <repository />
+  <mailingLists>
+    <mailingList>
+      <name>${pom.name} Dev List</name>
+    </mailingList>
+    <mailingList>
+      <name>${pom.name} User List</name>
+    </mailingList>
+  </mailingLists>
+  <reports></reports>
+  <dependencies>
+   <dependency>
+   <!-- Our "base project" - files from this project will be overlaid onto the
+     RSFComponentsTest webapp -->
+    <groupId>rsfutil</groupId>
+      <artifactId>RSFComponents-test-base-webapp</artifactId>
+      <version>${rsfutil.version}</version>
+      <type>war</type>
+      <properties>
+        <explode>true</explode>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>sakairsf</groupId>
+      <artifactId>SakaiRSFComponents-templates</artifactId>
+      <version>${rsfutil.version}-sakai_${sakai.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>sakairsf</groupId>
+      <artifactId>SakaiRSFComponents-evolvers</artifactId>
+      <version>${rsfutil.version}-sakai_${sakai.version}</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>rsfutil</groupId>
+      <artifactId>RSFComponents-evolvers</artifactId>
+      <version>${rsfutil.version}</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>sakairsf</groupId>
+      <artifactId>sakairsf</artifactId>
+      <version>${rsfutil.version}-sakai_${sakai.version}</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+     <!-- Sakai Util is required to resolve user's Locale -->
+    <dependency>
+      <groupId>sakaiproject</groupId>
+      <artifactId>sakai-util</artifactId>
+      <version>${sakai.version}</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <!-- begin standard RSF dependencies here -->
+    <dependency>
+      <groupId>ponderutilcore</groupId>
+      <artifactId>ponderutilcore</artifactId>
+      <version>${ponderutilcore.version}</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>j-servletutil</groupId>
+      <artifactId>j-servletutil</artifactId>
+      <version>${jservletutil.version}</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>rsfutil</groupId>
+      <artifactId>rsfutil</artifactId>
+      <version>${rsfutil.version}</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>servletapi</groupId>
+      <artifactId>servletapi</artifactId>
+      <version>2.3</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.9</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring</artifactId>
+      <version>1.2.8</version>
+      <type>jar</type>
+    </dependency>
+    <!--  The framework requires CGLIB (Java bytecode manipulation library) 
+      in order to implement lazy-loaded beans  -->
+    <dependency>
+      <groupId>aopalliance</groupId>
+      <artifactId>aopalliance</artifactId>
+      <version>1.0</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib</artifactId>
+      <version>nodep-2.1_3</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <!-- Doug Lea's Oswego concurrency package. The forerunner of JSR 166
+        java.util.concurrent -->
+      <groupId>concurrent</groupId>
+      <artifactId>concurrent</artifactId>
+      <version>1.3.4</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <!-- Aleksander Slominski's (U Indiana) lightning-fast XML pull parser -->
+    <dependency>
+      <groupId>xpp3</groupId>
+      <artifactId>xpp3</artifactId>
+      <version>1.1.3.4-RC8_min</version>
+      <type>jar</type>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+  </dependencies>
+  <build>
+    <sourceDirectory>src/java</sourceDirectory>
+    <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
+    <unitTest>
+      <includes>
+        <include>**/*Test.java</include>
+      </includes>
+    </unitTest>
+  </build>
+</project>
+

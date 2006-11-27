@@ -6,4 +6,8 @@
   Locale in a standard location in the session. -->
   <bean id="sessionLocaleScope" class="java.lang.String" />
   
+  <bean id="textEvolvers" class="uk.org.ponder.springutil.StringListFactory">
+    <property name="strings" value="plainTextInputEvolver, sakaiFCKTextEvolver"/>
+  </bean>
+  
 </beans>

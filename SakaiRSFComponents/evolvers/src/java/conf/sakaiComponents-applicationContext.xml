@@ -2,8 +2,12 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
+  <bean id="componentsTemplateResourceBase" class="java.lang.String">
+    <constructor-arg value="/../SakaiRSFComponents-templates/"/>
+  </bean>
    <bean id="componentTemplateContributor" parent="templateContributorParent">
+    <property name="templateResourceBase" ref="componentsTemplateResourceBase"/>
     <property name="templateNames" value="sakai-old-date, sakai-FCKEditor, 
-      sakai-plainTextEditor, yahoo-date"/>
+      sakai-plainTextEditor, yahoo-date"/> 
   </bean>
 </beans>

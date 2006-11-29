@@ -8,6 +8,11 @@
   <bean id="localeSetter" class="org.springframework.beans.factory.config.BeanReferenceFactoryBean">
     <property name="targetBeanName" value="sakai-LocaleSetter"/>
   </bean>
+ <!--  Restore original Sakai definition of requestLocale which was obscured
+   by base webapp -->  
+  <bean name="requestLocale" class="org.springframework.beans.factory.config.BeanReferenceFactoryBean">
+    <property name="targetBeanName" value="sakai-Locale"/>
+  </bean>
   
   <bean id="sakaiFCKTextEvolver"
     class="uk.ac.cam.caret.sakai.rsf.evolverimpl.SakaiFCKTextEvolver">

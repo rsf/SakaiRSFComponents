@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<configExtensions>
+		<configExtension>xml</configExtension>
+	</configExtensions>
+	<configs>
+		<config>tool/src/webapp/WEB-INF/requestContext.xml</config>
+		<config>tool/src/webapp/WEB-INF/applicationContext.xml</config>
+	</configs>
+	<configSets>
+		<configSet>
+			<name>CRUDPlusOTP</name>
+			<allowBeanDefinitionOverriding>true</allowBeanDefinitionOverriding>
+			<incomplete>true</incomplete>
+			<configs>
+				<config>/J-RSFUtil/src/conf/blank-applicationContext.xml</config>
+				<config>/J-RSFUtil/src/conf/blank-requestContext.xml</config>
+				<config>/J-RSFUtil/src/conf/rsf-config.xml</config>
+				<config>/J-RSFUtil/src/conf/rsf-requestscope-config.xml</config>
+				<config>/J-RSFUtil/test/uk/org/ponder/rsf/test/flow/minicontext.xml</config>
+				<config>/SakaiRSF/src/java/conf/sakai-applicationContext.xml</config>
+				<config>/SakaiRSF/src/java/conf/sakai-requestContext.xml</config>
+				<config>tool/src/webapp/WEB-INF/applicationContext.xml</config>
+				<config>tool/src/webapp/WEB-INF/requestContext.xml</config>
+			</configs>
+		</configSet>
+	</configSets>
+</beansProjectDescription>

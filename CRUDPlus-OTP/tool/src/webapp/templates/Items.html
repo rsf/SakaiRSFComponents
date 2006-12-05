@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:rsf="http://ponder.org.uk/rsf">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" language="JavaScript" src="/library/js/headscripts.js"></script>
+<link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" />
+<link href="/library/skin/default/tool.css" type="text/css" rel="stylesheet" media="all" />
+<link rel="stylesheet" rsf:id="scr=rewrite-url" href="../css/CrudPlus.css" type="text/css"/>
+<title>CrudPlus Items</title>
+</head>
+<body rsf:id="scr=sakai-body">
+<div class="portletBody">
+
+<div class="navIntraTool">
+	<a rsf:id="create-item" href="AddItem.html">Create New Item</a>
+</div>
+
+<h3 class="insColor insBak insBorder">CrudPlus Items</h3>
+
+<div rsf:id="message-for:*" class="alertMessage">
+	<ul style="margin:0px;">
+		<li>Message for user here</li>
+	</ul>
+</div>
+
+<div class="instruction">Hello, <span rsf:id="current-user-name">Current User</span></div>
+
+<form rsf:id="listItemsForm" method="post">
+	<table class="listHier">
+		<thead>
+			<tr>
+				<th class="firstHeader"></th>
+				<th class="secondHeader">Title</th>
+				<th class="thirdHeader">Hidden</th>
+				<th class="fourthHeader">Creation Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr rsf:id="item-row:">
+				<td class="firstColumn">
+					<input type="checkbox" rsf:id="select-item" />
+				</td>
+				<td class="secondColumn">
+					<span rsf:id="item-title">Non updateable item</span>
+					<a rsf:id="item-update" href="AddItem.html?id=1">New item title</a>
+				</td>
+				<td class="thirdColumn">
+					<input rsf:id="item-hidden" type="checkbox" disabled="true" />
+				</td>
+				<td rsf:id="item-dateCreated" class="fourthColumn">
+					Sep 15, 2006 1:26 AM
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<p class="act">
+		<input rsf:id="delete-items" type="submit" value="Delete" />
+	</p>
+</form>
+
+</div>
+</body>
+</html>

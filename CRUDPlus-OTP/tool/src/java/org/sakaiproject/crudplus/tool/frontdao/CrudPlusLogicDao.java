@@ -9,9 +9,11 @@ import java.util.List;
 
 import org.sakaiproject.crudplus.logic.CrudPlusLogic;
 import org.sakaiproject.crudplus.model.CrudPlusItem;
-import org.sakaiproject.genericdao.api.CoreGenericDao;
+import org.sakaiproject.crudplus.tool.CrudPlusItemCreator;
+import org.sakaiproject.genericdao.api.InitializingCoreGenericDAO;
 
-public class CrudPlusLogicDao implements CoreGenericDao {
+
+public class CrudPlusLogicDao implements InitializingCoreGenericDAO {
   private CrudPlusLogic crudPlusLogic;
 
   public void setCrudPlusLogic(CrudPlusLogic crudPlusLogic) {
@@ -46,6 +48,10 @@ public class CrudPlusLogicDao implements CoreGenericDao {
 
   public List getPersistentClasses() {
     return Arrays.asList(new Class[] {CrudPlusItem.class});
+  }
+
+  public Object instantiate() {
+    return CrudPlusItemCreator.create();
   }
 
 

@@ -8,7 +8,7 @@ import org.sakaiproject.crudplus.model.CrudPlusItem;
 public class CrudPlusItemValidator  {
   public void setItem(CrudPlusItem newItem) {
   if (newItem.getTitle() == null || newItem.getTitle().equals("")) {
-      throw new IllegalArgumentException("title_required_message");
+      throw new IllegalArgumentException("title_required");
     }
   }
 }

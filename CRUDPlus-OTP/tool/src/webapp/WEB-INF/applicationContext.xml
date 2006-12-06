@@ -11,7 +11,7 @@
 			<bean
 				class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 				<property name="basename">
-					<value>classpath:bundle/messages</value>
+					<value>classpath:org/sakaiproject/crudplus/tool/bundle/messages</value>
 				</property>
 				<property name="cacheSeconds">
 					<value>10</value>

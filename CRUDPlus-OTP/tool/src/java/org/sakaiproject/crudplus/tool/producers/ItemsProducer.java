@@ -75,7 +75,7 @@ public class ItemsProducer implements ViewComponentProducer, DefaultView {
 					"item-row:", item.getId().toString() );
 			if (logic.canWriteItem(item)) { // check for current user and site
 				UIBoundBoolean.make(itemrow, "select-item", 
-						"#{itemsBean.selectedIds." + item.getId() + "}", Boolean.FALSE);
+						"itemsBean.selectedIds." + item.getId(), Boolean.FALSE);
 				UIInternalLink.make(itemrow, "item-update", item.getTitle(), 
 						new AddItemViewParameters(AddItemProducer.VIEW_ID, item.getId()) );
 			} else {
@@ -85,7 +85,7 @@ public class ItemsProducer implements ViewComponentProducer, DefaultView {
 			UIOutput.make(itemrow, "item-dateCreated", df.format(item.getDateCreated()) );
 		}
 
-		UICommand.make(listform, "delete-items", "#{itemsBean.processActionDelete}");
+		UICommand.make(listform, "delete-items", "itemsBean.processActionDelete");
 	}
 
 }

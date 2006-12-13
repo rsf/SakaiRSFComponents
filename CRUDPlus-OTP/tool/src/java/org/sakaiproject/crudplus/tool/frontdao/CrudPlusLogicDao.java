@@ -31,7 +31,8 @@ public class CrudPlusLogicDao implements InitializingCoreGenericDAO {
     }
   }
   public void invokeTransactionalAccess(Runnable toinvoke) {
-    
+    // Do not implement this for this application
+    // Existing DAO methods are already adequately transactional
   }
 
   public void save(Object object) {

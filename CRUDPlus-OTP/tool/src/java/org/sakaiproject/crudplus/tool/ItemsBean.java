@@ -22,8 +22,8 @@ import org.sakaiproject.crudplus.logic.CrudPlusLogic;
 import org.sakaiproject.crudplus.model.CrudPlusItem;
 
 import uk.org.ponder.beanutil.BeanUtil;
-import uk.org.ponder.errorutil.TargettedMessage;
-import uk.org.ponder.errorutil.TargettedMessageList;
+import uk.org.ponder.messageutil.TargettedMessage;
+import uk.org.ponder.messageutil.TargettedMessageList;
 
 /**
  * This is the backing bean for actions related to CrudPlusItems

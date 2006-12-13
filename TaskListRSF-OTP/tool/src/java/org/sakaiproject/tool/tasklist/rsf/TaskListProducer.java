@@ -10,7 +10,6 @@ import java.util.Locale;
 
 import org.sakaiproject.tool.tasklist.api.Task;
 
-import uk.org.ponder.localeutil.LocaleGetter;
 import uk.org.ponder.rsf.components.ELReference;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UICommand;

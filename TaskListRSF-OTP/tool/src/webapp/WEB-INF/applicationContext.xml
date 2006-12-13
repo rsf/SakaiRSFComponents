@@ -68,7 +68,7 @@
   </bean>
 
   <bean parent="requestAddressibleParent">
-    <property name="value" value="newtask, deleteIds, taskTransit" />
+    <property name="value" value="deleteIds, taskTransit" />
   </bean>
 
 </beans>

@@ -2,8 +2,7 @@
 
 <project>
 	<pomVersion>3</pomVersion>
-	<!-- 
-	<extend>../master/project.xml</extend>-->
+	<extend>../master/project.xml</extend>
 	<name>Programmers' Cafe TaskList Base</name>
 	<groupId>sakaiproject</groupId>
 	<currentVersion>${sakai.version}</currentVersion>

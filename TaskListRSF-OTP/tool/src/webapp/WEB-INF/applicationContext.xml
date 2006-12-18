@@ -27,38 +27,6 @@
     </property>
   </bean>
 
-
-  <!-- create a transactionManager bean from the sakai tool sessionFactory,
-    ONLY needed for the hibernate implementation of the manager -->
-  <bean id="org.sakaiproject.tool.tasklist.HibernateTransactionManager"
-    class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-    <property name="sessionFactory">
-      <ref bean="sessionFactory" />
-    </property>
-  </bean>
-
-  <!-- create a transaction interceptor which sits between the dao and the
-    transaction manager that we created in the previous block, this
-    helps us with transaction control,
-    ONLY needed for the hibernate implementation of the manager -->
-  <!--  NB THIS TPFB apparently not used in example! -->
-  <bean id="org.sakaiproject.tool.tasklist.TransactionProxyFactoryBean"
-    class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
-    lazy-init="true">
-    <property name="transactionManager">
-      <ref
-        bean="org.sakaiproject.tool.tasklist.HibernateTransactionManager" />
-    </property>
-    <property name="target">
-      <ref bean="org.sakaiproject.tool.tasklist.api.TaskListManagerDao" />
-    </property>
-    <property name="transactionAttributes">
-      <props>
-        <prop key="*">PROPAGATION_REQUIRED</prop>
-      </props>
-    </property>
-  </bean>
-
 <!-- Use RSF's "BeanGuard" validation scheme to trap all write accesses to a
      Task entity -->
 

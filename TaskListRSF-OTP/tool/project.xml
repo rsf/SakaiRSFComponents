@@ -2,8 +2,7 @@
 
 <project>
   <pomVersion>3</pomVersion>
-  <!-- 
-    <extend>../../master/project.xml</extend>-->
+  <extend>../../master/project.xml</extend>
   <name>Programmers' Cafe TaskList Tool</name>
   <groupId>sakaiproject</groupId>
   <id>sakai-rsf-otp-tasklist-tool</id>

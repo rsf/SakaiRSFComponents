@@ -113,7 +113,7 @@
       ref="org.sakaiproject.tool.api.ToolManager" />
     <property name="userDirectoryService"
       ref="org.sakaiproject.user.api.UserDirectoryService" />
-    <property name="localeGetter" ref="sakai-LocaleProxy" />
+    <property name="localeGetter" ref="requestLocaleProxy" />
     <property name="messageLocator" ref="messageLocator" />
   </bean>
 

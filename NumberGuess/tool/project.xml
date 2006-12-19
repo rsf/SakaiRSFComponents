@@ -4,6 +4,7 @@
   <artifactId>SakaiRSFNumberGuessTool</artifactId>
   <name>Sakai RSF Number Guessing Tool</name>
   <groupId>sakaiproject</groupId>
+  <extend>../../master/project.xml</extend>
   <description>The RSF Number guessing app, as a Sakai tool</description>
   <repository />
   <developers>

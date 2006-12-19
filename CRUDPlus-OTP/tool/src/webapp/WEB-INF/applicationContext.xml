@@ -35,7 +35,7 @@
 	</bean>
 
 	<!-- Override the default style of messages -->
-	<bean id="messageContributor" parent="templateContributorParent">
+	<bean id="messageTemplateContributor" parent="templateContributorParent">
 		<property name="baseDirectory" value="component-templates/" />
 		<property name="templateNames" value="Messages" />
 	</bean>

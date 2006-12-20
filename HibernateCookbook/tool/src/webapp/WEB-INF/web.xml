@@ -5,14 +5,6 @@
 	  http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
   version="2.4">
 
-  <!-- CONFIG This is the name of the "punch-through" URL which will access the
-    servlet directly bypassing the Sakai request filter. Paths beginning with
-    / will be considered RELATIVE TO THE FIRST SLASH APPEARING IN THE REQUEST
-    URL. Other paths will be considered as absolute URLS. -->
-  <context-param>
-    <param-name>resourceurlbase</param-name>
-    <param-value>/SakaiHibernateCookbook/</param-value>
-  </context-param>
   <listener>
     <listener-class>org.sakaiproject.util.ToolListener</listener-class>
   </listener>
@@ -72,8 +64,7 @@
   </filter>
   <filter-mapping>
     <filter-name>sakai.request</filter-name>
-    <url-pattern>/faces/*</url-pattern>
-    <!--    <servlet-name>sakai.rsf.numberguess</servlet-name> -->
+    <servlet-name>sakai.rsf.numberguess</servlet-name>
     <dispatcher>REQUEST</dispatcher>
     <dispatcher>FORWARD</dispatcher>
     <dispatcher>INCLUDE</dispatcher>

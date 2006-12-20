@@ -3,15 +3,17 @@
   "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
   <!-- Declare that the sessionFactory for this app is the Sakai Global factory -->
-<!--   http://opensource.atlassian.com/projects/spring/browse/SPR-1537
-  Use an alias once we can upgrade to Spring 1.2.7 for this issue.
- <alias
+  <!--   http://opensource.atlassian.com/projects/spring/browse/SPR-1537
+    Use an alias once we can upgrade to Spring 1.2.7 for this issue.
+    <alias
     name="org.sakaiproject.springframework.orm.hibernate.GlobalSessionFactory"
     alias="sessionFactory" />
--->
- <bean id="sessionFactory" class="org.springframework.beans.factory.config.BeanReferenceFactoryBean">
-   <property name="targetBeanName" value="org.sakaiproject.springframework.orm.hibernate.GlobalSessionFactory"/>
- </bean>
+  -->
+  <bean id="sessionFactory"
+    class="org.springframework.beans.factory.config.BeanReferenceFactoryBean">
+    <property name="targetBeanName"
+      value="org.sakaiproject.springframework.orm.hibernate.GlobalSessionFactory" />
+  </bean>
 
   <!--  Override the default SEBM to only require a SessionFactory, and map
     these beans directly -->

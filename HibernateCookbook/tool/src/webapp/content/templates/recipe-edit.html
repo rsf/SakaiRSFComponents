@@ -1,60 +1,43 @@
 <!DOCTYPE html      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns:rsf="http://www.ponder.org/rsf">
+<html xmlns:rsf="http://ponder.org.uk/rsf">
 <head>
-<title>Sakai Hibernate Cookbook - Edit Recipe</title>
-<link rel="stylesheet" href="../style.css"
-	type="text/css" />
-<link href="/library/skin/tool_base.css" type="text/css"
-	rel="stylesheet" media="all" />
-<link href="/library/skin/default/tool.css" type="text/css"
-	rel="stylesheet" media="all" />
-<script type="text/javascript" language="JavaScript"
-	src="/library/js/headscripts.js"></script>
 <title rsf:id="edit-title">Edit recipe</title>
 </head>
 <body>
-<div class="portletBody">
-  <div class="navIntraTool">
-    <a href="recipe-show.html" rsf:id="recipe-show">
-   Show
- </a> 
-</div>
+
+<div rsf:id="page:">
+
 <h1 rsf:id="new-recipe-heading">New recipe</h1>
 <h1 rsf:id="edit-recipe-heading">Edit recipe</h1>
-  <form rsf:id="basic-form">
-  <p class="shorttext">
-    <label for="recipe-title">Title</label>				
-    <input rsf:id="recipe-title" id="recipe-title" size="30" 
+ <form rsf:id="basic-form">
+  <p><b>Title</b><br/>
+  <input rsf:id="recipe-title" size="30" 
          type="text" value="Hot Chips" />
   </p>
-  <p class="shorttext">
-    <label for="recipe-description">Description</label>				
-    <input rsf:id="recipe-description" id="recipe-description"
+  <p><b>Description</b><br/>
+  <input rsf:id="recipe-description" 
          size="30" type="text" 
          value="Only for the brave!" />
   </p>
-  <p class="shorttext">
-    <label for="recipe-category">Category</label>				
-   <select rsf:id="recipe-category">
+  <p><b>Category:</b><br/>
+
+  <select rsf:id="recipe-category">
        <option value="1" selected="true">Snacks</option>
        <option value="2">Beverages</option>
-  </select>
-  </p>
-  
-  <p class="shorttext">
-    <label for="recipe-instructions">Instructions</label>				
+  </select></p>
+
+  <p><b>Instructions</b><br/>
   <textarea cols="40" rsf:id="recipe-instructions" 
-            rows="20" wrap="virtual">
-  </textarea>
-  </p>
- 
- <div class="act">
+            rows="20" wrap="virtual"></textarea> </p>
   <input rsf:id="recipe-save" type="submit" value="Update" />
-    <a href="recipes.html" rsf:id="recipe-list">Cancel</a>
-  </div>
  </form>
 
+ <a href="recipe-show.html" rsf:id="recipe-show">
+   Show
+ </a>
+
 </div>
+
  </body>
 </html>

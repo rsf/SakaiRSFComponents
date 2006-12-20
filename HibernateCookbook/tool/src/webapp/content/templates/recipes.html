@@ -3,16 +3,7 @@
 <html xmlns:rsf="http://www.ponder.org/rsf">
 <head>
 <title>Hibernate Cookbook - Recipe Listing</title>
-<link rel="stylesheet" href="../style.css"
-	type="text/css" />
-<link href="/library/skin/tool_base.css" type="text/css"
-	rel="stylesheet" media="all" />
-<link href="/library/skin/default/tool.css" type="text/css"
-	rel="stylesheet" media="all" />
-<script type="text/javascript" language="JavaScript"
-	src="/library/js/headscripts.js"></script>
-<title>All Recipes</title>
-<style type="text/css">
+<style type="text/css" rsf:id="scr=contribute-style">
  .hidden {
 display: none;
 }
@@ -20,17 +11,15 @@ display: none;
    font-size:80%;
 }
 </style>
-<script type="text/javascript" src="../javascript/getvalue.js"
-	rsf:id="scr=rewrite-url">
+<script type="text/javascript" rsf:id="scr=contribute-style" 
+  src="../javascript/getvalue.js">
 </script>
 </head>
 <body>
 <div class="portletBody">
-		<div class="navIntraTool">
-<a href="recipe-edit.html" rsf:id="recipe-create">Create new recipe</a>&nbsp;
-<a href="index.html" rsf:id="index">Index</a>
-</div>
-
+<!-- NB this is the only Sakai view with a different template to standalone.
+Normalise this build/situation at some point... -->
+<div rsf:id="page:">
 <h1>Online Cookbook - All Recipes</h1>
 <form rsf:id="basic-form" method="post" class="inlineForm">
   
@@ -45,8 +34,6 @@ display: none;
    <a href="recipe-show.html" rsf:id="recipe-show">Hot Chips</a>
    <span class="hidden" rsf:id="confirm-title" id="recipe-row::1:confirm-title">Hot Chips</span>
      <span class="act">
-  
-  
    <input type="submit" class="smallbtn" rsf:id="recipe-destroy" id="recipe-row::1:recipe-destroy" value="delete" 
      onclick='return confirm("Really delete " + 
      getRelativeValue(this.id, "confirm-title") + "?")'/></span></td>
@@ -55,6 +42,7 @@ display: none;
   </tr>
 </table>
 </form>
+</div>
 </div>
 </body>
 </html>

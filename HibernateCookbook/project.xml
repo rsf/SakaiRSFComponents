@@ -2,7 +2,7 @@
 <project>
   <pomVersion>3</pomVersion>
   <name>Sakai RSF Hibernate Cookbook Base</name>
-
+  <extend>../master/project.xml</extend>
   <currentVersion>${sakai.version}</currentVersion>
   <shortDescription>RSF Hibernate Cookbook for Sakai</shortDescription>
   <description>

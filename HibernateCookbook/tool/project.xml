@@ -4,6 +4,7 @@
   <artifactId>SakaiHibernateCookbook</artifactId>
   <name>Sakai RSF Hibernate Cookbook Tool</name>
   <groupId>rsftest</groupId>
+  <extend>../../master/project.xml</extend>
   <currentVersion>${rsfutil.version}-${sakai.version}</currentVersion>
   <organization>
     <name>CARET</name>

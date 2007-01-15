@@ -59,7 +59,7 @@
   <filter-mapping>
     <filter-name>sakai.request</filter-name>
     <url-pattern>/faces/*</url-pattern>
-    <!--    <servlet-name>sakai.rsf.numberguess</servlet-name> -->
+    <servlet-name>sakai.rsf.otp.tasklist</servlet-name>
     <dispatcher>REQUEST</dispatcher>
     <dispatcher>FORWARD</dispatcher>
     <dispatcher>INCLUDE</dispatcher>

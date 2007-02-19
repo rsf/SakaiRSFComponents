@@ -4,8 +4,6 @@
 		<configExtension>xml</configExtension>
 	</configExtensions>
 	<configs>
-		<config>tool/src/webapp/WEB-INF/requestContext.xml</config>
-		<config>tool/src/webapp/WEB-INF/applicationContext.xml</config>
 	</configs>
 	<configSets>
 		<configSet>
@@ -17,8 +15,6 @@
 				<config>/J-RSFUtil/src/conf/blank-requestContext.xml</config>
 				<config>/J-RSFUtil/src/conf/rsf-config.xml</config>
 				<config>/J-RSFUtil/src/conf/rsf-requestscope-config.xml</config>
-				<config>tool/src/webapp/WEB-INF/applicationContext.xml</config>
-				<config>tool/src/webapp/WEB-INF/requestContext.xml</config>
 				<config>/SakaiRSF/src/java/conf/sakai-applicationContext.xml</config>
 				<config>/SakaiRSF/src/java/conf/sakai-requestContext.xml</config>
 				<config>/J-RSFHibernate3/src/conf/hibernate-applicationContext.xml</config>

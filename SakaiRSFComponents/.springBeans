@@ -4,6 +4,8 @@
 		<configExtension>xml</configExtension>
 	</configExtensions>
 	<configs>
+		<config>evolvers/src/java/conf/sakaiComponents-requestContext.xml</config>
+		<config>evolvers/src/java/conf/sakaiComponents-applicationContext.xml</config>
 	</configs>
 	<configSets>
 		<configSet>
@@ -17,6 +19,8 @@
 				<config>/J-RSFUtil/src/conf/rsf-requestscope-config.xml</config>
 				<config>/SakaiRSF/src/java/conf/sakai-applicationContext.xml</config>
 				<config>/SakaiRSF/src/java/conf/sakai-requestContext.xml</config>
+				<config>evolvers/src/java/conf/sakaiComponents-applicationContext.xml</config>
+				<config>evolvers/src/java/conf/sakaiComponents-requestContext.xml</config>
 			</configs>
 		</configSet>
 	</configSets>

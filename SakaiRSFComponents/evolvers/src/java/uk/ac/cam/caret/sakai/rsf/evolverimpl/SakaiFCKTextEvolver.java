@@ -28,7 +28,7 @@ public class SakaiFCKTextEvolver implements TextInputEvolver {
     UIJointContainer joint = new UIJointContainer(toevolve.parent,
         toevolve.ID, COMPONENT_ID);
     toevolve.parent.remove(toevolve);
-    toevolve.ID = "input"; // must change ID while unattached
+    toevolve.ID = SEED_ID; // must change ID while unattached
     joint.addComponent(toevolve);
     String collectionID = contentHostingService.getSiteCollection(context);
     String js = HTMLUtil.emitJavascriptCall("setupRSFFormattedTextarea", 

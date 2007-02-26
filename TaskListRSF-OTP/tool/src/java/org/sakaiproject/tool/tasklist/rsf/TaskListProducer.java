@@ -75,7 +75,7 @@ public class TaskListProducer implements ViewComponentProducer,
     UIForm newtask = UIForm.make(tofill, "new-task-form");
     UIInput.make(newtask, "new-task-name", "#{Task.new 1.task}");
     // no binding for this command since "commit" is a null-action using OTP
-    UICommand.make(newtask, "submit-new-task", null);
+    UICommand.make(newtask, "submit-new-task");
     // pre-bind the task's owner to avoid annoying the handler having to fetch
     // it
     newtask.parameters.add(new UIELBinding("#{Task.new 1.owner}", userId));
@@ -113,7 +113,7 @@ public class TaskListProducer implements ViewComponentProducer,
     deleteform.parameters.add(new UIDeletionBinding("#{Task}", 
         new ELReference("#{deleteIds}")));
     // similarly no action binding here since deletion binding does all
-    UICommand.make(deleteform, "delete-tasks", null);
+    UICommand.make(deleteform, "delete-tasks");
 
   }
 

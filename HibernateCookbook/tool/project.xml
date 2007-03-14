@@ -5,7 +5,7 @@
   <name>Sakai RSF Hibernate Cookbook Tool</name>
   <groupId>rsftest</groupId>
   <extend>../../master/project.xml</extend>
-  <currentVersion>${rsfutil.version}-${sakai.version}</currentVersion>
+  <currentVersion>${rsfutil.version}-${sakairsf.sakai.version}</currentVersion>
   <organization>
     <name>CARET</name>
     <url>http://www.caret.cam.ac.uk</url>
@@ -77,7 +77,7 @@
     <dependency>
       <groupId>sakairsf</groupId>
       <artifactId>sakairsf</artifactId>
-      <version>${rsfutil.version}-sakai_${sakai.version}</version>
+      <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
       <type>jar</type>
       <properties>
         <war.bundle>true</war.bundle>

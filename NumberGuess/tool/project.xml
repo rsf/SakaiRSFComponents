@@ -14,7 +14,7 @@
       <email>antranig@caret.cam.ac.uk</email>
     </developer>
   </developers>
-  <currentVersion>${rsfutil.version}-sakai_${sakai.version}</currentVersion>
+  <currentVersion>${rsfutil.version}-sakai_${sakairsf.sakai.version}</currentVersion>
   <organization>
     <name>University of Cambridge</name>
     <url>http://sakaiproject.org/</url>

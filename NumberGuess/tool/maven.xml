@@ -5,14 +5,8 @@
   xmlns:u="jelly:util">
 
   <goal name="full">
-    <!--attainGoal name="dependencies" /-->
-    <attainGoal name="war:install"/>
-  
+    <attainGoal name="war:install"/>  
   </goal>
-
-  <preGoal name="java:compile">
-    <attainGoal name="dependencies" />
-  </preGoal>
 
   <preGoal name="war:webapp">
     <echo>@!@!@!Expanding webapp dependencies!@!@!</echo>
@@ -28,13 +22,4 @@
     </j:forEach>
   </preGoal>
 
-  <goal name="dependencies">
-    <echo>ECHO HERE!!</echo>
-
-    <maven:reactor basedir="${basedir}/.."
-      includes="../PonderUtilCore/project.xml,../J-ServletUtil/project.xml,../SakaiRSF/project.xml"
-      goals="full" postProcessing="true" collectOnly="false"
-      collectionVar="multiprojects" banner="do deps" />
-
-  </goal>
 </project>

@@ -5,7 +5,7 @@
   <artifactId>SakaiRSFComponents-templates</artifactId>
   <name>Sakai RSF Components Templates</name>
   <groupId>sakairsf</groupId>
-  <currentVersion>${rsfutil.version}-sakai_${sakai.version}</currentVersion>
+  <currentVersion>${rsfutil.version}-sakai_${sakairsf.sakai.version}</currentVersion>
   <organization>
     <name>CARET</name>
     <url>http://www.caret.cam.ac.uk</url>

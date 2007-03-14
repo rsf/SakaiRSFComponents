@@ -5,7 +5,7 @@
   <artifactId>SakaiRSFComponents-test</artifactId>
   <name>Sakai RSF Components Test Webapp</name>
   <groupId>sakairsf</groupId>
-  <currentVersion>${rsfutil.version}</currentVersion>
+  <currentVersion>${rsfutil.version}-sakai_${sakairsf.sakai.version}</currentVersion>
   <organization>
     <name>CARET</name>
     <url>http://www.caret.cam.ac.uk</url>
@@ -46,13 +46,13 @@
     <dependency>
       <groupId>sakairsf</groupId>
       <artifactId>SakaiRSFComponents-templates</artifactId>
-      <version>${rsfutil.version}-sakai_${sakai.version}</version>
+      <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>sakairsf</groupId>
       <artifactId>SakaiRSFComponents-evolvers</artifactId>
-      <version>${rsfutil.version}-sakai_${sakai.version}</version>
+      <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
       <type>jar</type>
       <properties>
         <war.bundle>true</war.bundle>
@@ -70,7 +70,7 @@
     <dependency>
       <groupId>sakairsf</groupId>
       <artifactId>sakairsf</artifactId>
-      <version>${rsfutil.version}-sakai_${sakai.version}</version>
+      <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
       <type>jar</type>
       <properties>
         <war.bundle>true</war.bundle>
@@ -132,7 +132,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring</artifactId>
-      <version>1.2.8</version>
+      <version>${sakai.spring.version}</version>
       <type>jar</type>
     </dependency>
     <!--  The framework requires CGLIB (Java bytecode manipulation library) 

@@ -10,7 +10,7 @@
     <deploy.type>jar</deploy.type>
   </properties>
   <currentVersion>
-    ${rsfutil.version}-sakai_${sakai.version}
+    ${rsfutil.version}-sakai_${sakairsf.sakai.version}
   </currentVersion>
   <shortDescription>Sakai evolvers package for RSF</shortDescription>
   <description>

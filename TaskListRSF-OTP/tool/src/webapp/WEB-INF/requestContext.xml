@@ -10,7 +10,7 @@
     class="org.sakaiproject.tool.tasklist.rsf.TaskListProducer">
     <property name="siteId" ref="sakai-Context" />
     <property name="taskList" ref="taskSiteQuery" />
-    <property name="locale" ref="sakai-Locale" />
+    <property name="locale" ref="requestLocale" />
     <property name="userId" ref="sakai-UserEID"/>
     <property name="userName" ref="sakai-UserDisplayName"/>
   </bean>

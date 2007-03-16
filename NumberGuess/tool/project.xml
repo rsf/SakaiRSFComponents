@@ -49,7 +49,7 @@
     <dependency>
       <groupId>sakairsf</groupId>
       <artifactId>sakairsf</artifactId>
-      <version>${rsfutil.version}-sakai_${sakai.version}</version>
+      <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
       <type>jar</type>
       <properties>
         <war.bundle>true</war.bundle>

@@ -10,9 +10,17 @@
   <bean id="componentsTemplateResourceBase" class="java.lang.String">
     <constructor-arg value="/../sakai-rsf-templates/"/>
   </bean>
+  
   <bean id="SakaiRSFComponentsTemplateContributor" parent="templateContributorParent">
     <property name="templateResourceBase" ref="componentsTemplateResourceBase"/>
     <property name="templateNames" value="sakai-old-date, sakai-FCKEditor, 
       sakai-plainTextEditor"/> 
   </bean>
+  
+  <bean id="SakaiRSFForcePortalContributor" parent="templateContributorParent">
+    <property name="mustContribute" value="true"/>
+    <property name="templateResourceBase" ref="componentsTemplateResourceBase"/>
+    <property name="templateNames" value="sakai-rsf-portal"/>
+  </bean>
+  
 </beans>

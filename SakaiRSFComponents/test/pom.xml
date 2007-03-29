@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                      http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>rsf-master-pom</artifactId>
+    <groupId>uk.org.ponder</groupId>
+    <version>M2</version>
+    <relativePath>../../master/pom.xml</relativePath>
+  </parent>
+  <artifactId>SakaiRSFComponents-templates</artifactId>
+  <name>Sakai RSF Components Templates</name>
+  <groupId>sakairsf</groupId>
+  <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
+  <organization>
+    <name>CARET</name>
+    <url>http://www.caret.cam.ac.uk</url>
+  </organization>
+  <inceptionYear>2005</inceptionYear>
+  <packaging>war</packaging>
+    <dependencies>
+     <dependency>
+      <groupId>uk.org.ponder.rsfsamples</groupId>
+      <artifactId>RSFComponents-test-base-webapp</artifactId>
+      <version>${rsfutil.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>uk.org.ponder.rsfutil</groupId>
+      <artifactId>RSFComponents-evolvers</artifactId>
+      <version>${rsfutil.version}</version>
+      <type>jar</type>
+    </dependency>
+   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <warSourceDirectory>src/webapp</warSourceDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

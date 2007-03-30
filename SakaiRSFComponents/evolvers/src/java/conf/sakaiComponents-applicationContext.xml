@@ -2,15 +2,17 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-<!-- This version for direct deployment, prior to Sakai 2.4
+<!-- This version for direct deployment, prior to Sakai 2.4 -->
   <bean id="componentsTemplateResourceBase" class="java.lang.String">
     <constructor-arg value="/../SakaiRSFComponents-templates/"/>
   </bean>
-  -->
+  
+<!-- Use this version when deployed in a post-2.4 shared-template deployment -->
+  <!-- 
   <bean id="componentsTemplateResourceBase" class="java.lang.String">
     <constructor-arg value="/../sakai-rsf-templates/"/>
   </bean>
-  
+  -->
   <bean id="SakaiRSFComponentsTemplateContributor" parent="templateContributorParent">
     <property name="templateResourceBase" ref="componentsTemplateResourceBase"/>
     <property name="templateNames" value="sakai-old-date, sakai-FCKEditor, 

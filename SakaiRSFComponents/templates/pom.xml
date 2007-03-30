@@ -4,16 +4,16 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
                       http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>rsf-master-pom</artifactId>
-    <groupId>uk.org.ponder</groupId>
-    <version>M2</version>
-    <relativePath>../../master/pom.xml</relativePath>
-  </parent>
   <artifactId>SakaiRSFComponents-templates</artifactId>
   <name>Sakai RSF Components Templates</name>
   <groupId>uk.org.ponder.sakairsf</groupId>
   <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
+  <properties>
+    <sakairsf.sakai.version>2.2.x</sakairsf.sakai.version>
+    <rsfutil.version>0.7.1RC4</rsfutil.version>
+    <ponderutilcore.version>1.2.1RC4</ponderutilcore.version>
+    <jservletutil.version>1.2.1RC4</jservletutil.version>
+  </properties>
   <organization>
     <name>CARET</name>
     <url>http://www.caret.cam.ac.uk</url>

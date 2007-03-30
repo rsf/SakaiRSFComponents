@@ -34,9 +34,9 @@
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>uk.org.ponder.rsfutil</groupId>
-      <artifactId>RSFComponents-evolvers</artifactId>
-      <version>${rsfutil.version}</version>
+      <groupId>uk.org.ponder.sakairsf</groupId>
+      <artifactId>SakaiRSFComponents-evolvers</artifactId>
+      <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
       <type>jar</type>
     </dependency>
     <dependency>
@@ -45,26 +45,13 @@
       <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
       <type>jar</type>
     </dependency>
-  <!-- By my reading of these rules:
-  http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html
-  , the suppression of these in SakaiRSF should be 
-    propagated up here, but it is not. This is presumably a bug.-->
-    <!-- 
+      <!-- Sakai Util is required to resolve user's Locale -->
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring</artifactId>
-      <version>${sakai.spring.version}</version>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-util</artifactId>
+      <version>${sakai.version}</version>
       <type>jar</type>
-      <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>cglib</groupId>
-      <artifactId>cglib-nodep</artifactId>
-      <version>2.1_3</version>
-      <type>jar</type>
-      <scope>provided</scope>
-    </dependency>
-    -->
    </dependencies>
   <build>
     <plugins>

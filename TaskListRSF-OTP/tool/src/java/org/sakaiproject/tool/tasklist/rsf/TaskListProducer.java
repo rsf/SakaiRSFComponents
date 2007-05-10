@@ -99,7 +99,7 @@ public class TaskListProducer implements ViewComponentProducer,
       boolean candelete = task.getOwner().equals(userId);
       UIBranchContainer taskrow = UIBranchContainer.make(deleteform,
           candelete ? "task-row:deletable"
-              : "task-row:nondeletable");
+              : "task-row:nondeletable", Integer.toString(i));
       if (candelete) {
         UISelectChoice.make(taskrow, "task-select", deleteselect.getFullID(),
             deletable.size());

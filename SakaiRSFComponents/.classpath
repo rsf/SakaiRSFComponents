@@ -5,9 +5,9 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/J-RSFUtil"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PonderUtilCore"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SakaiRSF"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sakai22-tool-api"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sakai22-content-api"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/J-ServletUtil"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Spring 1.2.8"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sakai24-content-api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sakai24-tool-api"/>
 	<classpathentry kind="output" path="evolvers/bin"/>
 </classpath>

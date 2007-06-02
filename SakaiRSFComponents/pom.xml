@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
   <properties>
     <sakairsf.sakai.version>2.2.x</sakairsf.sakai.version>
-    <rsfutil.version>0.7.1</rsfutil.version>
+    <rsfutil.version>0.7.2M1</rsfutil.version>
   </properties>
   <modules>
     <module>evolvers</module>

@@ -15,9 +15,9 @@
   <groupId>uk.org.ponder.sakairsf</groupId>
   <properties>
     <sakairsf.sakai.version>2.2.x</sakairsf.sakai.version>
-    <rsfutil.version>0.7.1</rsfutil.version>
-    <ponderutilcore.version>1.2.1</ponderutilcore.version>
-    <jservletutil.version>1.2.1</jservletutil.version>
+    <rsfutil.version>0.7.2M1</rsfutil.version>
+    <ponderutilcore.version>1.2.2M1</ponderutilcore.version>
+    <jservletutil.version>1.2.2M1</jservletutil.version>
   </properties>
   <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
   <organization>

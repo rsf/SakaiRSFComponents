@@ -12,7 +12,7 @@
 
 <!-- This standard stanza is required for any webapps participating in the
    "partial WAR" build strategy -->
-  <preGoal name="war:webapp">
+  <preGoal name="war:war-resources">
     <echo>Expanding webapp dependencies</echo>
 
     <mkdir dir="${maven.war.webapp.dir}" />
@@ -32,11 +32,9 @@
     <j:set var="destination"
       value="${maven.tomcat.home}/webapps/${webappName}" />
     <delete dir="${destination}"/>
-    <mkdir dir="${destination}" />
-
-    <copy todir="${destination}">
-      <fileset dir="${maven.war.webapp.dir}" />
-    </copy>
+    <echo>Copying ${maven.war.build.dir}/${maven.war.final.name} to ${destination}.war</echo>
+    <copy file="${maven.war.build.dir}/${maven.war.final.name}" 
+      tofile="${destination}.war"/>
   </goal>
 
 </project>

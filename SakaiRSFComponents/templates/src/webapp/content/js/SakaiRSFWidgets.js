@@ -13,12 +13,14 @@ SakaiProject.fckeditor = function() {
       
       var oFCKeditor = new FCKeditor(textarea_id);
 	  oFCKeditor.BasePath = basepath;
-	  oFCKeditor.Config['ImageBrowserURL'] = browsePrefix + "Type=Image&CurrentFolder=" + collection_id;
-	  oFCKeditor.Config['LinkBrowserURL'] = browsePrefix + "Type=Link&CurrentFolder=" + collection_id;
-	  oFCKeditor.Config['FlashBrowserURL'] = browsePrefix + "Type=Flash&CurrentFolder=" + collection_id;
-	  oFCKeditor.Config['ImageUploadURL'] = uploadPrefix + "Type=Image&Command=QuickUpload&Type=Image&CurrentFolder=" + collection_id;
-	  oFCKeditor.Config['FlashUploadURL'] = uploadPrefix + "Type=Flash&Command=QuickUpload&Type=Flash&CurrentFolder=" + collection_id;
-	  oFCKeditor.Config['LinkUploadURL'] = uploadPrefix + "Type=File&Command=QuickUpload&Type=Link&CurrentFolder=" + collection_id;
+	  if (collection_id != "") {
+	    oFCKeditor.Config['ImageBrowserURL'] = browsePrefix + "Type=Image&CurrentFolder=" + collection_id;
+	    oFCKeditor.Config['LinkBrowserURL'] = browsePrefix + "Type=Link&CurrentFolder=" + collection_id;
+	    oFCKeditor.Config['FlashBrowserURL'] = browsePrefix + "Type=Flash&CurrentFolder=" + collection_id;
+	    oFCKeditor.Config['ImageUploadURL'] = uploadPrefix + "Type=Image&Command=QuickUpload&Type=Image&CurrentFolder=" + collection_id;
+	    oFCKeditor.Config['FlashUploadURL'] = uploadPrefix + "Type=Flash&Command=QuickUpload&Type=Flash&CurrentFolder=" + collection_id;
+	    oFCKeditor.Config['LinkUploadURL'] = uploadPrefix + "Type=File&Command=QuickUpload&Type=Link&CurrentFolder=" + collection_id;
+      }
       // oFCKeditor.Width  = "600" ;
       // oFCKeditor.Height = "400" ;
 	  oFCKeditor.Config['CustomConfigurationsPath'] = "/library/editor/FCKeditor/config.js";

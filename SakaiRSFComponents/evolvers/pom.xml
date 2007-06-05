@@ -32,7 +32,7 @@
       <artifactId>RSFComponents-evolvers</artifactId>
       <version>${rsfutil.version}</version>
       <type>jar</type>
-         <exclusions>
+      <exclusions>
         <exclusion>
           <groupId>org.springframework</groupId>
           <artifactId>spring</artifactId>
@@ -57,5 +57,5 @@
       <type>jar</type>
       <scope>provided</scope>
     </dependency>
-   </dependencies>
+  </dependencies>
 </project>

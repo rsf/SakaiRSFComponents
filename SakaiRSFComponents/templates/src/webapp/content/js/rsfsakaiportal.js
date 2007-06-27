@@ -15,7 +15,7 @@ function setMainFrameHeightFixed(dokkument, outerid) {
 
 // Very long function name, since this can't be safely put in the RSF namespace!
 function addSakaiRSFDomModifyHook(frameID) {
-  if (RSF && RSF.getDOMModifyFirer) {
+  if (typeof(RSF) != "undefined" && RSF.getDOMModifyFirer) {
     var firer = RSF.getDOMModifyFirer();
     firer.addListener(
       function() {

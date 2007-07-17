@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+  "http://www.springframework.org/dtd/spring-beans.dtd">
+<!-- RSF application scope Spring configuration file,
+	primary used for defining configuration settings and long lived beans -->
+<beans>
+
+	<!-- Make sure the EL bindings can write to our AJAX bean -->
+	<bean parent="requestAddressibleParent">
+		<property name="value" value="myAjaxBean" />
+	</bean>
+
+	<!-- Use a beanguard to run the ajax handling method after a call comes in with data -->
+	<bean id="ajaxExecuter" parent="writeGuardParent">
+		<property name="guardedPath" value="myAjaxBean.*" />
+		<property name="guardMethod" value="myAjaxBean.handleAjaxCall" />
+	</bean>
+
+	<bean id="searchService" class="org.sakaiproject.caret.DummySearchService" />
+
+</beans>

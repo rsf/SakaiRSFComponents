@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<!-- Define the view producer for the main view -->
+	<bean class="org.sakaiproject.caret.rsf.ajax.autocomplete.producers.MainProducer" />
+
+	<bean id="myAjaxBean"
+			class="org.sakaiproject.caret.rsf.ajax.autocomplete.AjaxHandlerBean">
+		<property name="searchService" ref="searchService" />
+	</bean>
+
+</beans>

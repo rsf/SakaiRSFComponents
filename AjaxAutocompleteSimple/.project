@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>RSF Sakai Ajax Autocomplete Simple</name>
+	<name>RSFSakaiAjaxAutocompleteSimple</name>
 	<comment></comment>
 	<projects>
 		<project>J-RSFUtil</project>

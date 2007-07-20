@@ -7,7 +7,8 @@
 	<bean class="org.sakaiproject.caret.rsf.ajax.autocomplete.producers.MainProducer" />
 
 	<bean id="myAjaxBean"
-			class="org.sakaiproject.caret.rsf.ajax.autocomplete.AjaxHandlerBean">
+			class="org.sakaiproject.caret.rsf.ajax.autocomplete.AjaxHandlerBean"
+            init-method="init">
 		<property name="searchService" ref="searchService" />
 	</bean>
 

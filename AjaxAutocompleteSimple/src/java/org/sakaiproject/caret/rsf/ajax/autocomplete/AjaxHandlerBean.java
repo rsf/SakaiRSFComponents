@@ -59,6 +59,7 @@ public class AjaxHandlerBean {
 	 */
 	public void init() {
 		if (log.isDebugEnabled()) log.debug("INIT");
+//		handleAjaxCall();
 	}
 
 	/**

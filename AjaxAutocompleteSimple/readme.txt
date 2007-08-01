@@ -4,7 +4,8 @@ Description:
 This sample tool demonstrates using AJAX and UVB in RSF within Sakai,
 it does not use any external javascript libraries or frameworks (very simple example)
 URL for this sample app will be (for tomcat running on local machine on default port):
-http://localhost:8080/RSFtasklist/rsf/
+http://localhost:8080/rsf-sakai-ajax-autocomplete-simple-M2/faces/
+(you will probably want to access this via Sakai)
 
 Requirements:
 Java 1.5 or better (http://java.sun.com/)
@@ -21,10 +22,15 @@ Build this project and deploy it in tomcat by running the following from this di
 mvn cln bld dpl
 
 
-MAVEN 2 build: (Sakai 2.5+)
+MAVEN 2.x build:
+
+Make sure you have a settings.xml file in $YOUR_USER_HOME/.m2 directory, here is a sample one:
+http://www2.caret.cam.ac.uk/rsfwiki/attach/ContainerSetupGuide/settings.xml
+
+Set the <appserver.home>c:\opt\tomcat</appserver.home> to point to your $TOMCAT_HOME directory.
 
 Build this project and deploy it in tomcat by running the following from this directory (the one with the readme):
-mvn clean install sakai:deploy
+mvn install cargo:deploy
 
 
 More info on RSF:

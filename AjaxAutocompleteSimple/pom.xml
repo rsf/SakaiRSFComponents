@@ -51,14 +51,8 @@
       <dependency>
          <groupId>uk.org.ponder.sakairsf</groupId>
          <artifactId>SakaiRSF</artifactId>
-         <version>${rsfutil.version}-sakai_2.2.x</version>
+         <version>0.7.2M4-sakai_2.2.x</version>
          <type>jar</type>
-      </dependency>
-
-      <dependency>
-         <groupId>org.sakaiproject</groupId>
-         <artifactId>sakai-util</artifactId>
-         <version>${sakai.version}</version>
       </dependency>
 
       <dependency>
@@ -68,23 +62,29 @@
          <type>war</type>
       </dependency>
 
+      <dependency>
+         <groupId>org.sakaiproject</groupId>
+         <artifactId>sakai-util</artifactId>
+         <version>${sakai.version}</version>
+      </dependency>
+
       <!-- rsf dependencies -->
       <dependency>
-         <groupId>org.sakaiproject.caret.rsfutil</groupId>
+         <groupId>uk.org.ponder.rsfutil</groupId>
          <artifactId>rsfutil</artifactId>
          <version>${rsfutil.version}</version>
          <type>jar</type>
       </dependency>
 
       <dependency>
-         <groupId>org.sakaiproject.caret.rsfutil</groupId>
+         <groupId>uk.org.ponder.rsfutil</groupId>
          <artifactId>RSFComponents-evolvers</artifactId>
          <version>${rsfutil.version}</version>
          <type>jar</type>
       </dependency>
 
       <dependency>
-         <groupId>org.sakaiproject.caret.rsfutil</groupId>
+         <groupId>uk.org.ponder.rsfutil</groupId>
          <artifactId>RSFComponents-templates</artifactId>
          <version>${rsfutil.version}</version>
          <type>war</type>

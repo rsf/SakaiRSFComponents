@@ -3,9 +3,9 @@
    xsi:schemaLocation="http://maven.apache.org/POM/3.0.0 http://maven.apache.org/maven-v3_0_0.xsd">
    <pomVersion>3</pomVersion>
    <extend>../master/project.xml</extend>
-   <name>RSF Sakai Ajax Autocomplete Simple</name>
+   <name>RSF Sakai Ajax Autocomplete Fancy</name>
    <groupId>sakaiproject</groupId>
-   <id>rsf-sakai-ajax-autocomplete-simple</id>
+   <id>rsf-sakai-ajax-autocomplete-fancy</id>
    <currentVersion>${sakai.version}</currentVersion>
    <organization>
       <name>CARET</name>

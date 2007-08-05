@@ -1,10 +1,10 @@
-RSF Sakai AJAX Sample - AutoComplete Simple
+RSF Sakai AJAX Sample - AutoComplete Fancy
 
 Description:
 This sample tool demonstrates using AJAX and UVB in RSF within Sakai,
-it does not use any external javascript libraries or frameworks (very simple example)
+it uses one external ajax library that has been namespaced
 URL for this sample app will be (for tomcat running on local machine on default port):
-http://localhost:8080/rsf-sakai-ajax-autocomplete-simple-M2/faces/
+http://localhost:8080/rsf-sakai-ajax-autocomplete-fancy-M2/faces/
 (you will probably want to access this via Sakai)
 
 Requirements:

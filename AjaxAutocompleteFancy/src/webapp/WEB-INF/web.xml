@@ -3,8 +3,8 @@
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee  http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" 
       version="2.4">
-   <display-name>rsf-sakai-ajax-autocomplete-simple</display-name>
-   <description>RSF Sakai Ajax Autocomplete Simple</description>
+   <display-name>rsf-sakai-ajax-autocomplete-fancy</display-name>
+   <description>RSF Sakai Ajax Autocomplete Fancy</description>
 
    <context-param>
       <param-name>contextConfigLocation</param-name>
@@ -37,7 +37,7 @@
    </filter>
    <filter-mapping>
        <filter-name>sakai.request</filter-name>
-       <servlet-name>sakai.ajax.autocomplete.simple</servlet-name>
+       <servlet-name>sakai.ajax.autocomplete.fancy</servlet-name>
        <dispatcher>REQUEST</dispatcher>
        <dispatcher>FORWARD</dispatcher>
        <dispatcher>INCLUDE</dispatcher>
@@ -54,11 +54,11 @@
    <!-- tool servlet -->
    <servlet>
       <!-- servlet name must match tool.id in tools xml file -->
-      <servlet-name>sakai.ajax.autocomplete.simple</servlet-name>
+      <servlet-name>sakai.ajax.autocomplete.fancy</servlet-name>
       <servlet-class>uk.ac.cam.caret.sakai.rsf.servlet.ReasonableSakaiServlet</servlet-class>
    </servlet>
    <servlet-mapping>
-      <servlet-name>sakai.ajax.autocomplete.simple</servlet-name>
+      <servlet-name>sakai.ajax.autocomplete.fancy</servlet-name>
       <url-pattern>/faces/*</url-pattern>
    </servlet-mapping>  
 

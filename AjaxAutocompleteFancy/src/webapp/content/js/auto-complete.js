@@ -15,8 +15,8 @@ var AjaxAutoComplete = function() {
       initAutocomplete: function (fieldId, elBinding) {
          var inputField = document.getElementById(fieldId); // get the field we are working with
          var ajaxUrl = inputField.form.action; // get the URL from the form
-         // create the autocomplete object
-         var autoCompleteObj = ACTB.actb(inputField, resultArray);
+         // create the autocomplete object with empty array by default
+         var autoCompleteObj = ACTB.actb(inputField, ["test1","test2"]);
 
          var callback = function(results) {
             // this function (callback) defines what to do when the ajax response is received,

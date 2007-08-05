@@ -15,16 +15,19 @@ var AjaxAutoComplete = function() {
       initAutocomplete: function (fieldId, elBinding) {
          var inputField = document.getElementById(fieldId); // get the field we are working with
          var ajaxUrl = inputField.form.action; // get the URL from the form
+         // create the autocomplete object
+         var autoCompleteObj = ACTB.actb(inputField, resultArray);
 
          var callback = function(results) {
             // this function (callback) defines what to do when the ajax response is received,
             // the response will be placed in the "results" variable
+            alert("url=" + ajaxUrl);
 
-            // result.EL is a map of ELbinding -> JS Object
-            var resultField = document.getElementById("result_field");
+            // results.EL is a map of ELbinding -> JS Object
             // get out the object (which is a string array in this case) and decode it
             var resultArray = RSF.decodeRSFStringArray(results.EL[elBinding]);
-            var autoCompleteObj = ACTB.actb(inputField, resultArray);
+            // assign the new set of autocomplete results
+            autoCompleteObj.actb_keyword = resultArray;
          }
 
          // setup the function which initiates the AJAX request

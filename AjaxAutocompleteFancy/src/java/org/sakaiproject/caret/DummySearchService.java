@@ -16,9 +16,19 @@ public class DummySearchService {
 
 	private String[] searchValues = {
 		"aaronz",
+      "adam",
 		"alan",
+		"alexander",
+      "allison",
+      "amber",
 		"andy",
+		"anthony",
 		"antranig",
+      "anya",
+      "apple",
+      "ariel",
+      "arnold",
+      "azkaban",
 		"catharine",
 		"dan",
 		"daniel",
@@ -43,7 +53,7 @@ public class DummySearchService {
 
 	/**
 	 * Return the array of all near matches for a search value
-	 * @param search a searhc string
+	 * @param search a search string
 	 * @return the array of all near matches of the search prefix
 	 */
 	public String[] doSearch(String search) {
@@ -51,6 +61,10 @@ public class DummySearchService {
 		for (int i = 0; i < searchValues.length; i++) {
 			if (searchValues[i].startsWith(search)) {
 				l.add( searchValues[i] );
+				// only return 5 results now
+				if(l.size() >= 5) {
+				   break;
+				}
 			}
 		}
 		return l.toArray( new String[] {} );

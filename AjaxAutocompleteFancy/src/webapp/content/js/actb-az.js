@@ -8,22 +8,22 @@ var ACTB = function() {
       actb: function (obj,ca) {
 			/* ---- Public Variables ---- */
 			this.actb_timeOut = -1; // Autocomplete Timeout in ms (-1: autocomplete never time out)
-			this.actb_lim = 6;    // Number of elements autocomplete can show (-1: no limit)
+			this.actb_lim = 4;    // Number of elements autocomplete can show (-1: no limit)
 			this.actb_firstText = true; // should the auto complete be limited to the beginning of keyword?
 			this.actb_mouse = true; // Enable Mouse Support
-			this.actb_delimiter = new Array(';',',');  // Delimiter for multiple autocomplete. Set it to empty array for single autocomplete
+			this.actb_delimiter = []; // new Array(';',',');  // Delimiter for multiple autocomplete. Set it to empty array for single autocomplete
 			this.actb_startcheck = 1; // Show widget only after this number of characters is typed in.
 			/* ---- Public Variables ---- */
-		
+
 			/* --- Styles --- */
-			this.actb_bgColor = '#888888';
-			this.actb_textColor = '#FFFFFF';
-			this.actb_hColor = '#000000';
+			this.actb_bgColor = '#9cf';
+			this.actb_textColor = '#000';
+			this.actb_hColor = '#ff0';
 			this.actb_fFamily = 'Verdana';
-			this.actb_fSize = '11px';
+			this.actb_fSize = '0.9em';
 			this.actb_hStyle = 'text-decoration:underline;font-weight="bold"';
 			/* --- Styles --- */
-		
+
 			/* ---- Private Variables ---- */
 			var actb_delimwords = new Array();
 			var actb_cdelimword = 0;

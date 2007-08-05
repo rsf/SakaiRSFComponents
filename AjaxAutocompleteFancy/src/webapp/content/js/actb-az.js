@@ -15,6 +15,12 @@ var ACTB = function() {
 			this.actb_startcheck = 1; // Show widget only after this number of characters is typed in.
 			/* ---- Public Variables ---- */
 
+			this.actb_update = function() {
+				//actb_remake();
+				//actb_generate();
+				actb_tocomplete(0);
+			};
+
 			/* --- Styles --- */
 			this.actb_bgColor = '#9cf';
 			this.actb_textColor = '#000';
@@ -55,7 +61,7 @@ var ACTB = function() {
 				addEvent(actb_curr,"blur",actb_clear);
 				addEvent(document,"keypress",actb_keypress);
 			}
-		
+
 			function actb_clear(evt){
 				if (!evt) evt = event;
 				removeEvent(document,"keydown",actb_checkkey);
@@ -63,7 +69,7 @@ var ACTB = function() {
 				removeEvent(document,"keypress",actb_keypress);
 				actb_removedisp();
 			}
-		
+
 			function actb_parse(n){
 				if (actb_self.actb_delimiter.length > 0){
 					var t = addSlashesString(trimString(actb_delimwords[actb_cdelimword]));

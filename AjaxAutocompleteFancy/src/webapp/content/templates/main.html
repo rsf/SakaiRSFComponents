@@ -32,7 +32,9 @@
    // This is a fake function call (for testing) which will be replaced by RSF with a 
    // real function call with real values which come from the "emitJavascriptCall" method
    //AjaxAutoComplete.initAutocomplete("input_field");
-   ACTB.actb(document.getElementById("input_field"),['aaronz','adam','apple','arnold','azkaban']);
+   var autoCompleteObj = ACTB.actb(document.getElementById("input_field"),[]);
+   autoCompleteObj.actb_keyword = ['aaronz','adam','apple','arnold','azkaban'];
+   autoCompleteObj.actb_update();
 </script>
 
 </body>

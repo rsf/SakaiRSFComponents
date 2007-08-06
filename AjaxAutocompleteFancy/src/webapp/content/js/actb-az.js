@@ -17,8 +17,15 @@ var ACTB = function() {
 
 			this.actb_update = function() {
 				//actb_remake();
+				//actb_kwcount = 1;
 				//actb_generate();
-				actb_tocomplete(0);
+				//actb_curr.value = "a";
+				if(actb_self.actb_keywords[0] == actb_curr.value) {
+					return;
+				}
+				if (actb_foundword == false) {
+					actb_tocomplete(0);
+				}
 			};
 
 			/* --- Styles --- */
@@ -48,6 +55,7 @@ var ACTB = function() {
 			var actb_mouse_on_list = 1;
 			var actb_kwcount = 0;
 			var actb_caretmove = false;
+			var actb_foundword = false;
 			this.actb_keywords = new Array();
 			/* ---- Private Variables---- */
 			this.actb_keywords = ca;
@@ -60,6 +68,7 @@ var ACTB = function() {
 				addEvent(document,"keydown",actb_checkkey);
 				addEvent(actb_curr,"blur",actb_clear);
 				addEvent(document,"keypress",actb_keypress);
+				actb_foundword = false;
 			}
 
 			function actb_clear(evt){
@@ -68,6 +77,7 @@ var ACTB = function() {
 				removeEvent(actb_curr,"blur",actb_clear);
 				removeEvent(document,"keypress",actb_keypress);
 				actb_removedisp();
+				actb_foundword = true;
 			}
 
 			function actb_parse(n){

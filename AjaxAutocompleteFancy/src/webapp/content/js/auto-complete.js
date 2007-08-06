@@ -26,8 +26,9 @@ var AjaxAutoComplete = function() {
             // get out the object (which is a string array in this case) and decode it
             var resultArray = RSF.decodeRSFStringArray(results.EL[elBinding]);
             // assign the new set of autocomplete results
-            autoCompleteObj.actb_keyword = resultArray;
-            ACTB.actb_generate();
+            autoCompleteObj.actb_keywords = resultArray;
+            // force the autocomplete to display the new results
+            autoCompleteObj.actb_update();
          }
 
          // setup the function which initiates the AJAX request

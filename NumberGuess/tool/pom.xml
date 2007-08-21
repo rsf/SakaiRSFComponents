@@ -22,7 +22,7 @@
     The RSF Number guessing app, as a Sakai tool
   </description>
   <properties>
-    <rsfutil.version>0.7.2M5-SNAPSHOT</rsfutil.version>
+    <rsfutil.version>0.7.2RC1</rsfutil.version>
     <sakairsf.sakai.version>2.2.x</sakairsf.sakai.version>
     <deploy.webappname>RSFNumberGuess</deploy.webappname>
     <appserver.id>${sakai.appserver.id}</appserver.id>

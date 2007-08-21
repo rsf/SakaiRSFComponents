@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>uk.org.ponder.rsfsamples.numberguess</groupId>
+  <artifactId>SakaiRSFNumberGuessTool</artifactId>
+  <name>Sakai RSF Number Guessing Tool</name>
+  <version>1.0</version>
+  <parent>
+    <groupId>uk.org.ponder.pure-poms</groupId>
+    <artifactId>standard-sakai-tool</artifactId>
+    <version>POM-3</version>
+  </parent>
+  <packaging>war</packaging>
+  <organization>
+    <name>CARET</name>
+    <url>http://www.caret.cam.ac.uk</url>
+  </organization>
+  <inceptionYear>2005</inceptionYear>
+  <description>
+    The RSF Number guessing app, as a Sakai tool
+  </description>
+  <properties>
+    <rsfutil.version>0.7.2M5-SNAPSHOT</rsfutil.version>
+    <sakairsf.sakai.version>2.2.x</sakairsf.sakai.version>
+    <deploy.webappname>RSFNumberGuess</deploy.webappname>
+    <appserver.id>${sakai.appserver.id}</appserver.id>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <artifactId>rsf-numberguess-base</artifactId>
+      <groupId>uk.org.ponder.rsfsamples.numberguess</groupId>
+      <version>1.0</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>uk.org.ponder.sakairsf</groupId>
+      <artifactId>sakairsf</artifactId>
+      <version>
+        ${rsfutil.version}-sakai_${sakairsf.sakai.version}
+      </version>
+      <type>jar</type>
+    </dependency>
+  </dependencies>
+</project>
+

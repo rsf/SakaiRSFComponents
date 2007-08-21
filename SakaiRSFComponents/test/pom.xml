@@ -40,7 +40,7 @@
     </dependency>
     <dependency>
       <groupId>uk.org.ponder.sakairsf</groupId>
-      <artifactId>SakaiRSF</artifactId>
+      <artifactId>sakairsf</artifactId>
       <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
       <type>jar</type>
     </dependency>

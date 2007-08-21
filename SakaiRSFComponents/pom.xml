@@ -4,16 +4,21 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
                       http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <name>RSF Components</name>
+  <name>Sakai RSF Components Base POM</name>
   <groupId>uk.org.ponder.pure-poms</groupId>
   <artifactId>sakai-components-base</artifactId>
+  <parent>
+    <groupId>uk.org.ponder.pure-poms</groupId>
+    <artifactId>standard-sakai-tool</artifactId>
+    <version>POM-3</version>
+  </parent>
   <version>
     ${rsfutil.version}-sakai_${sakairsf.sakai.version}
   </version>
     <packaging>pom</packaging>
   <properties>
     <sakairsf.sakai.version>2.2.x</sakairsf.sakai.version>
-    <rsfutil.version>0.7.2M4</rsfutil.version>
+    <rsfutil.version>0.7.2RC1</rsfutil.version>
   </properties>
   <modules>
     <module>evolvers</module>

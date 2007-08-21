@@ -20,6 +20,13 @@
     <sakairsf.sakai.version>2.2.x</sakairsf.sakai.version>
     <rsfutil.version>0.7.2RC1</rsfutil.version>
   </properties>
+  <repositories>
+    <repository>
+      <id>CARET-Maven2</id>
+      <name>CARET Maven 2 Repository</name>
+      <url>http://www2.caret.cam.ac.uk/maven2</url>
+    </repository>
+  </repositories>  
   <modules>
     <module>evolvers</module>
     <module>templates</module>

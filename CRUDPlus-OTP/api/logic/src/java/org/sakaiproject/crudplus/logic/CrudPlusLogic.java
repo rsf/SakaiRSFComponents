@@ -49,7 +49,7 @@ public interface CrudPlusLogic {
 	 * visible to the current user
 	 * @return a List of CrudPlusItem objects
 	 */
-	public List getAllVisibleItems();
+	public List<CrudPlusItem> getAllVisibleItems();
 
 	/**
 	 * This returns a List of items for a specified site that are
@@ -58,7 +58,7 @@ public interface CrudPlusLogic {
 	 * @param userId the Sakai id of the user
 	 * @return a List of CrudPlusItem objects
 	 */
-	public List getAllVisibleItems(String siteId, String userId);
+	public List<CrudPlusItem> getAllVisibleItems(String siteId, String userId);
 
 	/**
 	 * Save (Create or Update) an item (uses the current site)

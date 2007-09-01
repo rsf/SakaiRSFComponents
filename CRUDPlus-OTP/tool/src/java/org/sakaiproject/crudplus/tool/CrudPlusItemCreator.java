@@ -9,7 +9,7 @@ public class CrudPlusItemCreator {
 
   public static final Boolean DEFAULT_HIDDEN = Boolean.TRUE;
   public static final String DEFAULT_TITLE = "";
-  public static CrudPlusItem create() {
+  public CrudPlusItem create() {
     CrudPlusItem togo = new CrudPlusItem();
     togo.setHidden(DEFAULT_HIDDEN);
     return togo;

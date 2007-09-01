@@ -11,7 +11,6 @@
 
 package org.sakaiproject.crudplus.tool.producers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.sakaiproject.crudplus.logic.CrudPlusLogic;
@@ -19,6 +18,7 @@ import org.sakaiproject.crudplus.model.CrudPlusItem;
 import org.sakaiproject.crudplus.tool.CrudPlusItemCreator;
 import org.sakaiproject.crudplus.tool.params.AddItemViewParameters;
 
+import uk.org.ponder.arrayutil.ListUtil;
 import uk.org.ponder.rsf.components.UIBoundBoolean;
 import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
@@ -91,13 +91,11 @@ public class AddItemProducer implements ViewComponentProducer,
   }
 
   public List reportNavigationCases() {
-    List l = new ArrayList();
-    l.add(new NavigationCase("added", new SimpleViewParameters(
+    return ListUtil.instance(new NavigationCase("added", new SimpleViewParameters(
         ItemsProducer.VIEW_ID)));
-    return l;
   }
 
   public ViewParameters getViewParameters() {
-    return new AddItemViewParameters(VIEW_ID, null);
+    return new AddItemViewParameters();
   }
 }

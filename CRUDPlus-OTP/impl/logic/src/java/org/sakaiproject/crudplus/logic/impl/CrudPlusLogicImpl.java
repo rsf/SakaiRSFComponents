@@ -173,17 +173,17 @@ public class CrudPlusLogicImpl implements CrudPlusLogic {
 	/* (non-Javadoc)
 	 * @see org.sakaiproject.crudplus.logic.CrudPlusLogic#getAllVisibleItems()
 	 */
-	public List getAllVisibleItems() {
+	public List<CrudPlusItem> getAllVisibleItems() {
 		return getAllVisibleItems( getCurrentContext(), getCurrentUserId() );
 	}
 
 	/* (non-Javadoc)
 	 * @see org.sakaiproject.crudplus.logic.CrudPlusLogic#getAllVisibleItems(java.lang.String, java.lang.String)
 	 */
-	public List getAllVisibleItems(String siteId, String userId) {
+	public List<CrudPlusItem> getAllVisibleItems(String siteId, String userId) {
 		log.debug("Fetching visible items for " + userId + " in site: " + siteId);
 		String siteRef = siteService.siteReference( siteId );
-		List l = dao.findByProperties(CrudPlusItem.class, 
+		List<CrudPlusItem> l = dao.findByProperties(CrudPlusItem.class, 
 				new String[] {"siteId"}, new Object[] {siteId});
 		// check if the current user can see all items (or is super user)
 		if ( securityService.isSuperUser(userId) || 
@@ -192,7 +192,7 @@ public class CrudPlusLogicImpl implements CrudPlusLogic {
 		} else {
 			// go backwards through the loop to avoid hitting the "end" early
 			for (int i=l.size()-1; i >= 0; i--) {
-				CrudPlusItem item = (CrudPlusItem) l.get(i);
+				CrudPlusItem item = l.get(i);
 				if ( item.getHidden().booleanValue() &&
 						!item.getOwnerId().equals(userId) ) {
 					l.remove(item);

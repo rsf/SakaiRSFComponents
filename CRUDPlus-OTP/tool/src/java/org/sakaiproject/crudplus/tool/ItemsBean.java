@@ -21,7 +21,7 @@ import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.crudplus.logic.CrudPlusLogic;
 import org.sakaiproject.crudplus.model.CrudPlusItem;
 
-import uk.org.ponder.beanutil.BeanUtil;
+import uk.org.ponder.beanutil.entity.EntityBeanLocator;
 import uk.org.ponder.messageutil.TargettedMessage;
 import uk.org.ponder.messageutil.TargettedMessageList;
 
@@ -33,14 +33,14 @@ import uk.org.ponder.messageutil.TargettedMessageList;
 public class ItemsBean {
   private static Log log = LogFactory.getLog(ItemsBean.class);
 
-  private Map OTPMap;
+  private Map<String, CrudPlusItem> OTPMap;
 
   public Map selectedIds = new HashMap();
 
   private CrudPlusLogic logic;
 
-  public void setOTPMap(Map map) {
-    OTPMap = map;
+  public void setEntityBeanLocator(EntityBeanLocator entityBeanLocator) {
+    this.OTPMap = entityBeanLocator.getDeliveredBeans();
   }
 
   public void setLogic(CrudPlusLogic logic) {
@@ -62,10 +62,9 @@ public class ItemsBean {
   }
 
   public String processActionAdd() {
-    for (Iterator keyit = OTPMap.keySet().iterator(); keyit.hasNext();) {
-      String key = (String) keyit.next();
-      CrudPlusItem item = (CrudPlusItem) OTPMap.get(key);
-      if (key.startsWith(BeanUtil.NEW_ENTITY_PREFIX)) {
+    for (String key: OTPMap.keySet()) {
+      CrudPlusItem item = OTPMap.get(key);
+      if (key.startsWith(EntityBeanLocator.NEW_PREFIX)) {
         messages.addMessage(new TargettedMessage("item_added",
             new Object[] { item.getTitle() }, TargettedMessage.SEVERITY_INFO));
       }
@@ -80,10 +79,9 @@ public class ItemsBean {
 
   public String processActionDelete() {
     log.debug("in process action delete...");
-    List items = logic.getAllVisibleItems();
+    List<CrudPlusItem> items = logic.getAllVisibleItems();
     int itemsRemoved = 0;
-    for (Iterator iter = items.iterator(); iter.hasNext();) {
-      CrudPlusItem item = (CrudPlusItem) iter.next();
+    for (CrudPlusItem item: items) {
       log.debug("Checking to remove item:" + item.getId());
       if (selectedIds.get(item.getId().toString()) == Boolean.TRUE) {
         logic.removeItem(item);

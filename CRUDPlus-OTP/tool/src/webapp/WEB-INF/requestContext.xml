@@ -10,11 +10,7 @@
 		class="org.sakaiproject.crudplus.tool.ItemsBean" init-method="init">
 		<property name="logic"
 			ref="org.sakaiproject.crudplus.logic.CrudPlusLogic" />
-		<property name="OTPMap">
-			<bean parent="OTMParent">
-				<property name="seedPath" value="CrudPlusItem" />
-			</bean>
-		</property>
+		<property name="entityBeanLocator" ref="CrudPlusItem"/>
 		<property name="messages" ref="targettedMessageList"/>
 	</bean>
 

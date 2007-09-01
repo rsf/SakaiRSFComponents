@@ -34,58 +34,62 @@ import uk.org.ponder.rsf.viewstate.ViewParameters;
 
 /**
  * This is the view producer for the Items html template
+ * 
  * @author Sakai App Builder -AZ
  */
 public class ItemsProducer implements ViewComponentProducer, DefaultView {
 
-	// The VIEW_ID must match the html template (without the .html)
-	public static final String VIEW_ID = "Items";
-	public String getViewID() {
-		return VIEW_ID;
-	}
+  // The VIEW_ID must match the html template (without the .html)
+  public static final String VIEW_ID = "Items";
 
-	private CrudPlusLogic logic;
-	public void setLogic(CrudPlusLogic logic) {
-		this.logic = logic;
-	}
+  public String getViewID() {
+    return VIEW_ID;
+  }
 
-	private Locale locale;
-	public void setLocale(Locale locale) {
-		this.locale = locale;
-	}
+  private CrudPlusLogic logic;
 
-	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
-			ComponentChecker checker) {
+  public void setLogic(CrudPlusLogic logic) {
+    this.logic = logic;
+  }
 
-		UIInternalLink.make(tofill, "create-item", 
-				new AddItemViewParameters(AddItemProducer.VIEW_ID, null) );
+  private Locale locale;
 
-		UIOutput.make(tofill, "current-user-name", logic
-				.getCurrentUserDisplayName());
+  public void setLocale(Locale locale) {
+    this.locale = locale;
+  }
 
-		UIForm listform = UIForm.make(tofill, "listItemsForm");
+  public void fillComponents(UIContainer tofill, ViewParameters viewparams,
+      ComponentChecker checker) {
 
-		DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM,
-				DateFormat.SHORT, locale);
+    UIInternalLink.make(tofill, "create-item", new AddItemViewParameters(
+        AddItemProducer.VIEW_ID, null));
 
-		List l = logic.getAllVisibleItems();
-		for (Iterator iter = l.iterator(); iter.hasNext();) {
-			CrudPlusItem item = (CrudPlusItem) iter.next();
-			UIBranchContainer itemrow = UIBranchContainer.make(listform, 
-					"item-row:", item.getId().toString() );
-			if (logic.canWriteItem(item)) { // check for current user and site
-				UIBoundBoolean.make(itemrow, "select-item", 
-						"itemsBean.selectedIds." + item.getId(), Boolean.FALSE);
-				UIInternalLink.make(itemrow, "item-update", item.getTitle(), 
-						new AddItemViewParameters(AddItemProducer.VIEW_ID, item.getId()) );
-			} else {
-				UIOutput.make(itemrow, "item-title", item.getTitle() );
-			}
-			UIBoundBoolean.make(itemrow, "item-hidden", item.getHidden() );
-			UIOutput.make(itemrow, "item-dateCreated", df.format(item.getDateCreated()) );
-		}
+    UIOutput.make(tofill, "current-user-name", logic
+        .getCurrentUserDisplayName());
 
-		UICommand.make(listform, "delete-items", "itemsBean.processActionDelete");
-	}
+    UIForm listform = UIForm.make(tofill, "listItemsForm");
+
+    DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM,
+        DateFormat.SHORT, locale);
+
+    List<CrudPlusItem> l = logic.getAllVisibleItems();
+    for (CrudPlusItem item : l) {
+      UIBranchContainer itemrow = UIBranchContainer.make(listform, "item-row:");
+      if (logic.canWriteItem(item)) { // check for current user and site
+        UIBoundBoolean.make(itemrow, "select-item", "itemsBean.selectedIds."
+            + item.getId(), Boolean.FALSE);
+        UIInternalLink.make(itemrow, "item-update", item.getTitle(),
+            new AddItemViewParameters(AddItemProducer.VIEW_ID, item.getId()));
+      }
+      else {
+        UIOutput.make(itemrow, "item-title", item.getTitle());
+      }
+      UIBoundBoolean.make(itemrow, "item-hidden", item.getHidden());
+      UIOutput.make(itemrow, "item-dateCreated", df.format(item
+          .getDateCreated()));
+    }
+
+    UICommand.make(listform, "delete-items", "itemsBean.processActionDelete");
+  }
 
 }

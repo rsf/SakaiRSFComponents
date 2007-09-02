@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="api/model/src/java"/>
 	<classpathentry kind="src" path="api/logic/src/java"/>
-	<classpathentry kind="src" path="api/public/src/java"/>
 	<classpathentry kind="src" path="impl/logic/src/java"/>
 	<classpathentry kind="src" path="impl/dao/src/java"/>
 	<classpathentry kind="src" path="impl/hbm/src/java"/>

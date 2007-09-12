@@ -18,6 +18,7 @@
     <rsfutil.version>0.7.2RC2</rsfutil.version>
     <ponderutilcore.version>1.2.2RC2</ponderutilcore.version>
     <jservletutil.version>1.2.2RC2</jservletutil.version>
+    <deploy.appserver.home>${sakai.appserver.home}</deploy.appserver.home>    
   </properties>
   <organization>
     <name>CARET</name>

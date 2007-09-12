@@ -10,4 +10,8 @@
     <property name="strings" value="plainTextInputEvolver, sakaiFCKTextEvolver"/>
   </bean>
   
+  <bean id="componentsTemplateResourceBase" class="java.lang.String">
+    <constructor-arg value="/../SakaiRSFComponents-templates/"/>
+  </bean>
+  
 </beans>

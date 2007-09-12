@@ -2,11 +2,17 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
+<!-- Reflect typical modern practice and serve templates from local webapp -->
+  <bean id="componentsTemplateResourceBase" class="java.lang.String">
+    <constructor-arg value="/"/>
+  </bean>
+
 <!-- This version for direct deployment, prior to Sakai 2.4 -->
+<!-- 
   <bean id="componentsTemplateResourceBase" class="java.lang.String">
     <constructor-arg value="/../SakaiRSFComponents-templates/"/>
   </bean>
-  
+  -->
 <!-- Use this version when deployed in a post-2.4 shared-template deployment -->
   <!-- 
   <bean id="componentsTemplateResourceBase" class="java.lang.String">

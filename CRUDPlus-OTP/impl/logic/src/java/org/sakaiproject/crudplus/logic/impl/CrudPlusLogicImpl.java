@@ -16,19 +16,13 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.authz.api.AuthzGroup;
 import org.sakaiproject.authz.api.AuthzGroupService;
-import org.sakaiproject.authz.api.AuthzPermissionException;
 import org.sakaiproject.authz.api.FunctionManager;
-import org.sakaiproject.authz.api.GroupNotDefinedException;
-import org.sakaiproject.authz.api.Role;
 import org.sakaiproject.authz.api.SecurityService;
 import org.sakaiproject.crudplus.dao.CrudPlusDao;
 import org.sakaiproject.crudplus.logic.CrudPlusLogic;
 import org.sakaiproject.crudplus.model.CrudPlusItem;
 import org.sakaiproject.site.api.SiteService;
-import org.sakaiproject.thread_local.cover.ThreadLocalManager;
-import org.sakaiproject.tool.api.Session;
 import org.sakaiproject.tool.api.SessionManager;
 import org.sakaiproject.tool.api.ToolManager;
 import org.sakaiproject.user.api.UserDirectoryService;
@@ -95,44 +89,6 @@ public class CrudPlusLogicImpl implements CrudPlusLogic {
 		// register Sakai permissions for this tool
 		functionManager.registerFunction(ITEM_WRITE_ANY);
 		functionManager.registerFunction(ITEM_READ_HIDDEN);
-
-		// add the permissions to the maintain role of new sites by default
-		try {
-			// setup the admin user so we can do the stuff below
-			Session s = sessionManager.getCurrentSession();
-			if (s != null) {
-				s.setUserId("admin");
-			} else {
-				log.warn("no CurrentSession, cannot set to admin user");
-			}
-			AuthzGroup ag = authzGroupService.getAuthzGroup(SITE_TEMPLATE);
-			if (authzGroupService.allowUpdate(ag.getId())) {
-				Role r = ag.getRole(ag.getMaintainRole());
-				r.allowFunction(ITEM_READ_HIDDEN);
-				r.allowFunction(ITEM_WRITE_ANY);
-				authzGroupService.save(ag);
-				log.info("Added Permissions to group:" + SITE_TEMPLATE);
-			} else {
-				log.warn("Cannot update authz group: " + SITE_TEMPLATE);
-			}
-			ag = authzGroupService.getAuthzGroup(COURSE_TEMPLATE);
-			if (authzGroupService.allowUpdate(ag.getId())) {
-				Role r = ag.getRole(ag.getMaintainRole());
-				r.allowFunction(ITEM_READ_HIDDEN);
-				r.allowFunction(ITEM_WRITE_ANY);
-				authzGroupService.save(ag);
-				log.info("Added Permissions to group:" + COURSE_TEMPLATE);
-			} else {
-				log.warn("Cannot update authz group: " + COURSE_TEMPLATE);
-			}
-		} catch (GroupNotDefinedException e) {
-			log.error("Could not find group: " + SITE_TEMPLATE + ", default perms will not be assigned");
-		} catch (AuthzPermissionException e) {
-			log.error("Could not save group: " + SITE_TEMPLATE);
-		} finally {
-			// wipe out the admin session
-			ThreadLocalManager.clear();
-		}
 	}
 
 	/* (non-Javadoc)

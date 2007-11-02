@@ -19,16 +19,15 @@
 	<classpathentry kind="var" path="MAVEN_REPO/commons-collections/jars/commons-collections-3.1.jar"/>
 	<classpathentry kind="var" path="MAVEN_REPO/ehcache/jars/ehcache-1.1.jar"/>
 	<classpathentry kind="src" path="tool/src/java"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/J-RSFUtil"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/J-ServletUtil"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/PonderUtilCore"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/SakaiRSF"/>
 	<classpathentry kind="var" path="MAVEN_REPO/generic-dao/jars/generic-dao-0.9.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sakai24-authz-api"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sakai24-entity-api"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sakai24-site-api"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sakai24-tool-api"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sakai24-user-api"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sakai24-util-api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/authz-api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/entity-api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/site-api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/tool-api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/user-api"/>
+	<classpathentry kind="var" path="M2_REPO/uk/org/ponder/j-servletutil/1.2.2/j-servletutil-1.2.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/uk/org/ponder/ponderutilcore/1.2.2/ponderutilcore-1.2.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/uk/org/ponder/rsfutil/rsfutil/0.7.2/rsfutil-0.7.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/uk/org/ponder/sakairsf/sakairsf/0.7.2-sakai_2.2.x/sakairsf-0.7.2-sakai_2.2.x.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -56,7 +56,23 @@
       <version>2.4</version>
       <scope>provided</scope>
     </dependency>
-        
+
+    <!-- internal -->
+    <dependency>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-crudplus-model</artifactId>
+      <version>${sakai.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>org.sakaiproject</groupId>
+        <artifactId>sakai-crudplus-logic-api</artifactId>
+        <version>${sakai.version}</version>
+        <scope>provided</scope>
+    </dependency>
+  
+
     <!-- Sakai dependencies (all RSF apps must have this) -->
     <dependency>
       <groupId>org.sakaiproject</groupId>
@@ -64,6 +80,7 @@
       <version>${sakai.version}</version>
     </dependency>
   
+    <!-- other sakai deps -->
     <dependency>
         <groupId>org.sakaiproject</groupId>
         <artifactId>sakai-util-api</artifactId>
@@ -78,27 +95,14 @@
         <scope>provided</scope>
     </dependency>    
     
-    <dependency>
-        <groupId>org.sakaiproject</groupId>
-        <artifactId>sakai-crudplus-logic-api</artifactId>
-        <version>${sakai.version}</version>
-        <scope>provided</scope>
-    </dependency>
-    
+  
     <dependency>
       <groupId>org.sakaiproject</groupId>
       <artifactId>sakai-authz-api</artifactId>
       <version>${sakai.version}</version>
       <scope>provided</scope>
     </dependency>
-    
-    <dependency>
-      <groupId>org.sakaiproject.entitybroker</groupId>
-      <artifactId>entitybroker-api</artifactId>
-      <version>1.0.0-RC1</version>
-      <scope>provided</scope>
-    </dependency>
-    
+
     <dependency>
       <groupId>org.sakaiproject</groupId>
       <artifactId>sakai-component-api</artifactId>
@@ -112,21 +116,7 @@
       <version>${sakai.version}</version>
       <scope>provided</scope>
     </dependency>
-    
-    <dependency>
-        <groupId>org.sakaiproject</groupId>
-        <artifactId>sakai-component-api</artifactId>
-        <version>${sakai.version}</version>
-        <scope>provided</scope>
-    </dependency>
-       
-    <dependency>
-      <groupId>org.sakaiproject</groupId>
-      <artifactId>sakai-crudplus-model</artifactId>
-      <version>${sakai.version}</version>
-      <scope>provided</scope>
-    </dependency>
-   
+
     <dependency>
         <groupId>org.sakaiproject</groupId>
         <artifactId>sakai-user-api</artifactId>

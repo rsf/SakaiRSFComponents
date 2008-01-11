@@ -1,156 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
                       http://maven.apache.org/maven-v4_0_0.xsd">
-   <modelVersion>4.0.0</modelVersion>
-   <name>RSF Sakai Ajax Autocomplete Fancy</name>
-   <groupId>org.sakaiproject</groupId>
-   <artifactId>rsf-sakai-ajax-autocomplete-fancy</artifactId>
-   <organization>
-      <name>CARET</name>
-      <url>http://www.caret.cam.ac.uk</url>
-   </organization>
-   <inceptionYear>2007</inceptionYear>
-   <version>${sakai.version}</version>
+  <modelVersion>4.0.0</modelVersion>
+  <name>RSF Sakai Ajax Autocomplete Fancy</name>
+  <groupId>org.sakaiproject</groupId>
+  <artifactId>rsf-sakai-ajax-autocomplete-fancy</artifactId>
+  <organization>
+    <name>CARET</name>
+    <url>http://www.caret.cam.ac.uk</url>
+  </organization>
+  <inceptionYear>2007</inceptionYear>
+  <parent>
+    <groupId>uk.org.ponder.pure-poms</groupId>
+    <artifactId>standard-sakai-tool</artifactId>
+    <version>POM-3</version>
+  </parent>
+  <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
+  <properties>
+    <sakairsf.sakai.version>2.2.x</sakairsf.sakai.version>
+    <rsfutil.version>0.7.2</rsfutil.version>
+    <ponderutilcore.version>1.2.2</ponderutilcore.version>
+    <jservletutil.version>1.2.2</jservletutil.version>
+    <deploy.appserver.home>${sakai.appserver.home}</deploy.appserver.home>
+  </properties>
 
-   <parent>
-      <artifactId>base</artifactId>
+  <repositories>
+    <repository>
+      <id>CARET-Maven2-dev</id>
+      <name>CARET Maven 2 Dev Repository</name>
+      <url>http://www2.caret.cam.ac.uk/maven2dev</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  <packaging>war</packaging>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>uk.org.ponder.sakairsf</groupId>
+      <artifactId>SakaiRSFComponents-evolvers</artifactId>
+      <version>
+        ${rsfutil.version}-sakai_${sakairsf.sakai.version}
+      </version>
+      <type>jar</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>uk.org.ponder.sakairsf</groupId>
+      <artifactId>SakaiRSFComponents-templates</artifactId>
+      <version>
+        ${rsfutil.version}-sakai_${sakairsf.sakai.version}
+      </version>
+      <type>war</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>uk.org.ponder.sakairsf</groupId>
+      <artifactId>sakairsf</artifactId>
+      <version>
+        ${rsfutil.version}-sakai_${sakairsf.sakai.version}
+      </version>
+      <type>jar</type>
+    </dependency>
+    
+    <!-- Sakai Util is required to resolve user's Locale -->
+    <dependency>
       <groupId>org.sakaiproject</groupId>
-      <version>M2</version>
-      <relativePath>../pom.xml</relativePath>
-   </parent>
+      <artifactId>sakai-util</artifactId>
+      <version>${sakai.version}</version>
+      <type>jar</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.0.4</version>
+      <type>jar</type>
+    </dependency>
 
-   <repositories>
-      <repository>
-         <id>CARET-Maven2-dev</id>
-         <name>CARET Maven 2 Dev Repository</name>
-         <url>http://www2.caret.cam.ac.uk/maven2dev</url>
-         <snapshots>
-            <enabled>true</enabled>
-         </snapshots>
-      </repository>
-   </repositories>
+  </dependencies>
 
-   <properties>
-      <rsfutil.version>0.7.2M5-SNAPSHOT</rsfutil.version>
-   </properties>
-
-   <packaging>war</packaging>
-
-   <dependencies>
-
-      <dependency>
-         <groupId>javax.servlet</groupId>
-         <artifactId>servlet-api</artifactId>
-         <version>${sakai.servletapi.version}</version>
-      </dependency>
-
-      <!-- internal dependencies -->
-
-      <!-- sakai rsf dependencies (all RSF apps must have this) -->
-      <dependency>
-         <groupId>uk.org.ponder.sakairsf</groupId>
-         <artifactId>SakaiRSF</artifactId>
-         <version>0.7.2M4-sakai_2.2.x</version>
-         <type>jar</type>
-      </dependency>
-
-      <dependency>
-         <groupId>uk.org.ponder.sakairsf</groupId>
-         <artifactId>SakaiRSFComponents-templates</artifactId>
-         <version>0.7.2M4-sakai_2.2.x</version>
-         <type>war</type>
-      </dependency>
-
-      <dependency>
-         <groupId>org.sakaiproject</groupId>
-         <artifactId>sakai-util</artifactId>
-         <version>${sakai.version}</version>
-      </dependency>
-
-      <!-- rsf dependencies -->
-      <dependency>
-         <groupId>uk.org.ponder.rsfutil</groupId>
-         <artifactId>rsfutil</artifactId>
-         <version>${rsfutil.version}</version>
-         <type>jar</type>
-      </dependency>
-
-      <dependency>
-         <groupId>uk.org.ponder.rsfutil</groupId>
-         <artifactId>RSFComponents-evolvers</artifactId>
-         <version>${rsfutil.version}</version>
-         <type>jar</type>
-      </dependency>
-
-      <dependency>
-         <groupId>uk.org.ponder.rsfutil</groupId>
-         <artifactId>RSFComponents-templates</artifactId>
-         <version>${rsfutil.version}</version>
-         <type>war</type>
-      </dependency>
-
-   </dependencies>
-
-   <build>
-      <sourceDirectory>src</sourceDirectory>
-      <resources>
-         <resource>
-            <directory>${basedir}/src/java</directory>
-            <includes>
-               <include>**/*.xml</include>
-               <include>**/*.properties</include>
-            </includes>
-         </resource>
-      </resources>
-      <plugins>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <executions>
-               <execution>
-                  <id>unpack-dependencies</id>
-                  <phase>package</phase>
-                  <goals>
-                     <goal>unpack-dependencies</goal>
-                  </goals>
-                  <configuration>
-                     <includeTypes>war</includeTypes>
-                     <outputDirectory>${project.build.directory}/webapp/</outputDirectory>
-                     <overWriteReleases>true</overWriteReleases>
-                     <overWriteSnapshots>true</overWriteSnapshots>
-                  </configuration>
-               </execution>
-            </executions>
-         </plugin>
-         <plugin>
-            <artifactId>maven-war-plugin</artifactId>
-            <configuration>
-               <warSourceDirectory>src/webapp</warSourceDirectory>
-            </configuration>
-         </plugin>
-         <plugin>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-               <source>1.5</source>
-               <target>1.5</target>
-            </configuration>
-         </plugin>
-         <plugin>
-            <groupId>org.codehaus.cargo</groupId>
-            <artifactId>cargo-maven2-plugin</artifactId>
-            <configuration>
-               <container>
-                  <containerId>${appserver.id}</containerId>
-               </container>
-               <configuration>
-                  <home>${appserver.home}</home>
-               </configuration>
-            </configuration>
-         </plugin>
-      </plugins>
-   </build>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>${basedir}/src/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+          <include>**/*.properties</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
 
 </project>
 

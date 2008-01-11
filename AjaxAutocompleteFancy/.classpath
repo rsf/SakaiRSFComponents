@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="var" path="M2_REPO/uk/org/ponder/j-servletutil/1.2.2M5-SNAPSHOT/j-servletutil-1.2.2M5-SNAPSHOT.jar"/>
-	<classpathentry kind="var" path="M2_REPO/uk/org/ponder/ponderutilcore/1.2.2M5-SNAPSHOT/ponderutilcore-1.2.2M5-SNAPSHOT.jar"/>
-	<classpathentry kind="var" path="M2_REPO/uk/org/ponder/rsfutil/rsfutil/0.7.2M5-SNAPSHOT/rsfutil-0.7.2M5-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="M2_REPO/uk/org/ponder/j-servletutil/1.2.2/j-servletutil-1.2.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/uk/org/ponder/ponderutilcore/1.2.2/ponderutilcore-1.2.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/uk/org/ponder/rsfutil/rsfutil/0.7.2/rsfutil-0.7.2.jar"/>
 	<classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/springframework/spring/1.2.8/spring-1.2.8.jar"/>
 	<classpathentry kind="var" path="MAVEN_REPO/j-servletutil/jars/j-servletutil-1.2.2M4.jar"/>

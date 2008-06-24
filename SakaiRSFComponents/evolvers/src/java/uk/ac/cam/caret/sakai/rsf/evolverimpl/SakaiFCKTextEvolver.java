@@ -25,9 +25,9 @@ public class SakaiFCKTextEvolver implements TextInputEvolver {
   }
   
   public UIJointContainer evolveTextInput(UIInput toevolve) {
-    toevolve.parent.remove(toevolve);
     UIJointContainer joint = new UIJointContainer(toevolve.parent,
         toevolve.ID, COMPONENT_ID);
+    toevolve.parent.remove(toevolve);
 
     toevolve.ID = SEED_ID; // must change ID while unattached
     joint.addComponent(toevolve);

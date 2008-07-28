@@ -20,9 +20,9 @@
   <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
   <properties>
     <sakairsf.sakai.version>2.2.x</sakairsf.sakai.version>
-    <rsfutil.version>0.7.2</rsfutil.version>
-    <ponderutilcore.version>1.2.2</ponderutilcore.version>
-    <jservletutil.version>1.2.2</jservletutil.version>
+    <rsfutil.version>0.7.3</rsfutil.version>
+    <ponderutilcore.version>1.2.3</ponderutilcore.version>
+    <jservletutil.version>1.2.3</jservletutil.version>
     <deploy.appserver.home>${sakai.appserver.home}</deploy.appserver.home>
   </properties>
 

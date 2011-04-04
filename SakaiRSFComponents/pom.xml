@@ -27,6 +27,12 @@
       <name>CARET Maven 2 Repository</name>
       <url>http://www2.caret.cam.ac.uk/maven2</url>
     </repository>
+    <repository>
+      <id>Sakai-Maven2</id>
+      <name>Sakai Maven 2 Repository</name>
+      <url>http://source.sakaiproject.org/maven2</url>
+    </repository>
+  
   </repositories>  
   <modules>
     <module>evolvers</module>

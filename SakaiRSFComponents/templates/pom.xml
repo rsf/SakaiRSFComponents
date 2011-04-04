@@ -5,11 +5,11 @@
                       http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>SakaiRSFComponents-templates</artifactId>
-  
   <parent>
     <groupId>uk.org.ponder.pure-poms</groupId>
     <artifactId>sakai-components-base</artifactId>
     <version>0.8-SNAPSHOT-sakai_2.2.x</version>
+    <relativePath>./</relativePath>
   </parent>
 
 

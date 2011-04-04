@@ -9,6 +9,7 @@
     <groupId>uk.org.ponder.pure-poms</groupId>
     <artifactId>sakai-components-base</artifactId>
     <version>0.8-SNAPSHOT-sakai_2.2.x</version>
+    <relativePath>./</relativePath>
   </parent>
   <name>Sakai RSF Components Evolvers</name>
   <groupId>uk.org.ponder.sakairsf</groupId>

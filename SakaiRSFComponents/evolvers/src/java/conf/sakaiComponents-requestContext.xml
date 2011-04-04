@@ -5,11 +5,11 @@
 
 <beans>
 
-  <bean id="sakaiFCKTextEvolver"
-    class="uk.ac.cam.caret.sakai.rsf.evolverimpl.SakaiFCKTextEvolver">
-    <property name="contentHostingService"
-      ref="org.sakaiproject.content.api.ContentHostingService" />
-    <property name="context" ref="sakai-Context" />
-  </bean>
+	<bean id="sakaiFCKTextEvolver"
+		class="uk.ac.cam.caret.sakai.rsf.evolverimpl.SakaiFCKTextEvolver">
+		<property name="contentHostingService" ref="org.sakaiproject.content.api.ContentHostingService" />
+		<property name="serverConfigurationService" ref="org.sakaiproject.component.api.ServerConfigurationService"/>
+		<property name="context" ref="sakai-Context" />
+	</bean>
 
 </beans>

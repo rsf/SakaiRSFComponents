@@ -9,7 +9,7 @@
   <name>Sakai RSF Components Base POM</name>
   <groupId>uk.org.ponder.pure-poms</groupId>
   <artifactId>sakai-components-base</artifactId>
-  <version>0.7.5</version>
+  <version>0.7.6-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
     <module>evolvers</module>

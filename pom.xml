@@ -37,7 +37,7 @@
 
 <scm>
     <connection>scm:git:git://github.com/rsf/SakaiRSFComponents.git</connection>
-    <developerConnection>scm:git:git://github.com/rsf/SakaiRSFComponents.git</developerConnection>
+    <developerConnection>scm:git:git@github.com:rsf/SakaiRSFComponents.git</developerConnection>
     <url>https://github.com/rsf/SakaiRSFComponents.git</url>
   </scm> 
   <repositories>

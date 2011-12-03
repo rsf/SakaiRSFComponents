@@ -22,18 +22,42 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+<dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>uk.org.ponder.rsfutil</groupId>
+      <artifactId>RSFComponents-templates</artifactId>
+      <version>0.7.6-SNAPSHOT</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>uk.org.ponder.rsfutil</groupId>
+      <artifactId>RSFComponents-evolvers</artifactId>
+      <version>0.7.6-SNAPSHOT</version>
+     </dependency>
+  </dependencies>
+</dependencyManagement>
+
+<scm>
+    <connection>scm:git:git://github.com/rsf/SakaiRSFComponents.git</connection>
+    <developerConnection>scm:git:git://github.com/rsf/SakaiRSFComponents.git</developerConnection>
+    <url>https://github.com/rsf/SakaiRSFComponents.git</url>
+  </scm> 
   <repositories>
     <repository>
-      <id>CARET-Maven2</id>
-      <name>CARET Maven 2 Repository</name>
-      <url>http://www2.caret.cam.ac.uk/maven2</url>
+      <id>sakai-maven2</id>
+      <name>Sakai Maven 2 Repository</name>
+      <url>https://source.sakaiproject.org/maven2</url>
     </repository>
     <repository>
-      <id>Sakai-Maven2</id>
+      <id>sakai-maven2-snaphsots</id>
       <name>Sakai Maven 2 Repository</name>
-      <url>http://source.sakaiproject.org/maven2</url>
+      <url>https://source.sakaiproject.org/maven2-snapshots</url>
+      <snapshots>
+	<enabled>true</enabled>
+      </snapshots>
     </repository>
-  </repositories>  
+  </repositories>
     <distributionManagement>
         <downloadUrl>http://source.sakaiproject.org/maven2/</downloadUrl>
         <snapshotRepository>

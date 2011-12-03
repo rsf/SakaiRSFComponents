@@ -14,9 +14,6 @@
   <groupId>uk.org.ponder.sakairsf</groupId>
   <artifactId>SakaiRSFComponents-evolvers</artifactId>
   <properties>
-    <rsfutil.version>0.8-SNAPSHOT</rsfutil.version>
-    <ponderutilcore.version>1.3-SNAPSHOT</ponderutilcore.version>
-    <jservletutil.version>1.3-SNAPSHOT</jservletutil.version>
     <sakai.version>[2.2.0,2.8.0)</sakai.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -30,7 +27,6 @@
     <dependency>
       <groupId>uk.org.ponder.rsfutil</groupId>
       <artifactId>RSFComponents-evolvers</artifactId>
-      <version>${rsfutil.version}</version>
       <type>jar</type>
          <exclusions>
             <exclusion>

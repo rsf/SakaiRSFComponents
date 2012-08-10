@@ -9,7 +9,7 @@
   <name>Sakai RSF Components Base POM</name>
   <groupId>uk.org.ponder.pure-poms</groupId>
   <artifactId>sakai-components-base</artifactId>
-  <version>0.7.6-SNAPSHOT</version>
+  <version>0.8.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
     <module>evolvers</module>
@@ -24,13 +24,13 @@
     <dependency>
       <groupId>uk.org.ponder.rsfutil</groupId>
       <artifactId>RSFComponents-templates</artifactId>
-      <version>0.7.6-SNAPSHOT</version>
+      <version>0.8.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>uk.org.ponder.rsfutil</groupId>
       <artifactId>RSFComponents-evolvers</artifactId>
-      <version>0.7.6-SNAPSHOT</version>
+      <version>0.8.0-SNAPSHOT</version>
      </dependency>
   </dependencies>
 </dependencyManagement>

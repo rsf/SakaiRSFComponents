@@ -5,7 +5,7 @@
     <groupId>uk.org.ponder.pure-poms</groupId>
     <artifactId>sakai-components-base</artifactId>
     <version>0.8.0-SNAPSHOT</version>
-    <relativePath>./</relativePath>
+    <relativePath>../</relativePath>
   </parent>
   <name>Sakai RSF Components Templates</name>
   <groupId>uk.org.ponder.sakairsf</groupId>
@@ -46,4 +46,20 @@
           </extension>
     </extensions>
   </build>
+  <repositories>
+    <repository>
+      <id>sakai-maven2-snapshots</id>
+      <name>Sakai Maven Repo</name>
+      <layout>default</layout>
+      <url>http://source.sakaiproject.org/maven2-snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+        <checksumPolicy>ignore</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <checksumPolicy>ignore</checksumPolicy>
+      </snapshots>
+    </repository>
+  </repositories>
 </project>

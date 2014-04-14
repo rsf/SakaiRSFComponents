@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.sakaiproject.purepoms</groupId>
-    <artifactId>sakai-standard-tool</artifactId>
-    <version>2.9.0-a01</version>
+    <groupId>org.sakaiproject</groupId>
+    <artifactId>master</artifactId>
+    <version>11-SNAPSHOT</version>
   </parent>
   <name>Sakai RSF Components Base POM</name>
   <groupId>uk.org.ponder.pure-poms</groupId>
@@ -55,21 +55,4 @@
       </snapshots>
     </repository>
   </repositories>
-    <distributionManagement>
-        <downloadUrl>http://source.sakaiproject.org/maven2/</downloadUrl>
-        <snapshotRepository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>sakai-maven-snapshots-scp</id>
-            <name>Sakai snapshot Repo</name>
-            <url>scpexe://source.sakaiproject.org/var/www/html/maven2-snapshots</url>
-            <layout>default</layout>
-        </snapshotRepository>
-        <repository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>sakai-maven2-scp</id>
-            <name>Sakai maven2 repository</name>
-            <url>scpexe://source.sakaiproject.org/var/www/html/maven2</url>
-            <layout>default</layout>
-        </repository>
-    </distributionManagement>
 </project>

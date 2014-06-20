@@ -4,7 +4,7 @@
   <parent>
     <groupId>uk.org.ponder.pure-poms</groupId>
     <artifactId>sakai-components-base</artifactId>
-    <version>0.8.0-SNAPSHOT</version>
+    <version>11-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <name>Sakai RSF Components Test Tool</name>
@@ -24,19 +24,19 @@
      <dependency>
       <groupId>uk.org.ponder.rsfsamples</groupId>
       <artifactId>RSFComponents-test-base-webapp</artifactId>
-      <version>0.8.0-SNAPSHOT</version>
+	  <version>${rsfutil.version}</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>uk.org.ponder.sakairsf</groupId>
       <artifactId>SakaiRSFComponents-evolvers</artifactId>
-      <version>${project.version}</version>
+      <version>${sakairsf.components.version}</version>
       <type>jar</type>
     </dependency>
     <dependency>
       <groupId>uk.org.ponder.sakairsf</groupId>
       <artifactId>sakairsf</artifactId>
-      <version>0.8.0-SNAPSHOT</version>
+	  <version>${sakairsf.version}</version>
       <type>jar</type>
     </dependency>
    </dependencies>

@@ -4,12 +4,12 @@
   <parent>
     <groupId>org.sakaiproject</groupId>
     <artifactId>master</artifactId>
-    <version>11-SNAPSHOT</version>
+    <version>10-SNAPSHOT</version>
   </parent>
   <name>Sakai RSF Components Base POM</name>
   <groupId>uk.org.ponder.pure-poms</groupId>
   <artifactId>sakai-components-base</artifactId>
-  <version>0.8.0-SNAPSHOT</version>
+  <version>10-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
     <module>evolvers</module>

@@ -22,7 +22,7 @@
   <bean id="SakaiRSFComponentsTemplateContributor" parent="templateContributorParent">
     <property name="templateResourceBase" ref="componentsTemplateResourceBase"/>
     <property name="templateNames" value="sakai-old-date, sakai-FCKEditor, 
-      sakai-plainTextEditor"/> 
+      sakai-plainTextEditor, sakai-date-field-input"/>
   </bean>
   
   <bean id="SakaiRSFForcePortalContributor" parent="templateContributorParent">

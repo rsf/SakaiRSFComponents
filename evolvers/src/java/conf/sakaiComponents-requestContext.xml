@@ -12,4 +12,16 @@
 		<property name="context" ref="sakai-Context" />
 	</bean>
 
+	<bean id="sakaiDateFieldEvolver"
+		  class="uk.ac.cam.caret.sakai.rsf.evolverimpl.SakaiFieldDateInputEvolver">
+		<property name="requestBeanGetter" ref="ELEvaluator" />
+	</bean>
+
+	<!-- Used for converting ISO8601 dates to Dates (Java) and back.-->
+	<bean id="iso8601DateTransit" parent="beanExploder">
+		<property name="factory">
+			<bean class="uk.ac.cam.caret.sakai.rsf.util.ISO8601FieldDateTransit"/>
+		</property>
+	</bean>
+
 </beans>

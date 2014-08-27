@@ -13,12 +13,5 @@
   <bean name="requestLocale" class="org.springframework.beans.factory.config.BeanReferenceFactoryBean">
     <property name="targetBeanName" value="sakai-Locale"/>
   </bean>
-  
-  <bean id="sakaiFCKTextEvolver"
-    class="uk.ac.cam.caret.sakai.rsf.evolverimpl.SakaiFCKTextEvolver">
-    <property name="contentHostingService"
-      ref="org.sakaiproject.content.api.ContentHostingService" />
-    <property name="context" ref="sakai-Context" />
-  </bean>
 
 </beans>

@@ -22,13 +22,17 @@
   <bean id="SakaiRSFComponentsTemplateContributor" parent="templateContributorParent">
     <property name="templateResourceBase" ref="componentsTemplateResourceBase"/>
     <property name="templateNames" value="sakai-old-date, sakai-FCKEditor, 
-      sakai-plainTextEditor"/> 
+      sakai-plainTextEditor, sakai-date-field-input"/>
   </bean>
   
   <bean id="SakaiRSFForcePortalContributor" parent="templateContributorParent">
     <property name="mustContribute" value="true"/>
     <property name="templateResourceBase" ref="componentsTemplateResourceBase"/>
     <property name="templateNames" value="sakai-rsf-portal"/>
+  </bean>
+
+  <bean parent="requestAddressibleParent">
+    <property name="value" value="iso8601DateTransit"/>
   </bean>
   
 </beans>
